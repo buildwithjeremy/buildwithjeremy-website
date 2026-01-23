@@ -1,0 +1,96 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const services = await getCollection('services');
+  return services.map((service) => ({
+    params: { slug: service.id },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const { Content } = await render(service);
+---
+
+<Layout
+  title={`${service.data.title} | Build with Jeremy`}
+  description={service.data.description}
+  image={service.data.featuredImage}
+>
+  <article class="py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+          {service.data.title}
+        </h1>
+        {service.data.tagline && (
+          <p class="mt-4 text-xl text-primary font-medium">
+            {service.data.tagline}
+          </p>
+        )}
+        {service.data.description && (
+          <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            {service.data.description}
+          </p>
+        )}
+      </header>
+
+      <!-- Featured Image -->
+      {service.data.featuredImage && (
+        <img
+          src={service.data.featuredImage}
+          alt={service.data.title}
+          class="mt-8 w-full rounded-2xl shadow-lg"
+          loading="eager"
+        />
+      )}
+
+      <!-- Benefits -->
+      {service.data.benefits && service.data.benefits.length > 0 && (
+        <div class="mt-12 bg-slate-100 rounded-2xl p-8">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">What You Get</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {service.data.benefits.map((benefit) => (
+              <div class="bg-white rounded-lg p-6">
+                <h3 class="font-bold text-gray-900">{benefit.title}</h3>
+                <p class="mt-2 text-gray-600">{benefit.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Content -->
+      <div class="mt-12 prose prose-lg mx-auto">
+        <Content />
+      </div>
+
+      <!-- Price & CTA -->
+      <div class="mt-12 bg-slate-900 text-white rounded-2xl p-8 text-center">
+        {service.data.price && (
+          <p class="text-lg text-slate-300">Starting at</p>
+          <p class="text-3xl font-bold mt-1">{service.data.price}</p>
+        )}
+        <a href="/contact" class="mt-6 btn btn-primary text-lg px-8 py-4 inline-block">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Back to Services -->
+      <div class="mt-12">
+        <a
+          href="/services"
+          class="inline-flex items-center text-primary font-semibold hover:underline"
+        >
+          <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+          </svg>
+          Back to Services
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

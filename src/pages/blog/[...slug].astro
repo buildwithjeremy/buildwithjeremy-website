@@ -1,0 +1,72 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout
+  title={`${post.data.title} | Build with Jeremy`}
+  description={post.data.description}
+  image={post.data.featuredImage}
+>
+  <article class="py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <header class="text-center">
+        <time class="text-sm text-gray-500" datetime={post.data.publishDate.toISOString()}>
+          {new Date(post.data.publishDate).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        <h1 class="mt-4 text-4xl md:text-5xl font-bold text-gray-900">
+          {post.data.title}
+        </h1>
+        {post.data.description && (
+          <p class="mt-4 text-xl text-gray-600">
+            {post.data.description}
+          </p>
+        )}
+      </header>
+
+      <!-- Featured Image -->
+      {post.data.featuredImage && (
+        <img
+          src={post.data.featuredImage}
+          alt={post.data.title}
+          class="mt-8 w-full rounded-2xl shadow-lg"
+          loading="eager"
+        />
+      )}
+
+      <!-- Content -->
+      <div class="mt-12 prose prose-lg mx-auto">
+        <Content />
+      </div>
+
+      <!-- Back to Blog -->
+      <div class="mt-12 pt-8 border-t border-gray-200">
+        <a
+          href="/blog"
+          class="inline-flex items-center text-primary font-semibold hover:underline"
+        >
+          <svg class="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+          </svg>
+          Back to Blog
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

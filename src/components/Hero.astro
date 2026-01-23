@@ -1,0 +1,63 @@
+---
+interface Props {
+  headline: string;
+  subheadline?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  imageSrc?: string;
+  imageAlt?: string;
+}
+
+const {
+  headline,
+  subheadline,
+  ctaText = 'Get Started',
+  ctaLink = '/contact',
+  secondaryCtaText,
+  secondaryCtaLink,
+  imageSrc,
+  imageAlt = '',
+} = Astro.props;
+---
+
+<section class="bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+          <Fragment set:html={headline} />
+        </h1>
+        {subheadline && (
+          <p class="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed">
+            {subheadline}
+          </p>
+        )}
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href={ctaLink} class="btn btn-primary text-lg px-8 py-4">
+            {ctaText}
+          </a>
+          {secondaryCtaText && secondaryCtaLink && (
+            <a href={secondaryCtaLink} class="btn btn-outline text-lg px-8 py-4">
+              {secondaryCtaText}
+            </a>
+          )}
+        </div>
+      </div>
+
+      <!-- Image -->
+      {imageSrc && (
+        <div class="relative">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            class="rounded-2xl shadow-2xl w-full"
+            loading="eager"
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  buttonText?: string;
+  variant?: 'default' | 'inline' | 'card';
+}
+
+const {
+  title = 'Subscribe to the Newsletter',
+  description = 'Get tips and insights delivered to your inbox.',
+  buttonText = 'Subscribe',
+  variant = 'default',
+} = Astro.props;
+---
+
+{variant === 'card' ? (
+  <div class="bg-slate-100 rounded-2xl p-8 md:p-12">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-gray-900">{title}</h2>
+      <p class="mt-4 text-gray-600">{description}</p>
+      <form
+        action="https://app.mailerlite.com/webforms/submit/"
+        method="POST"
+        class="mt-6 flex flex-col sm:flex-row gap-3 justify-center"
+        data-code=""
+        target="_blank"
+      >
+        <input
+          type="email"
+          name="fields[email]"
+          placeholder="Enter your email"
+          required
+          class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none flex-1 max-w-md"
+        />
+        <button type="submit" class="btn btn-primary whitespace-nowrap">
+          {buttonText}
+        </button>
+      </form>
+      <p class="mt-4 text-xs text-gray-500">
+        No spam. Unsubscribe anytime.
+      </p>
+    </div>
+  </div>
+) : variant === 'inline' ? (
+  <form
+    action="https://app.mailerlite.com/webforms/submit/"
+    method="POST"
+    class="flex flex-col sm:flex-row gap-3"
+    data-code=""
+    target="_blank"
+  >
+    <input
+      type="email"
+      name="fields[email]"
+      placeholder="Enter your email"
+      required
+      class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none flex-1"
+    />
+    <button type="submit" class="btn btn-primary whitespace-nowrap">
+      {buttonText}
+    </button>
+  </form>
+) : (
+  <div class="text-center">
+    <h3 class="text-xl font-bold text-gray-900">{title}</h3>
+    <p class="mt-2 text-gray-600">{description}</p>
+    <form
+      action="https://app.mailerlite.com/webforms/submit/"
+      method="POST"
+      class="mt-4 flex flex-col sm:flex-row gap-3 justify-center"
+      data-code=""
+      target="_blank"
+    >
+      <input
+        type="email"
+        name="fields[email]"
+        placeholder="Enter your email"
+        required
+        class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+      />
+      <button type="submit" class="btn btn-primary whitespace-nowrap">
+        {buttonText}
+      </button>
+    </form>
+  </div>
+)}

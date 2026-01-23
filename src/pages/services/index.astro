@@ -1,0 +1,160 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const services = await getCollection('services').catch(() => []);
+const sortedServices = services.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+---
+
+<Layout
+  title="Services | Build with Jeremy"
+  description="Explore consulting services to help streamline your business operations and build systems that scale."
+>
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+          Services
+        </h1>
+        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+          Whether you need a quick tune-up or a full systems overhaul, I've got a service that fits.
+        </p>
+      </div>
+
+      {sortedServices.length > 0 ? (
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          {sortedServices.map((service) => (
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+              {service.data.featuredImage && (
+                <img
+                  src={service.data.featuredImage}
+                  alt={service.data.title}
+                  class="w-full h-48 object-cover"
+                  loading="lazy"
+                />
+              )}
+              <div class="p-8">
+                <h2 class="text-2xl font-bold text-gray-900">
+                  {service.data.title}
+                </h2>
+                {service.data.tagline && (
+                  <p class="mt-1 text-primary font-medium">
+                    {service.data.tagline}
+                  </p>
+                )}
+                {service.data.description && (
+                  <p class="mt-4 text-gray-600">
+                    {service.data.description}
+                  </p>
+                )}
+                {service.data.price && (
+                  <p class="mt-4 text-lg font-semibold text-gray-900">
+                    {service.data.price}
+                  </p>
+                )}
+                <a
+                  href={`/services/${service.id}`}
+                  class="mt-6 btn btn-primary inline-block"
+                >
+                  Learn More
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <!-- Default services when CMS is empty -->
+        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+            <h2 class="text-2xl font-bold text-gray-900">Streamline Starter</h2>
+            <p class="mt-1 text-primary font-medium">Reclaim Your Peace of Mind in 2 Weeks</p>
+            <p class="mt-4 text-gray-600">
+              You don't have to spend another week buried under a mountain of tasks and chaos. The help you need is here, and it starts with a simple conversation. Ready to get unstuck and breathe easier?
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Deep-Dive Operations Audit
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Customized Action Plan
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Quick-Win Implementation
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                1:1 Guidance and Support
+              </li>
+            </ul>
+            <a href="/services/streamline-starter" class="mt-6 btn btn-primary inline-block">
+              Learn More
+            </a>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+            <h2 class="text-2xl font-bold text-gray-900">Custom Consulting</h2>
+            <p class="mt-1 text-primary font-medium">Ongoing Partnership for Growth</p>
+            <p class="mt-4 text-gray-600">
+              For businesses ready to level up with ongoing support. We'll work together to build, implement, and refine systems that grow with you.
+            </p>
+            <ul class="mt-4 space-y-2">
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Full systems assessment
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Custom automation workflows
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Regular strategy calls
+              </li>
+              <li class="flex items-start gap-2 text-gray-600">
+                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                Implementation support
+              </li>
+            </ul>
+            <a href="/contact" class="mt-6 btn btn-primary inline-block">
+              Book a Call
+            </a>
+          </div>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-slate-900 text-white py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold">
+        Not Sure Which Service is Right for You?
+      </h2>
+      <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+        Let's chat. Book a free consultation and we'll figure out the best path forward together.
+      </p>
+      <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
+        Book My FREE Consultation
+      </a>
+    </div>
+  </section>
+</Layout>

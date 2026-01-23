@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+---
+
+<Layout
+  title="Build with Jeremy | Build a Business That Runs Without You"
+  description="I help solopreneurs and small teams streamline, automate, and scale so they can grow without drowning in the chaos of day-to-day operations."
+>
+  <!-- Hero Section -->
+  <Hero
+    headline="Finally Build a <span class='text-primary'>Business That Runs Without You</span>"
+    subheadline="You started your business for freedom — not to become its full-time manager. I help solopreneurs and small teams streamline, automate, and scale so they can grow without drowning in the chaos of day-to-day operations."
+    ctaText="Book My FREE Consultation"
+    ctaLink="/contact"
+    imageSrc="/images/jeremy-desk.webp"
+    imageAlt="Jeremy Pittman working at his desk"
+  />
+
+  <!-- Problem Section -->
+  <section class="bg-slate-100 py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-secondary">
+        Right now, your business depends on you doing everything.
+      </h2>
+      <div class="mt-8 text-lg text-gray-700 space-y-4">
+        <p>
+          If you're the one answering every client email, fixing every tech issue, chasing invoices, and holding all the systems together in your head...
+        </p>
+        <p class="font-medium">
+          you're not running a business — you're stuck running yourself ragged.
+        </p>
+        <p>
+          But it doesn't have to stay that way.
+        </p>
+      </div>
+      <div class="mt-8">
+        <p class="text-lg text-gray-700">The truth is:</p>
+        <ul class="mt-4 text-left max-w-xl mx-auto space-y-3">
+          <li class="flex items-start gap-3">
+            <svg class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700">You don't need to hire a big team to scale.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700">You don't need to learn complicated software.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="h-6 w-6 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            <span class="text-gray-700">You just need smarter, simpler systems that actually fit your business — and someone to help you build them the right way.</span>
+          </li>
+        </ul>
+        <p class="mt-6 text-lg font-semibold text-gray-900">That's where I come in.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Preview Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+            Meet Jeremy — Your Partner for Smoother, Smarter Growth
+          </h2>
+          <div class="mt-6 text-lg text-gray-600 space-y-4">
+            <p>
+              I'm Jeremy Pittman — entrepreneur, product builder, and former Googler.
+            </p>
+            <p>
+              After years building systems for global teams and growing my own businesses, I saw the same pattern everywhere: talented business owners getting stuck not because they lacked skills — but because their backend was a mess.
+            </p>
+            <p>
+              Today, I work with solopreneurs and small businesses to fix that. My approach is real-world tested (not tech theory) and built for people who are busy, ambitious, and want their business to support their life — not take it over.
+            </p>
+          </div>
+          <a href="/about" class="mt-6 inline-flex items-center text-primary font-semibold hover:underline">
+            Learn more about me
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="relative">
+          <img
+            src="/images/jeremy-head-shot.webp"
+            alt="Jeremy Pittman"
+            class="rounded-2xl shadow-lg"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Preview Section -->
+  <section class="bg-slate-900 text-white py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="text-3xl md:text-4xl font-bold">
+          Let's fix what's slowing you down
+        </h2>
+        <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+          Whether you need a quick operational clean-up, a full systems overhaul, or an ongoing partner to support your growth, we'll build a better backend together — step-by-step, at your pace.
+        </p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Service Card 1 -->
+        <div class="bg-slate-800 rounded-xl p-8">
+          <h3 class="text-xl font-bold">Streamline Starter</h3>
+          <p class="mt-3 text-slate-300">
+            Reclaim your peace of mind in 2 weeks. A quick operations audit and action plan to get you unstuck fast.
+          </p>
+          <a href="/services/streamline-starter" class="mt-4 inline-flex items-center text-primary font-semibold hover:underline">
+            Learn more
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+        <!-- Service Card 2 -->
+        <div class="bg-slate-800 rounded-xl p-8">
+          <h3 class="text-xl font-bold">Custom Consulting</h3>
+          <p class="mt-3 text-slate-300">
+            Ongoing partnership to build and refine systems that grow with your business.
+          </p>
+          <a href="/contact" class="mt-4 inline-flex items-center text-primary font-semibold hover:underline">
+            Book a call
+            <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-secondary">
+        Ready to Get Out of Your Own Way and Scale Smarter?
+      </h2>
+      <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+        Your next level of growth isn't about hustling harder — it's about building smarter. Let's clear the chaos, automate what's draining you, and finally create a business that gives you the freedom you deserve.
+      </p>
+      <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
+        Book My FREE Consultation
+      </a>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-16 lg:py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <NewsletterForm
+        variant="card"
+        title="Subscribe to the Newsletter"
+        description="Get tips and insights on streamlining your business delivered to your inbox."
+        buttonText="Subscribe"
+      />
+    </div>
+  </section>
+</Layout>
