@@ -2,14 +2,59 @@
 
 /* Custom theme variables */
 @theme {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-secondary: #ea580c;
-  --color-secondary-dark: #c2410c;
-  --color-dark: #1e293b;
+  /* Primary brand color - distinctive purple-blue */
+  --color-brand: #5564F1;
+  --color-brand-light: #7280F5;
+  --color-brand-dark: #3D4BD9;
+  --color-brand-50: #EEF0FE;
+  --color-brand-100: #E0E3FD;
+
+  /* Accent - warm coral for CTAs and highlights */
+  --color-accent: #F97066;
+  --color-accent-light: #FCA5A5;
+  --color-accent-dark: #DC2626;
+
+  /* Keep these for Tailwind compatibility */
+  --color-primary: #5564F1;
+  --color-primary-dark: #3D4BD9;
+  --color-secondary: #F97066;
+  --color-secondary-dark: #DC2626;
+
+  /* Neutrals */
+  --color-dark: #0f172a;
   --color-light: #f8fafc;
+
+  /* Fonts */
   --font-sans: 'Inter', system-ui, sans-serif;
   --font-heading: 'Inter', system-ui, sans-serif;
+}
+
+/* Light theme (default) */
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-inverse: #0f172a;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #64748b;
+  --text-inverse: #ffffff;
+  --border-color: #e2e8f0;
+  color-scheme: light;
+}
+
+/* Dark theme */
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --bg-inverse: #ffffff;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-inverse: #0f172a;
+  --border-color: #334155;
+  color-scheme: dark;
 }
 
 /* Base styles */
@@ -19,8 +64,10 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--color-dark);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Typography */
@@ -28,11 +75,17 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: 700;
   line-height: 1.2;
+  color: var(--text-primary);
 }
 
 /* Prose styling for content */
 .prose {
   max-width: 65ch;
+  color: var(--text-secondary);
+}
+
+.prose h1, .prose h2, .prose h3 {
+  color: var(--text-primary);
 }
 
 .prose h1 {
@@ -66,12 +119,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .prose a {
-  color: var(--color-primary);
+  color: var(--color-brand);
   text-decoration: underline;
 }
 
 .prose a:hover {
-  color: var(--color-primary-dark);
+  color: var(--color-brand-dark);
 }
 
 /* Button styles */
@@ -82,34 +135,201 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.75rem 1.5rem;
   font-weight: 600;
   border-radius: 0.5rem;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+  cursor: pointer;
 }
 
 .btn-primary {
-  background-color: var(--color-primary);
+  background-color: var(--color-brand);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-primary-dark);
+  background-color: var(--color-brand-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(85, 100, 241, 0.3);
 }
 
 .btn-secondary {
-  background-color: var(--color-secondary);
+  background-color: var(--color-accent);
   color: white;
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
 }
 
 .btn-outline {
-  border: 2px solid var(--color-dark);
-  color: var(--color-dark);
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
   background: transparent;
 }
 
 .btn-outline:hover {
-  background-color: var(--color-dark);
+  background-color: var(--color-brand);
   color: white;
+}
+
+.dark .btn-outline {
+  border-color: var(--color-brand-light);
+  color: var(--color-brand-light);
+}
+
+/* Card styles */
+.card {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.dark .card:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Theme-aware backgrounds */
+.theme-bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.theme-bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.theme-bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+.theme-bg-inverse {
+  background-color: var(--bg-inverse);
+}
+
+/* Theme-aware text */
+.theme-text-primary {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-text-tertiary {
+  color: var(--text-tertiary);
+}
+
+/* Brand colors */
+.text-brand {
+  color: var(--color-brand);
+}
+
+.bg-brand {
+  background-color: var(--color-brand);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Focus states */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(85, 100, 241, 0.1);
+}
+
+/* Stat number styling */
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-brand);
+}
+
+/* Testimonial card */
+.testimonial-card {
+  position: relative;
+  padding: 2rem;
+  background: var(--bg-primary);
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.testimonial-card::before {
+  content: '"';
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  font-size: 4rem;
+  line-height: 1;
+  color: var(--color-brand);
+  opacity: 0.2;
+  font-family: Georgia, serif;
+}
+
+/* FAQ accordion */
+.faq-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.faq-answer {
+  padding-bottom: 1.5rem;
+  color: var(--text-secondary);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-secondary);
 }

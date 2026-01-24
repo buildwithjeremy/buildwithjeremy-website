@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 interface Props {
   currentPath?: string;
 }
@@ -20,28 +22,29 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="bg-white border-b border-gray-100 sticky top-0 z-50">
+<header class="theme-bg-primary border-b sticky top-0 z-50 transition-colors" style="border-color: var(--border-color);">
   <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <!-- Logo -->
-      <a href="/" class="font-bold text-xl text-gray-900 hover:text-primary transition-colors">
+      <a href="/" class="font-bold text-xl theme-text-primary hover:text-brand transition-colors">
         Build with Jeremy
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-6">
         {navLinks.map((link) => (
           <a
             href={link.href}
             class={`text-sm font-medium transition-colors ${
               isActive(link.href)
-                ? 'text-primary'
-                : 'text-gray-600 hover:text-gray-900'
+                ? 'text-brand'
+                : 'theme-text-secondary hover:theme-text-primary'
             }`}
           >
             {link.label}
           </a>
         ))}
+        <ThemeToggle />
         <a
           href="/contact"
           class="btn btn-primary text-sm"
@@ -50,31 +53,34 @@ const isActive = (href: string) => {
         </a>
       </div>
 
-      <!-- Mobile menu button -->
-      <button
-        type="button"
-        class="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-        id="mobile-menu-button"
-        aria-expanded="false"
-        aria-controls="mobile-menu"
-      >
-        <span class="sr-only">Open menu</span>
-        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
+      <!-- Mobile: Theme toggle + menu button -->
+      <div class="flex items-center gap-2 md:hidden">
+        <ThemeToggle />
+        <button
+          type="button"
+          class="p-2 rounded-md theme-text-secondary hover:theme-text-primary hover:theme-bg-secondary transition-colors"
+          id="mobile-menu-button"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span class="sr-only">Open menu</span>
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Navigation -->
     <div class="hidden md:hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1 border-t border-gray-100">
+      <div class="px-2 pt-2 pb-3 space-y-1 border-t" style="border-color: var(--border-color);">
         {navLinks.map((link) => (
           <a
             href={link.href}
-            class={`block px-3 py-2 rounded-md text-base font-medium ${
+            class={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
               isActive(link.href)
-                ? 'text-primary bg-blue-50'
-                : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                ? 'text-brand theme-bg-secondary'
+                : 'theme-text-secondary hover:theme-text-primary hover:theme-bg-secondary'
             }`}
           >
             {link.label}

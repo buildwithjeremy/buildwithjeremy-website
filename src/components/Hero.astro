@@ -22,16 +22,16 @@ const {
 } = Astro.props;
 ---
 
-<section class="bg-white">
+<section class="theme-bg-primary">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Content -->
       <div>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold theme-text-primary leading-tight">
           <Fragment set:html={headline} />
         </h1>
         {subheadline && (
-          <p class="mt-6 text-lg sm:text-xl text-gray-600 leading-relaxed">
+          <p class="mt-6 text-lg sm:text-xl theme-text-secondary leading-relaxed">
             {subheadline}
           </p>
         )}
