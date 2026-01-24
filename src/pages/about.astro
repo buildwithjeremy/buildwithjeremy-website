@@ -1,37 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
+
+const credentials = [
+  { value: '12', label: 'Years at Google' },
+  { value: '10+', label: 'Hours Saved Weekly' },
+  { value: '10x', label: 'Results Unlocked' },
+];
+
+const howIHelp = [
+  {
+    icon: 'workflow',
+    title: 'Streamline Workflows',
+    description: 'Simplify clunky processes like client onboarding, lead tracking, and project delivery so nothing falls through the cracks.',
+  },
+  {
+    icon: 'automation',
+    title: 'Implement Automations & AI',
+    description: 'Set up smart no-code automations and AI tools that eliminate repetitive work, reduce human error, and save 10+ hours per week.',
+  },
+  {
+    icon: 'systems',
+    title: 'Design Custom Systems',
+    description: 'Build SOPs, dashboards, and lightweight CRMs tailored to your business in tools like Notion, Airtable, Zapier, and Google Workspace.',
+  },
+];
 ---
 
 <Layout
   title="About Jeremy Pittman | Build with Jeremy"
-  description="Learn about Jeremy Pittman - entrepreneur, product builder, and former Googler helping solopreneurs and small teams streamline their businesses."
+  description="Former Google program manager turned business consultant. I help small business owners escape operational chaos using AI, automation, and streamlined workflows."
 >
   <!-- Hero Section -->
-  <section class="bg-white py-16 lg:py-24">
+  <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
-            Meet Jeremy
+          <p class="text-brand font-semibold mb-2">AI, Automation, & Operations Expert</p>
+          <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
+            Hi, I'm Jeremy
           </h1>
-          <p class="mt-2 text-xl text-primary font-medium">
-            Your Partner for Smoother, Smarter Growth
+          <p class="mt-4 text-xl theme-text-secondary">
+            Former Google program manager, now full-time consultant for small business owners who are tired of running their operations with sticky notes, spreadsheets, and stress.
           </p>
-          <div class="mt-8 text-lg text-gray-600 space-y-4">
+          <div class="mt-8 text-lg theme-text-secondary space-y-4">
             <p>
-              I'm Jeremy Pittman — entrepreneur, product builder, and former Googler.
+              If your business feels like it's being held together with duct tape and to-do lists, I'll help you fix the backend so it runs like a machine.
             </p>
             <p>
-              After years building systems for global teams and growing my own businesses, I saw the same pattern everywhere: talented business owners getting stuck not because they lacked skills — but because their backend was a mess.
-            </p>
-            <p>
-              Today, I work with solopreneurs and small businesses to fix that. My approach is real-world tested (not tech theory) and built for people who are busy, ambitious, and want their business to support their life — not take it over.
-            </p>
-            <p>
-              Whether you're launching your first product or scaling past six figures, I help you build the operational foundation that makes growth sustainable — without burning out.
+              I specialize in turning operational chaos into clean, automated workflows that free up your time and mental energy — so you can grow without burning out.
             </p>
           </div>
+          <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
+            Book My FREE Consultation
+          </a>
         </div>
         <div class="relative">
           <img
@@ -45,83 +67,170 @@ import NewsletterForm from '../components/NewsletterForm.astro';
     </div>
   </section>
 
+  <!-- Credentials Bar -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        {credentials.map((cred) => (
+          <div>
+            <div class="text-3xl md:text-5xl font-bold text-brand">{cred.value}</div>
+            <div class="mt-2 text-sm md:text-base text-slate-300">{cred.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- Background Section -->
-  <section class="bg-slate-100 py-16 lg:py-24">
+  <section class="theme-bg-secondary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
         My Journey
       </h2>
       <div class="mt-12 space-y-8">
-        <div class="bg-white rounded-xl p-8 shadow-sm">
-          <h3 class="text-xl font-bold text-primary">Former Googler</h3>
-          <p class="mt-3 text-gray-600">
-            I spent years at Google learning how to build systems that scale. I saw firsthand how the right processes and tools can transform how teams work — and how the wrong ones can create chaos.
+        <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
+          <h3 class="text-xl font-bold text-brand">12 Years at Google</h3>
+          <p class="mt-3 theme-text-secondary">
+            I spent over a decade at Google building ops, tools, and programs used by millions. I learned how to build systems that scale — and saw firsthand how the right processes and tools can transform how teams work.
           </p>
         </div>
-        <div class="bg-white rounded-xl p-8 shadow-sm">
-          <h3 class="text-xl font-bold text-primary">Entrepreneur & Product Builder</h3>
-          <p class="mt-3 text-gray-600">
-            I've built and grown multiple businesses from scratch. I know what it's like to wear every hat, work endless hours, and feel like you're constantly putting out fires. I also know how to fix it.
+        <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
+          <h3 class="text-xl font-bold text-brand">Entrepreneur & Small Business Owner</h3>
+          <p class="mt-3 theme-text-secondary">
+            I've built and streamlined my own small businesses from the ground up. I know what it's like to wear every hat, work endless hours, and feel like you're constantly putting out fires. More importantly, I know how to fix it.
           </p>
         </div>
-        <div class="bg-white rounded-xl p-8 shadow-sm">
-          <h3 class="text-xl font-bold text-primary">Systems Obsessed</h3>
-          <p class="mt-3 text-gray-600">
-            I believe every business deserves smart systems — not complicated software or expensive consultants, but practical solutions that actually work for your unique situation.
+        <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
+          <h3 class="text-xl font-bold text-brand">Deep Tech + Small Business Scrappiness</h3>
+          <p class="mt-3 theme-text-secondary">
+            I bring enterprise-level systems thinking with the scrappiness of a small business owner. I understand that you don't need complicated software or expensive tools — you need practical solutions that actually work for your unique situation.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Values Section -->
-  <section class="py-16 lg:py-24">
+  <!-- How I Help Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
+        Here's How I Help
+      </h2>
+      <p class="mt-4 text-lg theme-text-secondary text-center max-w-2xl mx-auto">
+        Whether you're a coach, agency, or creative service provider, I'll meet you where you are and build the systems that get you where you want to go.
+      </p>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Streamline Workflows</h3>
+          <p class="mt-2 theme-text-secondary">
+            Simplify clunky processes like client onboarding, lead tracking, and project delivery so nothing falls through the cracks.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Implement Automations & AI</h3>
+          <p class="mt-2 theme-text-secondary">
+            Set up smart no-code automations and AI tools that eliminate repetitive work and save 10+ hours per week.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+            </svg>
+          </div>
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Design Custom Systems</h3>
+          <p class="mt-2 theme-text-secondary">
+            Build SOPs, dashboards, and lightweight CRMs in tools like Notion, Airtable, Zapier, and Google Workspace.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        The Result?
+      </h2>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+          <div class="text-4xl mb-4">&#x2705;</div>
+          <h3 class="text-xl font-bold theme-text-primary">More Time</h3>
+          <p class="mt-2 theme-text-secondary">Stop babysitting your business and finally get your time back.</p>
+        </div>
+        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+          <div class="text-4xl mb-4">&#x2705;</div>
+          <h3 class="text-xl font-bold theme-text-primary">Fewer Mistakes</h3>
+          <p class="mt-2 theme-text-secondary">Reduce human error with systems that run on autopilot.</p>
+        </div>
+        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+          <div class="text-4xl mb-4">&#x2705;</div>
+          <h3 class="text-xl font-bold theme-text-primary">10x Capacity</h3>
+          <p class="mt-2 theme-text-secondary">Unlock 10x results with the same team you have today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
         How I Work
       </h2>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <div class="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold text-gray-900">Real-World Tested</h3>
-          <p class="mt-2 text-gray-600">
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Real-World Tested</h3>
+          <p class="mt-2 theme-text-secondary">
             Everything I recommend has been tested in actual businesses — not just theory from a textbook.
           </p>
         </div>
         <div>
-          <div class="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold text-gray-900">Quick Wins First</h3>
-          <p class="mt-2 text-gray-600">
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Quick Wins First</h3>
+          <p class="mt-2 theme-text-secondary">
             We start with the changes that give you immediate relief, then build from there.
           </p>
         </div>
         <div>
-          <div class="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold text-gray-900">Partnership, Not Projects</h3>
-          <p class="mt-2 text-gray-600">
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Partnership, Not Projects</h3>
+          <p class="mt-2 theme-text-secondary">
             I'm not here to hand you a report and disappear. I work alongside you to make sure things actually get done.
           </p>
         </div>
         <div>
-          <div class="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold text-gray-900">Built for Your Life</h3>
-          <p class="mt-2 text-gray-600">
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Built for Your Life</h3>
+          <p class="mt-2 theme-text-secondary">
             Your business should support your life goals, not consume them. Everything we build keeps that in mind.
           </p>
         </div>
@@ -130,13 +239,13 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   </section>
 
   <!-- CTA Section -->
-  <section class="bg-slate-900 text-white py-16 lg:py-24">
+  <section class="theme-bg-inverse text-white py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">
-        Ready to Work Together?
+        Ready to Break Out of the Grind?
       </h2>
       <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
-        Let's talk about where you are, where you want to go, and how I can help you get there.
+        Let's talk if you're ready to use AI and automation to finally build a business that works for you — and runs without you.
       </p>
       <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
         Book My FREE Consultation
@@ -145,12 +254,12 @@ import NewsletterForm from '../components/NewsletterForm.astro';
   </section>
 
   <!-- Newsletter Section -->
-  <section class="py-16 lg:py-24">
+  <section class="py-16 lg:py-24 theme-bg-primary">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <NewsletterForm
         variant="card"
         title="Stay Connected"
-        description="Get tips on building smarter systems delivered to your inbox."
+        description="Get tips on AI, automation, and building smarter systems delivered to your inbox."
         buttonText="Subscribe"
       />
     </div>
