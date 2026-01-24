@@ -10,7 +10,8 @@
 >
   <!-- Sun icon (shown in dark mode) -->
   <svg
-    class="sun-icon hidden dark:block h-5 w-5"
+    id="sun-icon"
+    class="h-5 w-5 hidden"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -24,7 +25,8 @@
   </svg>
   <!-- Moon icon (shown in light mode) -->
   <svg
-    class="moon-icon block dark:hidden h-5 w-5"
+    id="moon-icon"
+    class="h-5 w-5"
     fill="none"
     viewBox="0 0 24 24"
     stroke="currentColor"
@@ -39,6 +41,23 @@
 </button>
 
 <script>
+  const sunIcon = document.getElementById('sun-icon');
+  const moonIcon = document.getElementById('moon-icon');
+
+  // Update icon visibility based on current theme
+  const updateIcons = () => {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (sunIcon && moonIcon) {
+      if (isDark) {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+      } else {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+      }
+    }
+  };
+
   // Check for saved theme preference or default to system preference
   const getThemePreference = () => {
     if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
@@ -54,6 +73,7 @@
       document.documentElement.classList.remove('dark');
     }
     localStorage.setItem('theme', theme);
+    updateIcons();
   };
 
   // Set initial theme

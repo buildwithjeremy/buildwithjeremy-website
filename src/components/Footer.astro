@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from './ThemeToggle.astro';
+
 const currentYear = new Date().getFullYear();
 
 const footerLinks = {
@@ -83,9 +85,13 @@ const footerLinks = {
       </div>
     </div>
 
-    <!-- Copyright -->
-    <div class="mt-8 pt-8 border-t border-slate-700 text-center text-slate-400 text-sm">
+    <!-- Copyright & Theme Toggle -->
+    <div class="mt-8 pt-8 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-sm">
       <p>&copy; {currentYear} Build with Jeremy. All rights reserved.</p>
+      <div class="flex items-center gap-2">
+        <span class="text-xs">Theme:</span>
+        <ThemeToggle />
+      </div>
     </div>
   </div>
 </footer>

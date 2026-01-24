@@ -1,6 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
-
 interface Props {
   currentPath?: string;
 }
@@ -44,7 +42,6 @@ const isActive = (href: string) => {
             {link.label}
           </a>
         ))}
-        <ThemeToggle />
         <a
           href="/contact"
           class="btn btn-primary text-sm"
@@ -53,9 +50,8 @@ const isActive = (href: string) => {
         </a>
       </div>
 
-      <!-- Mobile: Theme toggle + menu button -->
-      <div class="flex items-center gap-2 md:hidden">
-        <ThemeToggle />
+      <!-- Mobile: menu button -->
+      <div class="flex items-center md:hidden">
         <button
           type="button"
           class="p-2 rounded-md theme-text-secondary hover:theme-text-primary hover:theme-bg-secondary transition-colors"
