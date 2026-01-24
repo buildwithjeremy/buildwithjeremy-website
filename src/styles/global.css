@@ -1,63 +1,202 @@
 @import "tailwindcss";
 
-/* Custom theme variables */
-@theme {
-  /* Primary brand color - distinctive purple-blue */
-  --color-brand: #5564F1;
-  --color-brand-light: #7280F5;
-  --color-brand-dark: #3D4BD9;
-  --color-brand-50: #EEF0FE;
-  --color-brand-100: #E0E3FD;
+/* ===== NEW COLOR PALETTE FROM REALTIMECOLORS ===== */
 
-  /* Accent - warm coral for CTAs and highlights */
-  --color-accent: #F97066;
-  --color-accent-light: #FCA5A5;
-  --color-accent-dark: #DC2626;
-
-  /* Keep these for Tailwind compatibility */
-  --color-primary: #5564F1;
-  --color-primary-dark: #3D4BD9;
-  --color-secondary: #F97066;
-  --color-secondary-dark: #DC2626;
-
-  /* Neutrals */
-  --color-dark: #0f172a;
-  --color-light: #f8fafc;
-
-  /* Fonts */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Inter', system-ui, sans-serif;
-}
-
-/* Light theme (default) */
+/* Color scale CSS variables - Light theme (default) */
 :root {
+  /* Text colors - dark blues for light mode */
+  --text-50: #e5e8ff;
+  --text-100: #ccd2ff;
+  --text-200: #99a5ff;
+  --text-300: #6678ff;
+  --text-400: #334bff;
+  --text-500: #001eff;
+  --text-600: #0018cc;
+  --text-700: #001299;
+  --text-800: #000c66;
+  --text-900: #000633;
+  --text-950: #00031a;
+
+  /* Background colors - neutrals */
+  --background-50: #f2f2f2;
+  --background-100: #e6e6e6;
+  --background-200: #cccccc;
+  --background-300: #b3b3b3;
+  --background-400: #999999;
+  --background-500: #808080;
+  --background-600: #666666;
+  --background-700: #4d4d4d;
+  --background-800: #333333;
+  --background-900: #1a1a1a;
+  --background-950: #0d0d0d;
+
+  /* Primary colors - deep blue (#122fed) */
+  --primary-50: #e7eafd;
+  --primary-100: #d0d5fb;
+  --primary-200: #a0acf8;
+  --primary-300: #7182f4;
+  --primary-400: #4159f1;
+  --primary-500: #122fed;
+  --primary-600: #0e26be;
+  --primary-700: #0b1c8e;
+  --primary-800: #07135f;
+  --primary-900: #04092f;
+  --primary-950: #020518;
+
+  /* Secondary colors - purple-blue (#5565f1) */
+  --secondary-50: #e7eafd;
+  --secondary-100: #d0d4fb;
+  --secondary-200: #a1a9f7;
+  --secondary-300: #717ef4;
+  --secondary-400: #4254f0;
+  --secondary-500: #5565f1;
+  --secondary-600: #0f21bd;
+  --secondary-700: #0b188e;
+  --secondary-800: #08105e;
+  --secondary-900: #04082f;
+  --secondary-950: #020418;
+
+  /* Accent colors - bright green (#4dfe43) */
+  --accent-50: #e7ffe6;
+  --accent-100: #cfffcc;
+  --accent-200: #9ffe9a;
+  --accent-300: #6efe67;
+  --accent-400: #3efe34;
+  --accent-500: #4dfe43;
+  --accent-600: #0bcb01;
+  --accent-700: #089801;
+  --accent-800: #066501;
+  --accent-900: #033300;
+  --accent-950: #011900;
+
+  /* Theme layout variables - Light mode */
   --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --bg-tertiary: #f1f5f9;
-  --bg-inverse: #0f172a;
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-tertiary: #64748b;
+  --bg-secondary: #f2f2f2;
+  --bg-tertiary: #e6e6e6;
+  --bg-inverse: #00031a;
+  --text-primary: #00031a;
+  --text-secondary: #333333;
+  --text-tertiary: #666666;
+  --text-muted: #999999;
   --text-inverse: #ffffff;
-  --border-color: #e2e8f0;
+  --border-color: #e6e6e6;
   color-scheme: light;
 }
 
 /* Dark theme */
 .dark {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --bg-tertiary: #334155;
+  /* Text colors - inverted for dark mode */
+  --text-50: #00031a;
+  --text-100: #000633;
+  --text-200: #000c66;
+  --text-300: #001299;
+  --text-400: #0018cc;
+  --text-500: #001eff;
+  --text-600: #334bff;
+  --text-700: #6678ff;
+  --text-800: #99a5ff;
+  --text-900: #ccd2ff;
+  --text-950: #e5e8ff;
+
+  /* Background colors - inverted */
+  --background-50: #0d0d0d;
+  --background-100: #1a1a1a;
+  --background-200: #333333;
+  --background-300: #4d4d4d;
+  --background-400: #666666;
+  --background-500: #808080;
+  --background-600: #999999;
+  --background-700: #b3b3b3;
+  --background-800: #cccccc;
+  --background-900: #e6e6e6;
+  --background-950: #f2f2f2;
+
+  /* Primary colors - adjusted for dark */
+  --primary-50: #020518;
+  --primary-100: #04092f;
+  --primary-200: #07135f;
+  --primary-300: #0b1c8e;
+  --primary-400: #0e26be;
+  --primary-500: #122fed;
+  --primary-600: #4159f1;
+  --primary-700: #7182f4;
+  --primary-800: #a0acf8;
+  --primary-900: #d0d5fb;
+  --primary-950: #e7eafd;
+
+  /* Secondary colors - adjusted for dark */
+  --secondary-50: #020418;
+  --secondary-100: #04082f;
+  --secondary-200: #08105e;
+  --secondary-300: #0b188e;
+  --secondary-400: #0f21bd;
+  --secondary-500: #5565f1;
+  --secondary-600: #4254f0;
+  --secondary-700: #717ef4;
+  --secondary-800: #a1a9f7;
+  --secondary-900: #d0d4fb;
+  --secondary-950: #e7eafd;
+
+  /* Accent colors - adjusted for dark */
+  --accent-50: #011900;
+  --accent-100: #033300;
+  --accent-200: #066501;
+  --accent-300: #089801;
+  --accent-400: #0bcb01;
+  --accent-500: #4dfe43;
+  --accent-600: #3efe34;
+  --accent-700: #6efe67;
+  --accent-800: #9ffe9a;
+  --accent-900: #cfffcc;
+  --accent-950: #e7ffe6;
+
+  /* Theme layout variables - Dark mode */
+  --bg-primary: #0d0d0d;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #333333;
   --bg-inverse: #ffffff;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-tertiary: #94a3b8;
-  --text-inverse: #0f172a;
-  --border-color: #334155;
+  --text-primary: #f2f2f2;
+  --text-secondary: #cccccc;
+  --text-tertiary: #999999;
+  --text-muted: #666666;
+  --text-inverse: #00031a;
+  --border-color: #333333;
   color-scheme: dark;
 }
 
-/* Base styles */
+/* ===== TAILWIND THEME EXTENSION ===== */
+@theme {
+  /* Brand color - using secondary-500 as main brand */
+  --color-brand: #5565f1;
+  --color-brand-light: #717ef4;
+  --color-brand-dark: #4254f0;
+  --color-brand-50: #e7eafd;
+  --color-brand-100: #d0d4fb;
+
+  /* Primary - deep blue */
+  --color-primary: #122fed;
+  --color-primary-light: #4159f1;
+  --color-primary-dark: #0e26be;
+
+  /* Accent - bright green */
+  --color-accent: #4dfe43;
+  --color-accent-light: #6efe67;
+  --color-accent-dark: #0bcb01;
+
+  /* Keep secondary for compatibility */
+  --color-secondary: #5565f1;
+  --color-secondary-dark: #4254f0;
+
+  /* Neutrals */
+  --color-dark: #00031a;
+  --color-light: #f2f2f2;
+
+  /* Fonts - Google Sans Flex */
+  --font-sans: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
+  --font-heading: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
+}
+
+/* ===== BASE STYLES ===== */
 html {
   scroll-behavior: smooth;
 }
@@ -78,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
 }
 
-/* Prose styling for content */
+/* ===== PROSE STYLING ===== */
 .prose {
   max-width: 65ch;
   color: var(--text-secondary);
@@ -127,7 +266,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-brand-dark);
 }
 
-/* Button styles */
+/* ===== BUTTON STYLES ===== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -147,12 +286,12 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   background-color: var(--color-brand-dark);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(85, 100, 241, 0.3);
+  box-shadow: 0 4px 12px rgba(85, 101, 241, 0.3);
 }
 
 .btn-secondary {
   background-color: var(--color-accent);
-  color: white;
+  color: var(--color-dark);
 }
 
 .btn-secondary:hover {
@@ -176,7 +315,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-brand-light);
 }
 
-/* Card styles */
+/* ===== CARD STYLES ===== */
 .card {
   background-color: var(--bg-primary);
   border: 1px solid var(--border-color);
@@ -193,7 +332,7 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Theme-aware backgrounds */
+/* ===== THEME-AWARE BACKGROUNDS ===== */
 .theme-bg-primary {
   background-color: var(--bg-primary);
 }
@@ -210,7 +349,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--bg-inverse);
 }
 
-/* Theme-aware text */
+/* ===== THEME-AWARE TEXT ===== */
 .theme-text-primary {
   color: var(--text-primary);
 }
@@ -223,7 +362,11 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-tertiary);
 }
 
-/* Brand colors */
+.theme-text-muted {
+  color: var(--text-muted);
+}
+
+/* ===== BRAND COLORS ===== */
 .text-brand {
   color: var(--color-brand);
 }
@@ -236,6 +379,10 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-accent);
 }
 
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
 /* Gradient text */
 .text-gradient {
   background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-light) 100%);
@@ -244,12 +391,14 @@ h1, h2, h3, h4, h5, h6 {
   background-clip: text;
 }
 
-/* Focus states */
+/* ===== FOCUS STATES ===== */
 input:focus, textarea:focus, select:focus {
   outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(85, 100, 241, 0.1);
+  box-shadow: 0 0 0 3px rgba(85, 101, 241, 0.1);
 }
+
+/* ===== COMPONENT STYLES ===== */
 
 /* Stat number styling */
 .stat-number {
@@ -304,7 +453,7 @@ input:focus, textarea:focus, select:focus {
   color: var(--text-secondary);
 }
 
-/* Animations */
+/* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -320,7 +469,7 @@ input:focus, textarea:focus, select:focus {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Theme toggle button */
+/* ===== THEME TOGGLE ===== */
 .theme-toggle {
   padding: 0.5rem;
   border-radius: 0.5rem;
