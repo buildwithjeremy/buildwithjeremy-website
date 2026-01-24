@@ -177,11 +177,15 @@
   --color-primary: #122fed;
   --color-primary-light: #4159f1;
   --color-primary-dark: #0e26be;
+  --color-primary-50: #e7eafd;
+  --color-primary-100: #d0d5fb;
 
   /* Accent - bright green */
   --color-accent: #4dfe43;
   --color-accent-light: #6efe67;
   --color-accent-dark: #0bcb01;
+  --color-accent-50: #e7ffe6;
+  --color-accent-100: #cfffcc;
 
   /* Keep secondary for compatibility */
   --color-secondary: #5565f1;
@@ -290,13 +294,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-secondary {
-  background-color: var(--color-accent);
-  color: var(--color-dark);
+  background-color: var(--color-primary);
+  color: white;
 }
 
 .btn-secondary:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(18, 47, 237, 0.3);
+}
+
+.btn-accent {
+  background-color: var(--color-accent);
+  color: var(--color-dark);
+  font-weight: 700;
+}
+
+.btn-accent:hover {
   background-color: var(--color-accent-dark);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(77, 254, 67, 0.3);
 }
 
 .btn-outline {
@@ -375,6 +392,24 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-brand);
 }
 
+/* Primary colors - deep blue */
+.text-primary-color {
+  color: var(--color-primary);
+}
+
+.bg-primary-color {
+  background-color: var(--color-primary);
+}
+
+.text-primary-light {
+  color: var(--color-primary-light);
+}
+
+.bg-primary-light {
+  background-color: var(--color-primary-light);
+}
+
+/* Accent colors - bright green */
 .text-accent {
   color: var(--color-accent);
 }
@@ -383,9 +418,25 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-accent);
 }
 
+.text-accent-dark {
+  color: var(--color-accent-dark);
+}
+
+.bg-accent-dark {
+  background-color: var(--color-accent-dark);
+}
+
 /* Gradient text */
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-brand-light) 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-brand) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text - accent variant */
+.text-gradient-accent {
+  background: linear-gradient(135deg, var(--color-brand) 0%, var(--color-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -73,7 +73,7 @@ const howIHelp = [
       <div class="grid grid-cols-3 gap-8 text-center">
         {credentials.map((cred) => (
           <div>
-            <div class="text-3xl md:text-5xl font-bold text-brand">{cred.value}</div>
+            <div class="text-3xl md:text-5xl font-bold text-accent">{cred.value}</div>
             <div class="mt-2 text-sm md:text-base text-slate-300">{cred.label}</div>
           </div>
         ))}
@@ -89,19 +89,19 @@ const howIHelp = [
       </h2>
       <div class="mt-12 space-y-8">
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
-          <h3 class="text-xl font-bold text-brand">12 Years at Google</h3>
+          <h3 class="text-xl font-bold text-primary-color">12 Years at Google</h3>
           <p class="mt-3 theme-text-secondary">
             I spent over a decade at Google building ops, tools, and programs used by millions. I learned how to build systems that scale — and saw firsthand how the right processes and tools can transform how teams work.
           </p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
-          <h3 class="text-xl font-bold text-brand">Entrepreneur & Small Business Owner</h3>
+          <h3 class="text-xl font-bold text-primary-color">Entrepreneur & Small Business Owner</h3>
           <p class="mt-3 theme-text-secondary">
             I've built and streamlined my own small businesses from the ground up. I know what it's like to wear every hat, work endless hours, and feel like you're constantly putting out fires. More importantly, I know how to fix it.
           </p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
-          <h3 class="text-xl font-bold text-brand">Deep Tech + Small Business Scrappiness</h3>
+          <h3 class="text-xl font-bold text-primary-color">Deep Tech + Small Business Scrappiness</h3>
           <p class="mt-3 theme-text-secondary">
             I bring enterprise-level systems thinking with the scrappiness of a small business owner. I understand that you don't need complicated software or expensive tools — you need practical solutions that actually work for your unique situation.
           </p>
@@ -121,8 +121,8 @@ const howIHelp = [
       </p>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
-          <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
-            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
             </svg>
           </div>
@@ -132,8 +132,8 @@ const howIHelp = [
           </p>
         </div>
         <div class="text-center">
-          <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
-            <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto">
+            <svg class="h-8 w-8 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
@@ -165,17 +165,29 @@ const howIHelp = [
       </h2>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
-          <div class="text-4xl mb-4">&#x2705;</div>
+          <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
           <h3 class="text-xl font-bold theme-text-primary">More Time</h3>
           <p class="mt-2 theme-text-secondary">Stop babysitting your business and finally get your time back.</p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
-          <div class="text-4xl mb-4">&#x2705;</div>
+          <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
           <h3 class="text-xl font-bold theme-text-primary">Fewer Mistakes</h3>
           <p class="mt-2 theme-text-secondary">Reduce human error with systems that run on autopilot.</p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
-          <div class="text-4xl mb-4">&#x2705;</div>
+          <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
           <h3 class="text-xl font-bold theme-text-primary">10x Capacity</h3>
           <p class="mt-2 theme-text-secondary">Unlock 10x results with the same team you have today.</p>
         </div>
@@ -191,8 +203,8 @@ const howIHelp = [
       </h2>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
-          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-accent/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -202,8 +214,8 @@ const howIHelp = [
           </p>
         </div>
         <div>
-          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-primary/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
@@ -224,8 +236,8 @@ const howIHelp = [
           </p>
         </div>
         <div>
-          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center">
-            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <div class="h-12 w-12 bg-accent/10 rounded-lg flex items-center justify-center">
+            <svg class="h-6 w-6 text-accent-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>

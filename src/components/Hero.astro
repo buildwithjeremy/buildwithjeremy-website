@@ -50,10 +50,11 @@ const {
       <!-- Image -->
       {imageSrc && (
         <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-primary/20 via-brand/20 to-accent/20 rounded-3xl blur-xl"></div>
           <img
             src={imageSrc}
             alt={imageAlt}
-            class="rounded-2xl shadow-2xl w-full"
+            class="relative rounded-2xl shadow-2xl w-full"
             loading="eager"
           />
         </div>
