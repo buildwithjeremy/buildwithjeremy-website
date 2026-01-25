@@ -1,41 +1,134 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const greatFit = [
+  'Service/logistics businesses with remote or distributed ops',
+  'Recurring admin load, scheduling complexity, or handoff issues',
+  'Willingness to standardize and document processes',
+  'Ready to invest in systems that scale',
+];
+
+const notAFit = [
+  'Ecommerce or manufacturing operations',
+  'Onsite-heavy operations where bottlenecks are physical',
+  'Looking for a one-hour "Zapier trick" with no process ownership',
+  'Not ready to make changes to how things work',
+];
 ---
 
 <Layout
-  title="Contact | Build with Jeremy"
-  description="Book a free consultation with Jeremy Pittman to discuss streamlining your business operations."
+  title="Work With Me | Free Systems Audit Call | Build with Jeremy"
+  description="Book a free Systems Audit Call. I'll map the bottleneck and outline the fastest path to remove it."
 >
   <!-- Calendly CSS -->
   <link slot="head" href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
 
-  <section class="py-16 lg:py-24 theme-bg-primary">
+  <!-- Header Section -->
+  <section class="theme-bg-primary py-16 lg:py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-brand font-semibold mb-3">Work With Me</p>
+      <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
+        Let's fix the bottleneck.
+      </h1>
+      <p class="mt-4 text-xl theme-text-secondary max-w-2xl mx-auto">
+        Start with a free Systems Audit Call. I'll map what's breaking and recommend the fastest path to remove it—no pressure, no pitch.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <!-- Left Column: Fit Check -->
+        <div class="lg:col-span-1 space-y-8">
+          <!-- What happens on the call -->
+          <div class="theme-bg-primary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+            <h2 class="text-lg font-bold theme-text-primary mb-4">What happens on the call</h2>
+            <ul class="space-y-3">
+              <li class="flex items-start gap-3 text-sm theme-text-secondary">
+                <span class="flex-shrink-0 h-6 w-6 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold text-xs">1</span>
+                <span>Quick walkthrough of your current workflow + tools</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm theme-text-secondary">
+                <span class="flex-shrink-0 h-6 w-6 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold text-xs">2</span>
+                <span>Identify the bottleneck + quick wins</span>
+              </li>
+              <li class="flex items-start gap-3 text-sm theme-text-secondary">
+                <span class="flex-shrink-0 h-6 w-6 bg-brand/10 rounded-full flex items-center justify-center text-brand font-bold text-xs">3</span>
+                <span>Recommend a path (retainer, sprint, or AI audit)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Great fit -->
+          <div class="theme-bg-primary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+            <h2 class="text-lg font-bold theme-text-primary mb-4 flex items-center gap-2">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              Great fit
+            </h2>
+            <ul class="space-y-2">
+              {greatFit.map((item) => (
+                <li class="flex items-start gap-2 text-sm theme-text-secondary">
+                  <svg class="h-4 w-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Not a fit -->
+          <div class="theme-bg-primary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+            <h2 class="text-lg font-bold theme-text-primary mb-4 flex items-center gap-2">
+              <svg class="h-5 w-5 theme-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Not a fit
+            </h2>
+            <ul class="space-y-2">
+              {notAFit.map((item) => (
+                <li class="flex items-start gap-2 text-sm theme-text-muted">
+                  <svg class="h-4 w-4 theme-text-muted flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Right Column: Calendly -->
+        <div class="lg:col-span-2">
+          <div class="theme-bg-primary rounded-2xl shadow-lg p-6 md:p-8 border transition-colors" style="border-color: var(--border-color);">
+            <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">
+              Book a Free Systems Audit Call
+            </h2>
+
+            <!-- Calendly inline widget -->
+            <div
+              class="calendly-inline-widget"
+              data-url="https://calendly.com/buildwithjeremy/free-consultation?hide_gdpr_banner=1"
+              style="min-width:320px;height:750px;overflow:visible;"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Alternative Contact -->
+  <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
-          Let's Talk
-        </h1>
-        <p class="mt-4 text-xl theme-text-secondary max-w-2xl mx-auto">
-          Ready to build a business that runs without you? Book a free consultation and let's discuss how I can help.
-        </p>
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold theme-text-primary">Prefer another way?</h2>
       </div>
-
-      <!-- Booking Embed -->
-      <div class="mt-12 theme-bg-secondary rounded-2xl shadow-lg p-8 border transition-colors" style="border-color: var(--border-color);">
-        <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">
-          Book My FREE Consultation
-        </h2>
-
-        <!-- Calendly inline widget -->
-        <div
-          class="calendly-inline-widget"
-          data-url="https://calendly.com/buildwithjeremy/free-consultation?hide_gdpr_banner=1"
-          style="min-width:320px;height:700px;"
-        ></div>
-      </div>
-
-      <!-- Alternative Contact -->
-      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="theme-bg-secondary rounded-xl p-8 text-center border transition-colors" style="border-color: var(--border-color);">
           <div class="h-12 w-12 bg-brand/10 rounded-full flex items-center justify-center mx-auto">
             <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -43,8 +136,8 @@ import Layout from '../layouts/Layout.astro';
             </svg>
           </div>
           <h3 class="mt-4 text-lg font-bold theme-text-primary">Email Me</h3>
-          <p class="mt-2 theme-text-secondary">
-            Prefer to write? Send me an email and I'll get back to you within 24 hours.
+          <p class="mt-2 theme-text-secondary text-sm">
+            Send me a message and I'll get back to you within 1–2 business days.
           </p>
           <a href="mailto:hello@buildwithjeremy.com" class="mt-4 text-brand font-semibold hover:underline inline-block">
             hello@buildwithjeremy.com
@@ -58,13 +151,57 @@ import Layout from '../layouts/Layout.astro';
             </svg>
           </div>
           <h3 class="mt-4 text-lg font-bold theme-text-primary">Connect on LinkedIn</h3>
-          <p class="mt-2 theme-text-secondary">
-            Let's connect! I share tips and insights on building better businesses.
+          <p class="mt-2 theme-text-secondary text-sm">
+            Let's connect! I share tips on ops and automation.
           </p>
           <a href="https://www.linkedin.com/in/jeremy-pittman-49720428" target="_blank" rel="noopener noreferrer" class="mt-4 text-brand font-semibold hover:underline inline-block">
             Follow on LinkedIn
           </a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-2xl font-bold theme-text-primary">Quick questions</h2>
+      </div>
+      <div class="space-y-4">
+        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+            How soon can we start?
+            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 theme-text-secondary">
+            Depends on availability. The sprint can often start quickly; retainer engagements may have a short waitlist.
+          </div>
+        </details>
+        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+            Do you sign NDAs?
+            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 theme-text-secondary">
+            Yes, if needed. Happy to sign before we discuss details.
+          </div>
+        </details>
+        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+            Do you work async?
+            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-6 theme-text-secondary">
+            Yes—I'm async-friendly with a weekly touchpoint to stay aligned. Works well for distributed teams.
+          </div>
+        </details>
       </div>
     </div>
   </section>

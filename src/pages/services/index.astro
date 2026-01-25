@@ -1,159 +1,248 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 
-const services = await getCollection('services').catch(() => []);
-const sortedServices = services.sort((a, b) => (a.data.order || 0) - (b.data.order || 0));
+const services = [
+  {
+    tag: 'Fractional COO',
+    tagColor: 'primary-light',
+    title: 'Strategic Ops Partner',
+    subtitle: 'Ongoing partnership with hands-on systems shipping',
+    description: 'For established service businesses where operations are the bottleneck. I work alongside you as a fractional COO—building systems, shipping automations, and creating operating cadence that scales.',
+    bestFor: '$500K–$5M service businesses ready for ongoing support',
+    features: [
+      'Operating cadence: priorities, owners, KPIs, monthly reviews',
+      'Hands-on delivery: workflows, automations, dashboards, internal tools',
+      'Documentation + training so the system survives after we ship it',
+    ],
+    focusAreas: [
+      'Lead handling + speed-to-response',
+      'Scheduling + dispatch handoffs',
+      'Quote/invoice workflows',
+      'KPI dashboards + data hygiene',
+      'Automation + integrations',
+    ],
+    ctaText: 'Book a Free Systems Audit',
+    ctaLink: '/contact',
+    featured: true,
+  },
+  {
+    tag: 'Quick Start',
+    tagColor: 'accent',
+    title: '2-Week Systems Sprint',
+    subtitle: 'Clarity + momentum fast',
+    description: 'A focused engagement to diagnose the bottleneck, ship 1–2 high-leverage fixes, and give you a clear roadmap for the next 60–90 days.',
+    bestFor: 'Smaller teams, a fast reset, or a "try before retainer" start',
+    features: [
+      'Workflow map + bottleneck diagnosis',
+      'Ship 1–2 high-leverage fixes',
+      'Roadmap for the next 60–90 days',
+      'Documentation for what we build',
+    ],
+    ctaText: 'Book a Free Systems Audit',
+    ctaLink: '/contact',
+    featured: false,
+  },
+  {
+    tag: 'AI Enablement',
+    tagColor: 'brand',
+    title: 'AI Audit & Team Training',
+    subtitle: 'Practical AI adoption that saves time this quarter',
+    description: 'Identify the best AI opportunities for your business (not random tools), train your team on workflows that matter, and implement 1–2 automations.',
+    bestFor: 'Teams ready to leverage AI but unsure where to start',
+    features: [
+      'Identify best AI opportunities (not random tools)',
+      'Train your team on workflows that matter',
+      'Implement 1–2 automations and document them',
+      'Ongoing support to ensure adoption',
+    ],
+    ctaText: 'Book a Free Systems Audit',
+    ctaLink: '/contact',
+    featured: false,
+  },
+];
+
+const faqs = [
+  {
+    question: "Do you replace our existing tools?",
+    answer: "Sometimes. Often we simplify first, then decide. I prefer to work with what you have unless there's a clear reason to switch.",
+  },
+  {
+    question: "Do you do custom software?",
+    answer: "Yes, when it's the right fit—usually lightweight internal tools, integrations, or dashboards. AI coding agents have dramatically reduced build time, so in many cases a small custom tool costs less than ongoing SaaS sprawl.",
+  },
+  {
+    question: "What's the time commitment?",
+    answer: "Retainer is ongoing; sprint is 2 weeks; AI audit is typically 1–2 sessions plus implementation. We'll find a cadence that works for your schedule.",
+  },
+  {
+    question: "Do you work with Zoho/Airtable/Salesforce?",
+    answer: "Yes. I've worked with Zoho, Airtable, Salesforce, Google Workspace, custom CRMs, and more. Tool-agnostic means I can meet you where you are.",
+  },
+  {
+    question: "Will this require my team to learn new tools?",
+    answer: "Only when it's worth it. Otherwise we build around what you have. The goal is adoption, not tool sprawl.",
+  },
+  {
+    question: "What's step one?",
+    answer: "Book a free Systems Audit Call. I'll map the bottleneck and recommend the right path—no pressure.",
+  },
+];
 ---
 
 <Layout
-  title="Services | Build with Jeremy"
-  description="Explore consulting services to help streamline your business operations and build systems that scale."
+  title="Services | Strategic Ops Partner, Systems Sprint, AI Audit | Build with Jeremy"
+  description="Choose the engagement that fits: retainer for ongoing ops partnership, a sprint for fast traction, or an AI audit for practical adoption."
 >
-  <section class="py-16 lg:py-24">
+  <!-- Header Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-brand font-semibold mb-3">Services</p>
+      <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
+        Choose the engagement that fits.
+      </h1>
+      <p class="mt-4 text-xl theme-text-secondary max-w-2xl mx-auto">
+        Retainer for ongoing ops partnership, a sprint for fast traction, or an AI audit for practical adoption.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
-          Services
-        </h1>
-        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
-          Whether you need a quick tune-up or a full systems overhaul, I've got a service that fits.
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <div class={`theme-bg-primary rounded-2xl p-8 border transition-colors ${service.featured ? 'ring-2 ring-primary-light' : ''}`} style="border-color: var(--border-color);">
+            {service.featured && (
+              <div class="text-xs font-semibold text-primary-light uppercase tracking-wide mb-2">Primary Offer</div>
+            )}
+            <div class={`inline-block px-3 py-1 bg-${service.tagColor}/20 text-${service.tagColor} text-sm font-semibold rounded-full mb-4`}>
+              {service.tag}
+            </div>
+            <h2 class="text-2xl font-bold theme-text-primary">{service.title}</h2>
+            <p class="text-sm text-brand font-medium mt-1">{service.subtitle}</p>
+            <p class="mt-4 theme-text-secondary">{service.description}</p>
+            <p class="mt-4 text-sm theme-text-muted"><strong>Best for:</strong> {service.bestFor}</p>
+
+            <div class="mt-6">
+              <p class="text-sm font-semibold theme-text-primary mb-3">What you get:</p>
+              <ul class="space-y-2">
+                {service.features.map((feature) => (
+                  <li class="flex items-start gap-2 text-sm theme-text-secondary">
+                    <svg class="h-4 w-4 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {service.focusAreas && (
+              <div class="mt-6">
+                <p class="text-sm font-semibold theme-text-primary mb-3">Typical focus areas:</p>
+                <div class="flex flex-wrap gap-2">
+                  {service.focusAreas.map((area) => (
+                    <span class="text-xs px-2 py-1 bg-brand/10 text-brand rounded-full">{area}</span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <a href={service.ctaLink} class={`mt-8 btn ${service.featured ? 'btn-primary' : 'btn-outline'} w-full text-center`}>
+              {service.ctaText}
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Build vs Buy Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Off-the-shelf when it fits. Custom when it's smarter.
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          I'm tool-agnostic. The goal is solving your problem—not selling you on a particular platform.
         </p>
       </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="theme-bg-secondary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold theme-text-primary">Off-the-shelf tools</h3>
+          <p class="mt-2 text-sm theme-text-secondary">
+            Fast start, good defaults. Google Workspace, Airtable, Zoho, Salesforce—whatever makes sense for your situation.
+          </p>
+        </div>
+        <div class="theme-bg-secondary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold theme-text-primary">Automation layer</h3>
+          <p class="mt-2 text-sm theme-text-secondary">
+            Zapier, Make, n8n, or custom glue code. Connect your tools so data flows without manual copy-paste.
+          </p>
+        </div>
+        <div class="theme-bg-secondary rounded-xl p-6 border transition-colors" style="border-color: var(--border-color);">
+          <div class="h-12 w-12 bg-brand/10 rounded-lg flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold theme-text-primary">Lightweight custom app</h3>
+          <p class="mt-2 text-sm theme-text-secondary">
+            When reliability and cost matter. AI coding agents have dramatically reduced build time—sometimes a custom tool costs less than ongoing SaaS sprawl.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      {sortedServices.length > 0 ? (
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {sortedServices.map((service) => (
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
-              {service.data.featuredImage && (
-                <img
-                  src={service.data.featuredImage}
-                  alt={service.data.title}
-                  class="w-full h-48 object-cover"
-                  loading="lazy"
-                />
-              )}
-              <div class="p-8">
-                <h2 class="text-2xl font-bold text-gray-900">
-                  {service.data.title}
-                </h2>
-                {service.data.tagline && (
-                  <p class="mt-1 text-primary font-medium">
-                    {service.data.tagline}
-                  </p>
-                )}
-                {service.data.description && (
-                  <p class="mt-4 text-gray-600">
-                    {service.data.description}
-                  </p>
-                )}
-                {service.data.price && (
-                  <p class="mt-4 text-lg font-semibold text-gray-900">
-                    {service.data.price}
-                  </p>
-                )}
-                <a
-                  href={`/services/${service.id}`}
-                  class="mt-6 btn btn-primary inline-block"
-                >
-                  Learn More
-                </a>
-              </div>
+  <!-- FAQ Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Services FAQ
+        </h2>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">
+              {faq.answer}
             </div>
-          ))}
-        </div>
-      ) : (
-        <!-- Default services when CMS is empty -->
-        <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-            <h2 class="text-2xl font-bold text-gray-900">Streamline Starter</h2>
-            <p class="mt-1 text-primary font-medium">Reclaim Your Peace of Mind in 2 Weeks</p>
-            <p class="mt-4 text-gray-600">
-              You don't have to spend another week buried under a mountain of tasks and chaos. The help you need is here, and it starts with a simple conversation. Ready to get unstuck and breathe easier?
-            </p>
-            <ul class="mt-4 space-y-2">
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Deep-Dive Operations Audit
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Customized Action Plan
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Quick-Win Implementation
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                1:1 Guidance and Support
-              </li>
-            </ul>
-            <a href="/services/streamline-starter" class="mt-6 btn btn-primary inline-block">
-              Learn More
-            </a>
-          </div>
-
-          <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
-            <h2 class="text-2xl font-bold text-gray-900">Custom Consulting</h2>
-            <p class="mt-1 text-primary font-medium">Ongoing Partnership for Growth</p>
-            <p class="mt-4 text-gray-600">
-              For businesses ready to level up with ongoing support. We'll work together to build, implement, and refine systems that grow with you.
-            </p>
-            <ul class="mt-4 space-y-2">
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Full systems assessment
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Custom automation workflows
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Regular strategy calls
-              </li>
-              <li class="flex items-start gap-2 text-gray-600">
-                <svg class="h-5 w-5 text-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-                Implementation support
-              </li>
-            </ul>
-            <a href="/contact" class="mt-6 btn btn-primary inline-block">
-              Book a Call
-            </a>
-          </div>
-        </div>
-      )}
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="bg-slate-900 text-white py-16 lg:py-24">
+  <section class="theme-bg-inverse text-white py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">
-        Not Sure Which Service is Right for You?
+        Not sure which option fits?
       </h2>
       <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
-        Let's chat. Book a free consultation and we'll figure out the best path forward together.
+        Book a free Systems Audit Call and I'll recommend the right path. No pressure, no pitch—just clarity on what's breaking and how to fix it.
       </p>
       <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
-        Book My FREE Consultation
+        Book a Free Systems Audit
       </a>
     </div>
   </section>

@@ -2,6 +2,8 @@
 interface Props {
   headline: string;
   subheadline?: string;
+  eyebrow?: string;
+  proofLine?: string;
   ctaText?: string;
   ctaLink?: string;
   secondaryCtaText?: string;
@@ -13,6 +15,8 @@ interface Props {
 const {
   headline,
   subheadline,
+  eyebrow,
+  proofLine,
   ctaText = 'Get Started',
   ctaLink = '/contact',
   secondaryCtaText,
@@ -27,12 +31,25 @@ const {
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Content -->
       <div>
+        {eyebrow && (
+          <p class="text-brand font-semibold mb-3 text-sm uppercase tracking-wide">{eyebrow}</p>
+        )}
         <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold theme-text-primary leading-tight">
           <Fragment set:html={headline} />
         </h1>
         {subheadline && (
           <p class="mt-6 text-lg sm:text-xl theme-text-secondary leading-relaxed">
             {subheadline}
+          </p>
+        )}
+        {proofLine && (
+          <p class="mt-6 text-sm theme-text-muted flex flex-wrap items-center gap-2">
+            {proofLine.split('•').map((item, i) => (
+              <>
+                {i > 0 && <span class="text-brand">•</span>}
+                <span>{item.trim()}</span>
+              </>
+            ))}
           </p>
         )}
         <div class="mt-8 flex flex-col sm:flex-row gap-4">

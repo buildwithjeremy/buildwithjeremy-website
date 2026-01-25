@@ -1,11 +1,14 @@
 # Build with Jeremy - Project Guidelines
 
 ## About This Project
-This is the website for "Build with Jeremy" - a consulting business helping solopreneurs and small teams streamline, automate, and scale their operations.
+This is the website for "Build with Jeremy" - a consulting business positioning Jeremy as a **Strategic Ops Partner / Fractional COO** for established small teams looking to scale without chaos.
 
 **Owner**: Jeremy Pittman
-**Background**: 12 years at Google, now full-time consultant
-**Target Audience**: Solopreneurs, small teams (1-10 people), service-based businesses (consultants, agencies, coaches, creative professionals)
+**Background**: 12 years at Google (ops, programs, product launches), now full-time consultant
+**Target Audience**:
+- **Primary ICP**: Established service businesses with $500K-$5M revenue, remote/distributed operations, recurring admin load or scheduling complexity
+- **Also serves**: Startups getting going, enterprise clients seeking ops expertise
+- **Best fit**: Teams willing to standardize and document processes, ready to invest in systems that scale
 
 ---
 
@@ -14,8 +17,32 @@ This is the website for "Build with Jeremy" - a consulting business helping solo
 - **Styling**: Tailwind CSS 4 with custom CSS variables
 - **CMS**: Keystatic (git-based, at `/keystatic` route)
 - **Hosting**: Vercel
-- **Newsletter**: MailerLite
+- **Calendar**: Calendly (embedded on Work With Me page)
 - **Fonts**: Google Sans Flex (primary), Inter (fallback)
+
+---
+
+## Brand Positioning
+
+### Core Value Proposition
+**"Scale without the chaos."**
+- Strategic ops partner, not a one-off freelancer
+- Fractional COO support for teams where ops is the bottleneck
+- Focus on outcomes: throughput, capacity, calm operations
+
+### Key Proof Points
+- 12 years at Google
+- $5M+ client ARR enabled
+- 100% Upwork Job Success
+- Verified on Upwork, Top Rated
+
+### Service Tiers (3 offerings)
+1. **Strategic Ops Partner (Retainer)** - Fractional COO support, ongoing partnership
+2. **2-Week Systems Sprint** - Fast clarity + momentum, try-before-retainer
+3. **AI Audit & Team Training** - Practical AI adoption, training, implementation
+
+### Primary CTA
+"Book a Free Systems Audit Call" → routes to Work With Me page with Calendly
 
 ---
 
@@ -25,15 +52,18 @@ This is the website for "Build with Jeremy" - a consulting business helping solo
 | Name | Hex | CSS Variable | Usage |
 |------|-----|--------------|-------|
 | **Brand Purple** | #5565f1 | `--color-brand` | Primary brand color, links, navigation active states, general accents |
-| **Primary Blue** | #122fed | `--color-primary` | Authority/trust elements, "My Journey" headings, "Full Partnership" service |
-| **Accent Green** | #4dfe43 | `--color-accent` | CTAs, highlights, success indicators, stats numbers, checkmarks, "Quick Start" service |
+| **Primary Blue** | #122fed | `--color-primary` | Authority/trust elements, headings, Strategic Ops Partner service |
+| **Accent Green** | #4dfe43 | `--color-accent` | CTAs, highlights, success indicators, stats numbers, checkmarks, 2-Week Sprint service |
 
 ### Color Usage Rules
 1. **Section-level consistency**: All icons/elements within a section should use the same color
 2. **Accent Green for action/success**: Stats numbers, checkmarks, positive outcomes, highlights
 3. **Primary Blue for authority**: Experience headings, trust indicators
-4. **Brand Purple for identity**: Links, navigation, general UI accents
-5. **Service card differentiation**: Green badge for "Quick Start", Blue badge for "Full Partnership"
+4. **Brand Purple for identity**: Links, navigation, general UI accents, AI Audit service
+5. **Service card differentiation**:
+   - Primary Blue/Light for "Strategic Ops Partner" (featured)
+   - Accent Green for "2-Week Sprint"
+   - Brand Purple for "AI Audit"
 
 ### CSS Classes
 - `text-brand` / `bg-brand` - Brand purple
@@ -62,33 +92,52 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 ## Voice & Tone
 
 ### Brand Voice
-- **Approachable expert**: Knowledgeable but not intimidating
-- **Empathetic**: Understands small business pain points firsthand
-- **Action-oriented**: Focus on results and getting things done
+- **Warm but credible**: Approachable expert with serious chops
+- **Operator first, builder second**: Understands real business pain points
+- **Direct and practical**: Focus on outcomes, not tools
 - **No jargon**: Simple, clear language
 
-### Key Messages
-- "Build a business that runs without you"
-- "Freedom, not chaos"
-- "Simple systems, not complicated software"
+### Key Messages (New Positioning)
+- "Scale without the chaos"
+- "I make it stick—SOPs, training, and handoff"
+- "Diagnose → Design → Deploy → Discipline"
 - "Partnership, not projects"
+- "More throughput without more headcount"
 
 ### Phrases to Use
-- "Streamline, automate, and scale"
-- "Reclaim your time"
-- "Stop putting out fires"
+- "Bottleneck" (focus on removing operational bottlenecks)
 - "Systems that run on autopilot"
-- "Quick wins first"
+- "Fractional COO support"
+- "Strategic Ops Partner"
+- "Clarity + momentum fast"
+- "Off-the-shelf when it fits, custom when it's smarter"
 
 ### Phrases to Avoid
 - Overly corporate language
 - Complex technical jargon
 - Promises of specific timeframes (no "in just 2 weeks!")
 - Pushy sales language
+- Long tool lists (keep high-level, outcomes-focused)
+
+### Tone Blending
+**Keep the warmth** from phrases like:
+- "sticky notes, spreadsheets, and stress"
+- "duct tape and to-do lists"
+- "runs like a machine"
+
+**Add credibility** with:
+- "$5M+ ARR enabled"
+- "12 years at Google"
+- Anonymized case studies with real outcomes
 
 ---
 
 ## Component Patterns
+
+### Hero Component
+- Supports `eyebrow` prop for "Strategic Ops Partner" text
+- Supports `proofLine` prop for credentials (e.g., "12 years at Google • Verified on Upwork • 100% Job Success")
+- Proof line uses bullet separators (•) between items
 
 ### Buttons
 - `.btn-primary` - Brand purple, main CTAs
@@ -110,25 +159,73 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 - Use `text-accent` for stat values
 - Large bold numbers: `text-3xl md:text-5xl font-bold`
 
+### Trust Badges
+- Display on homepage (below testimonials, not in hero)
+- Display on About page
+- Format: "Top Rated on Upwork • 100% Job Success • $10K+ earned"
+
 ---
 
 ## Page Structure
 
-### Standard Sections
-1. **Hero** - Headline, subheadline, CTA, optional image
-2. **Stats Bar** - Dark background (`theme-bg-inverse`), green numbers
-3. **Problem Section** - Address pain points
-4. **Solution/About Preview** - Introduce Jeremy
-5. **Testimonials** - 3-column grid with star ratings
-6. **Services Preview** - Card-based, color-coded badges
-7. **FAQ** - Accordion style with `<details>` elements
-8. **CTA Section** - Final call to action
-9. **Newsletter** - MailerLite integration
+### Homepage Sections (in order)
+1. **Hero** - Eyebrow, headline, subheadline, proof line, dual CTAs
+2. **Stats Bar** - $5M+ ARR, 2× Output, 12 Years at Google
+3. **"What changes when ops are dialed in"** - Benefit bullets
+4. **Process Framework** - Diagnose → Design → Deploy → Discipline
+5. **Case Studies** - 3 anonymized examples with outcomes
+6. **Services Preview** - 3-tier cards with color-coded badges
+7. **Testimonials** - 4 real Upwork reviews
+8. **Trust Badges** - Upwork credentials row
+9. **FAQ** - Accordion style
+10. **Final CTA** - "Want your ops to feel calm again?"
+
+### About Page Sections
+1. **Hero** - "I'm Jeremy—operator first, builder second."
+2. **Credentials Bar** - 3 stats
+3. **My Journey** - 3 cards (Google, Entrepreneurship, Tech+Scrappiness)
+4. **What you can expect** - 4 items
+5. **How I Help** - 3 cards
+6. **The Result** - 3 outcome cards
+7. **How I Work** - 4 value cards
+8. **Trust Badges** - Upwork credentials
+9. **CTA** - Book a Free Systems Audit
+
+### Services Page Sections
+1. **Header** - "Choose the engagement that fits."
+2. **3 Service Tier Cards** - Strategic Ops Partner, 2-Week Sprint, AI Audit
+3. **Build vs Buy** - 3 columns (Off-the-shelf, Automation, Custom)
+4. **FAQ** - Services-specific questions
+5. **CTA** - "Not sure which option fits?"
+
+### Work With Me (Contact) Page Sections
+1. **Header** - "Let's fix the bottleneck."
+2. **2-Column Layout**:
+   - Left: What happens on the call, Great fit checklist, Not a fit checklist
+   - Right: Calendly embed
+3. **Alternative Contact** - Email, LinkedIn
+4. **Quick Questions** - FAQ accordion
 
 ### Theme Toggle
 - Located in footer only (not header)
 - Small and unobtrusive
 - Uses JavaScript-based icon switching
+
+---
+
+## Fit Check Criteria
+
+### Great Fit
+- Service/logistics businesses with remote or distributed ops
+- Recurring admin load, scheduling complexity, or handoff issues
+- Willingness to standardize and document processes
+- Ready to invest in systems that scale
+
+### Not a Fit
+- Ecommerce or manufacturing operations
+- Onsite-heavy operations where bottlenecks are physical
+- Looking for a one-hour "Zapier trick" with no process ownership
+- Not ready to make changes to how things work
 
 ---
 
@@ -142,7 +239,7 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 
 ## SEO Defaults
 - Title format: `{Page Title} | Build with Jeremy`
-- Default description: "I help solopreneurs and small teams streamline, automate, and scale so they can grow without drowning in the chaos of day-to-day operations."
+- Default description: "Strategic ops partner helping established small teams scale without chaos. 12 years at Google. Fractional COO support, systems sprints, and AI adoption."
 - Include Open Graph and Twitter meta tags
 
 ---

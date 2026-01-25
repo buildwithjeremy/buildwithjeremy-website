@@ -4,55 +4,56 @@ import NewsletterForm from '../components/NewsletterForm.astro';
 
 const credentials = [
   { value: '12', label: 'Years at Google' },
-  { value: '10+', label: 'Hours Saved Weekly' },
-  { value: '10x', label: 'Results Unlocked' },
+  { value: '$5M+', label: 'Client ARR Enabled' },
+  { value: '100%', label: 'Upwork Job Success' },
 ];
 
-const howIHelp = [
+const whatToExpect = [
   {
-    icon: 'workflow',
-    title: 'Streamline Workflows',
-    description: 'Simplify clunky processes like client onboarding, lead tracking, and project delivery so nothing falls through the cracks.',
+    title: 'Straight talk and clear priorities',
+    description: 'No jargon, no fluff. I\'ll tell you what\'s broken and what to fix first.',
   },
   {
-    icon: 'automation',
-    title: 'Implement Automations & AI',
-    description: 'Set up smart no-code automations and AI tools that eliminate repetitive work, reduce human error, and save 10+ hours per week.',
+    title: 'Hands-on implementation',
+    description: 'I don\'t just hand you a plan—I work alongside you to build and ship the systems.',
   },
   {
-    icon: 'systems',
-    title: 'Design Custom Systems',
-    description: 'Build SOPs, dashboards, and lightweight CRMs tailored to your business in tools like Notion, Airtable, Zapier, and Google Workspace.',
+    title: 'Systems that stick',
+    description: 'SOPs, documentation, and training so your team can run it without you.',
+  },
+  {
+    title: 'Right tool for the job',
+    description: 'Off-the-shelf when it fits, custom when it\'s the better long-term path.',
   },
 ];
 ---
 
 <Layout
   title="About Jeremy Pittman | Build with Jeremy"
-  description="Former Google program manager turned business consultant. I help small business owners escape operational chaos using AI, automation, and streamlined workflows."
+  description="12 years at Google in ops, logistics, and product launches. Now I help service businesses build systems that scale—without the chaos."
 >
   <!-- Hero Section -->
   <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
-          <p class="text-brand font-semibold mb-2">AI, Automation, & Operations Expert</p>
+          <p class="text-brand font-semibold mb-2">Strategic Ops Partner</p>
           <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
-            Hi, I'm Jeremy
+            I'm Jeremy—I build systems that actually work.
           </h1>
           <p class="mt-4 text-xl theme-text-secondary">
-            Former Google program manager, now full-time consultant for small business owners who are tired of running their operations with sticky notes, spreadsheets, and stress.
+            12 years at Google in ops, logistics, and product launches. Now I help service businesses build systems that scale—without the chaos.
           </p>
           <div class="mt-8 text-lg theme-text-secondary space-y-4">
             <p>
-              If your business feels like it's being held together with duct tape and to-do lists, I'll help you fix the backend so it runs like a machine.
+              Most small businesses aren't broken—they're overloaded. The team is doing their best, but the systems can't keep up.
             </p>
             <p>
-              I specialize in turning operational chaos into clean, automated workflows that free up your time and mental energy — so you can grow without burning out.
+              I step in as a Strategic Ops Partner to remove the bottlenecks: clean workflows, automation, dashboards, and clear ownership.
             </p>
           </div>
           <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
-            Book My FREE Consultation
+            Book a Free Systems Audit
           </a>
         </div>
         <div class="relative">
@@ -91,33 +92,60 @@ const howIHelp = [
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
           <h3 class="text-xl font-bold text-primary-color">12 Years at Google</h3>
           <p class="mt-3 theme-text-secondary">
-            I spent over a decade at Google building ops, tools, and programs used by millions. I learned how to build systems that scale — and saw firsthand how the right processes and tools can transform how teams work.
+            I spent over a decade at Google building ops, tools, and programs used by millions. Operations, logistics, and product launches—working with partners like Best Buy, Motorola, Samsung, T-Mobile, and Accenture. I learned how to build systems that scale and saw firsthand how the right processes can transform how teams work.
           </p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
           <h3 class="text-xl font-bold text-primary-color">Entrepreneur & Small Business Owner</h3>
           <p class="mt-3 theme-text-secondary">
-            I've built and streamlined my own small businesses from the ground up. I know what it's like to wear every hat, work endless hours, and feel like you're constantly putting out fires. More importantly, I know how to fix it.
+            I've built and streamlined my own small businesses from the ground up. I know what it's like to wear every hat, work endless hours, and feel like you're constantly putting out fires. More importantly, I know how to fix it—because I've done it for myself.
           </p>
         </div>
         <div class="theme-bg-primary rounded-xl p-8 shadow-sm border transition-colors" style="border-color: var(--border-color);">
-          <h3 class="text-xl font-bold text-primary-color">Deep Tech + Small Business Scrappiness</h3>
+          <h3 class="text-xl font-bold text-primary-color">Enterprise Scale + Small Business Scrappiness</h3>
           <p class="mt-3 theme-text-secondary">
-            I bring enterprise-level systems thinking with the scrappiness of a small business owner. I understand that you don't need complicated software or expensive tools — you need practical solutions that actually work for your unique situation.
+            I bring enterprise-level systems thinking with the scrappiness of a small business owner. You don't need complicated software or expensive tools—you need practical solutions that actually work for your unique situation.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- How I Help Section -->
+  <!-- What to Expect Section -->
   <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
-        Here's How I Help
+        What you can expect
       </h2>
       <p class="mt-4 text-lg theme-text-secondary text-center max-w-2xl mx-auto">
-        Whether you're a coach, agency, or creative service provider, I'll meet you where you are and build the systems that get you where you want to go.
+        When we work together, here's what you're signing up for.
+      </p>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {whatToExpect.map((item) => (
+          <div class="flex gap-4">
+            <div class="h-10 w-10 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0">
+              <svg class="h-5 w-5 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold theme-text-primary">{item.title}</h3>
+              <p class="mt-1 theme-text-secondary">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How I Help Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
+        How I Help
+      </h2>
+      <p class="mt-4 text-lg theme-text-secondary text-center max-w-2xl mx-auto">
+        Whether you're an agency, consultant, home services business, or professional services firm—I'll meet you where you are.
       </p>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <div class="text-center">
@@ -128,7 +156,7 @@ const howIHelp = [
           </div>
           <h3 class="mt-4 text-lg font-bold theme-text-primary">Streamline Workflows</h3>
           <p class="mt-2 theme-text-secondary">
-            Simplify clunky processes like client onboarding, lead tracking, and project delivery so nothing falls through the cracks.
+            Clean up lead handling, scheduling, handoffs, and project delivery so nothing falls through the cracks.
           </p>
         </div>
         <div class="text-center">
@@ -137,20 +165,20 @@ const howIHelp = [
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold theme-text-primary">Implement Automations & AI</h3>
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Automate the Admin</h3>
           <p class="mt-2 theme-text-secondary">
-            Set up smart no-code automations and AI tools that eliminate repetitive work and save 10+ hours per week.
+            Build automations that eliminate repetitive work and reduce human error—saving 10+ hours per week.
           </p>
         </div>
         <div class="text-center">
           <div class="h-16 w-16 bg-brand/10 rounded-2xl flex items-center justify-center mx-auto">
             <svg class="h-8 w-8 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
           </div>
-          <h3 class="mt-4 text-lg font-bold theme-text-primary">Design Custom Systems</h3>
+          <h3 class="mt-4 text-lg font-bold theme-text-primary">Build Visibility</h3>
           <p class="mt-2 theme-text-secondary">
-            Build SOPs, dashboards, and lightweight CRMs in tools like Notion, Airtable, Zapier, and Google Workspace.
+            Create dashboards and reports so you can see what's working, what's not, and where to focus.
           </p>
         </div>
       </div>
@@ -158,45 +186,45 @@ const howIHelp = [
   </section>
 
   <!-- Results Section -->
-  <section class="theme-bg-secondary py-16 lg:py-24">
+  <section class="theme-bg-primary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
         The Result?
       </h2>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+        <div class="theme-bg-secondary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
           <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold theme-text-primary">More Time</h3>
           <p class="mt-2 theme-text-secondary">Stop babysitting your business and finally get your time back.</p>
         </div>
-        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+        <div class="theme-bg-secondary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
           <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
           <h3 class="text-xl font-bold theme-text-primary">Fewer Mistakes</h3>
-          <p class="mt-2 theme-text-secondary">Reduce human error with systems that run on autopilot.</p>
+          <p class="mt-2 theme-text-secondary">Guardrails and automation mean less human error and cleaner handoffs.</p>
         </div>
-        <div class="theme-bg-primary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
+        <div class="theme-bg-secondary rounded-xl p-8 border transition-colors" style="border-color: var(--border-color);">
           <div class="h-12 w-12 bg-accent/20 rounded-full flex items-center justify-center mx-auto mb-4">
             <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
             </svg>
           </div>
-          <h3 class="text-xl font-bold theme-text-primary">10x Capacity</h3>
-          <p class="mt-2 theme-text-secondary">Unlock 10x results with the same team you have today.</p>
+          <h3 class="text-xl font-bold theme-text-primary">Scale Capacity</h3>
+          <p class="mt-2 theme-text-secondary">Handle more volume with the same team you have today.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Values Section -->
-  <section class="theme-bg-primary py-16 lg:py-24">
+  <section class="theme-bg-secondary py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-3xl md:text-4xl font-bold theme-text-primary text-center">
         How I Work
@@ -210,7 +238,7 @@ const howIHelp = [
           </div>
           <h3 class="mt-4 text-lg font-bold theme-text-primary">Real-World Tested</h3>
           <p class="mt-2 theme-text-secondary">
-            Everything I recommend has been tested in actual businesses — not just theory from a textbook.
+            Everything I recommend has been tested in actual businesses—not just theory from a textbook.
           </p>
         </div>
         <div>
@@ -250,17 +278,37 @@ const howIHelp = [
     </div>
   </section>
 
+  <!-- Upwork Trust Section -->
+  <section class="theme-bg-primary py-12">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex flex-wrap justify-center items-center gap-3 text-sm theme-text-muted">
+        <span class="flex items-center gap-1">
+          <svg class="h-4 w-4 text-accent" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+          Top Rated on Upwork
+        </span>
+        <span class="text-brand">•</span>
+        <span>100% Job Success</span>
+        <span class="text-brand">•</span>
+        <span>$10K+ earned</span>
+        <span class="text-brand">•</span>
+        <span>17 projects delivered</span>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="theme-bg-inverse text-white py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">
-        Ready to Break Out of the Grind?
+        If you're scaling and the backend is creaking…
       </h2>
       <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
-        Let's talk if you're ready to use AI and automation to finally build a business that works for you — and runs without you.
+        Let's talk. Book a free Systems Audit Call and I'll map the bottleneck and outline the fastest path to fix it.
       </p>
       <a href="/contact" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
-        Book My FREE Consultation
+        Book a Free Systems Audit
       </a>
     </div>
   </section>
@@ -270,8 +318,8 @@ const howIHelp = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <NewsletterForm
         variant="card"
-        title="Stay Connected"
-        description="Get tips on AI, automation, and building smarter systems delivered to your inbox."
+        title="Subscribe to the Newsletter"
+        description="Practical ops and automation lessons from real builds—no fluff."
         buttonText="Subscribe"
       />
     </div>
