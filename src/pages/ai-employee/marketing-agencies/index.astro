@@ -1,0 +1,467 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const painPoints = [
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>`,
+    title: 'Drowning in client reports',
+    description: 'You spend hours every week pulling analytics, formatting reports, and sending updates that clients barely read.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>`,
+    title: 'Client communication overload',
+    description: 'Slack messages, emails, status updates, meeting scheduling—you\'re more admin than strategist.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    title: 'Onboarding takes forever',
+    description: 'New client setup, asset gathering, access requests, kickoff scheduling—it\'s a full-time job itself.',
+  },
+];
+
+const useCases = [
+  {
+    title: 'Automated client reporting',
+    description: 'Pull data from Google Analytics, ads platforms, and social—compile and send weekly reports automatically.',
+  },
+  {
+    title: 'Client communication triage',
+    description: 'Monitor Slack/email, flag urgent items, draft responses, and keep clients updated without your constant attention.',
+  },
+  {
+    title: 'Meeting scheduling & prep',
+    description: 'Handle back-and-forth scheduling, send calendar invites, and prepare meeting agendas with recent metrics.',
+  },
+  {
+    title: 'CRM & project management',
+    description: 'Keep HubSpot, ClickUp, or Monday updated with client status, task progress, and next steps.',
+  },
+  {
+    title: 'Client onboarding workflows',
+    description: 'Automate asset collection, access requests, welcome sequences, and kickoff scheduling.',
+  },
+  {
+    title: 'Content calendar management',
+    description: 'Track deadlines, send reminders, update status, and keep campaigns on schedule.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '1',
+    title: 'Intake',
+    description: 'Share access to your tools—Google Workspace, Slack, CRM, project management. I handle the rest.',
+  },
+  {
+    step: '2',
+    title: 'Setup',
+    description: 'I configure OpenClaw with your client workflows, reporting templates, and communication style.',
+  },
+  {
+    step: '3',
+    title: 'Warm-Up',
+    description: 'I run your AI employee on real tasks—triaging emails, updating projects, drafting reports.',
+  },
+  {
+    step: '4',
+    title: 'Delivery',
+    description: 'I ship the Mac Mini to your office. Plug in and your AI team member is ready to work.',
+  },
+];
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    price: '$2,997',
+    description: 'Perfect for testing the waters',
+    badge: '',
+    badgeColor: '',
+    features: [
+      'Mac Mini M4 included',
+      '4 tool integrations',
+      '3-day warm-up period',
+      'Agency workflow training',
+      'Security configuration',
+      '14 days email support',
+    ],
+    cta: 'Get Started',
+    ctaStyle: 'btn-outline',
+    stripeLink: '#',
+  },
+  {
+    name: 'Pro',
+    price: '$4,497',
+    description: 'Most popular for agencies',
+    badge: 'Recommended',
+    badgeColor: 'bg-accent text-dark',
+    features: [
+      'Everything in Starter, plus:',
+      '6 tool integrations',
+      '1-week warm-up period',
+      'Custom reporting automations',
+      '30 days email support',
+      'Priority setup',
+    ],
+    cta: 'Get Pro',
+    ctaStyle: 'btn-accent',
+    stripeLink: '#',
+  },
+  {
+    name: 'Agency',
+    price: '$6,997',
+    description: 'White-glove service',
+    badge: 'Full Service',
+    badgeColor: 'bg-brand text-white',
+    features: [
+      'Everything in Pro, plus:',
+      '10 tool integrations',
+      '2-week warm-up period',
+      'Priority Slack channel',
+      '60 days support',
+      'Quarterly tune-up call',
+    ],
+    cta: 'Get Agency',
+    ctaStyle: 'btn-primary',
+    stripeLink: '#',
+  },
+];
+
+const addOns = [
+  { name: 'Extra warm-up week', price: '+$750' },
+  { name: 'Monthly remote support', price: '$397/mo' },
+  { name: 'Additional integration', price: '+$297 each' },
+];
+
+const faqs = [
+  {
+    question: "Can it actually pull data from Google Analytics and ad platforms?",
+    answer: "Yes. OpenClaw can connect to Google Analytics, Google Ads, Meta Ads, LinkedIn Ads, and most major platforms via API or browser automation. It pulls the data, compiles it into your report template, and sends it to clients on schedule.",
+  },
+  {
+    question: "How does it handle client communication?",
+    answer: "It monitors your client channels (Slack, email) and can triage messages, flag urgent items, draft responses for your review, or send routine updates automatically. You set the rules for what requires human approval.",
+  },
+  {
+    question: "Will it sound like a robot to my clients?",
+    answer: "No. During setup, I train it on your agency's voice, past communications, and brand guidelines. It writes like your team, not like generic AI. Clients won't know the difference.",
+  },
+  {
+    question: "What project management tools does it work with?",
+    answer: "ClickUp, Monday, Asana, Notion, Basecamp, Trello—if it has an API or web interface, OpenClaw can integrate. I'll configure whichever tools your agency uses.",
+  },
+  {
+    question: "Is client data secure?",
+    answer: "Yes. Everything runs locally on the Mac Mini in your office—client data never leaves your network. The AI employee gets its own accounts with limited permissions, so it can't access anything you don't explicitly allow.",
+  },
+  {
+    question: "What if we onboard a new client after setup?",
+    answer: "Your AI employee can handle new client onboarding using the workflows we set up. For major changes (new tools, new service offerings), you can use the monthly support add-on or book a tune-up call.",
+  },
+  {
+    question: "How many clients can it handle?",
+    answer: "There's no hard limit. It depends on task complexity and volume. Most agencies find it handles routine work for 10-20+ clients easily. The more repetitive the tasks, the more it can take on.",
+  },
+  {
+    question: "What's the ROI look like?",
+    answer: "If your team spends 10+ hours/week on reporting, client updates, and scheduling, that's $2,000-4,000/month in labor. This is a one-time investment that pays for itself in 1-2 months, then keeps working indefinitely.",
+  },
+];
+---
+
+<Layout
+  title="AI Employee for Marketing Agencies | Your AI Team Member, Shipped to Your Door"
+  description="Done-for-you AI employee setup for marketing agencies. Automate client reporting, communication, and project management. Mac Mini included, shipped ready to work."
+>
+  <!-- Hero Section -->
+  <section class="theme-bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-accent font-semibold mb-3 text-sm uppercase tracking-wide">For Marketing Agencies</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold theme-text-primary leading-tight">
+            Stop Drowning in <span class="text-gradient-accent">Client Admin</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl theme-text-secondary leading-relaxed">
+            Your agency runs on reporting, client updates, and project coordination.
+            I'll set up an AI employee that handles it all—then ship it to your door ready to work 24/7.
+          </p>
+          <p class="mt-4 text-sm theme-text-muted flex flex-wrap items-center gap-2">
+            <span>Powered by OpenClaw</span>
+            <span class="text-brand">•</span>
+            <span>100K+ GitHub stars</span>
+            <span class="text-brand">•</span>
+            <span>Used by agencies worldwide</span>
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+              See Pricing
+            </a>
+            <a href="#use-cases" class="btn btn-outline text-lg px-8 py-4">
+              What It Can Do
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 via-brand/20 to-primary/20 rounded-3xl blur-xl"></div>
+          <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 shadow-2xl">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="h-3 w-3 rounded-full bg-red-500"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="space-y-4 font-mono text-sm">
+              <div class="text-slate-400">$ openclaw status --today</div>
+              <div class="text-green-400">✓ 8 client reports compiled & sent</div>
+              <div class="text-green-400">✓ 23 emails triaged, 5 flagged urgent</div>
+              <div class="text-green-400">✓ 12 ClickUp tasks updated</div>
+              <div class="text-green-400">✓ 3 client meetings scheduled</div>
+              <div class="text-slate-400 mt-4">$ openclaw queue</div>
+              <div class="text-white">→ Draft Q1 report for Acme Corp</div>
+              <div class="text-white">→ Send weekly update to RetailCo</div>
+              <div class="text-white">→ Update campaign status in HubSpot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">15+</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Hours Saved Weekly</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">24/7</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Client Coverage</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">$0</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Monthly Salary</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Sound familiar?
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          You started an agency to do great marketing work. Now you spend half your time on admin.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {painPoints.map((point) => (
+          <div class="theme-bg-primary rounded-2xl p-8 border transition-colors" style="border-color: var(--border-color);">
+            <div class="h-12 w-12 bg-brand/10 rounded-xl flex items-center justify-center text-brand mb-4">
+              <Fragment set:html={point.icon} />
+            </div>
+            <h3 class="text-lg font-bold theme-text-primary">{point.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section id="use-cases" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          What your AI employee can do
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          Trained on agency workflows. Ready to handle the work that's eating your team alive.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {useCases.map((item) => (
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold theme-text-primary">{item.title}</h3>
+              <p class="text-sm theme-text-secondary">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          How it works
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          From intake to delivery in 1-3 weeks. You provide access, I handle everything else.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {processSteps.map((step) => (
+          <div class="text-center">
+            <div class="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto">
+              <span class="text-2xl font-bold text-accent">{step.step}</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold theme-text-primary">{step.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Choose your package
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          One-time investment. No monthly fees for the AI itself. Own your infrastructure.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pricingTiers.map((tier) => (
+          <div class={`rounded-2xl p-8 border transition-colors relative ${tier.badge === 'Recommended' ? 'ring-2 ring-accent' : ''}`} style={`border-color: var(--border-color); background-color: var(--bg-primary);`}>
+            {tier.badge && (
+              <span class={`absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 text-xs font-bold rounded-full ${tier.badgeColor}`}>
+                {tier.badge}
+              </span>
+            )}
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold theme-text-primary">{tier.name}</h3>
+              <div class="mt-2">
+                <span class="text-4xl font-bold text-accent">{tier.price}</span>
+                <span class="theme-text-muted text-sm"> one-time</span>
+              </div>
+              <p class="mt-2 text-sm theme-text-secondary">{tier.description}</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <svg class="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="theme-text-secondary">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={tier.stripeLink} class={`btn ${tier.ctaStyle} w-full`}>
+              {tier.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Add-Ons -->
+      <div class="mt-12 text-center">
+        <h3 class="text-lg font-bold theme-text-primary mb-4">Optional Add-Ons</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {addOns.map((addon) => (
+            <div class="theme-bg-secondary rounded-lg px-4 py-2 text-sm">
+              <span class="theme-text-primary font-medium">{addon.name}:</span>
+              <span class="text-accent font-bold ml-2">{addon.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Alternative CTA -->
+      <div class="mt-12 text-center theme-bg-secondary rounded-2xl p-8">
+        <h3 class="text-xl font-bold theme-text-primary">Not sure which package fits your agency?</h3>
+        <p class="mt-2 theme-text-secondary max-w-xl mx-auto">
+          Book a free 15-minute call. I'll learn about your workflow and recommend the best setup.
+        </p>
+        <a href="/contact" class="mt-6 btn btn-outline inline-block">
+          Book a Free Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust/Social Proof Section -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-slate-400 text-sm uppercase tracking-wide mb-4">Built on proven technology</p>
+        <div class="flex flex-wrap justify-center items-center gap-6 text-slate-300">
+          <span class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            100K+ GitHub Stars
+          </span>
+          <span class="text-slate-500">•</span>
+          <span>Used by agencies worldwide</span>
+          <span class="text-slate-500">•</span>
+          <span>Integrates with your stack</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary">
+          Common questions from agency owners like you.
+        </p>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        Ready to give your agency an AI team member?
+      </h2>
+      <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+        Stop losing billable hours to admin work. Get a 24/7 AI employee that handles reporting, client comms, and coordination while you focus on strategy.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+          Choose Your Package
+        </a>
+        <a href="/contact" class="btn btn-outline text-lg px-8 py-4">
+          Book a Free Call First
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

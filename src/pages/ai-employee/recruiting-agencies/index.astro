@@ -1,0 +1,467 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const painPoints = [
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>`,
+    title: 'Scheduling nightmares',
+    description: 'Coordinating interviews between candidates, hiring managers, and your team. The back-and-forth emails never end.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
+    title: 'Candidate follow-up falls through',
+    description: 'Hundreds of candidates, dozens of roles. Keeping everyone updated and engaged is a full-time job on its own.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>`,
+    title: 'ATS data entry is endless',
+    description: 'Updating candidate status, logging notes, moving people through stages—your ATS is hungry and never satisfied.',
+  },
+];
+
+const useCases = [
+  {
+    title: 'Interview scheduling',
+    description: 'Coordinate availability between candidates and hiring managers. Handle rescheduling. Send confirmations and reminders.',
+  },
+  {
+    title: 'Candidate communication',
+    description: 'Send status updates, follow-ups, and nurture sequences. Keep candidates warm without manual effort.',
+  },
+  {
+    title: 'ATS/CRM updates',
+    description: 'Log notes, update candidate stages, track activity—keep your Bullhorn, Greenhouse, or Lever data current.',
+  },
+  {
+    title: 'Job posting management',
+    description: 'Post to multiple job boards, refresh listings, and track which sources drive quality candidates.',
+  },
+  {
+    title: 'Client communication',
+    description: 'Send pipeline updates, schedule check-ins, and keep hiring managers informed automatically.',
+  },
+  {
+    title: 'Resume screening support',
+    description: 'Pre-screen resumes against job requirements, flag strong matches, and organize candidates by fit.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '1',
+    title: 'Intake',
+    description: 'Share access to your ATS, email, calendar, and communication tools. I handle the rest.',
+  },
+  {
+    step: '2',
+    title: 'Setup',
+    description: 'I configure OpenClaw with your recruiting workflows, templates, and candidate communication sequences.',
+  },
+  {
+    step: '3',
+    title: 'Warm-Up',
+    description: 'I run your AI employee on real tasks—scheduling interviews, updating records, sending follow-ups.',
+  },
+  {
+    step: '4',
+    title: 'Delivery',
+    description: 'I ship the Mac Mini to your office. Plug in and your AI recruiter handles the admin grind.',
+  },
+];
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    price: '$2,997',
+    description: 'Perfect for testing the waters',
+    badge: '',
+    badgeColor: '',
+    features: [
+      'Mac Mini M4 included',
+      '4 tool integrations',
+      '3-day warm-up period',
+      'Recruiting workflow training',
+      'Security configuration',
+      '14 days email support',
+    ],
+    cta: 'Get Started',
+    ctaStyle: 'btn-outline',
+    stripeLink: '#',
+  },
+  {
+    name: 'Pro',
+    price: '$4,497',
+    description: 'Most popular for recruiters',
+    badge: 'Recommended',
+    badgeColor: 'bg-accent text-dark',
+    features: [
+      'Everything in Starter, plus:',
+      '6 tool integrations',
+      '1-week warm-up period',
+      'Custom outreach sequences',
+      '30 days email support',
+      'Priority setup',
+    ],
+    cta: 'Get Pro',
+    ctaStyle: 'btn-accent',
+    stripeLink: '#',
+  },
+  {
+    name: 'Agency',
+    price: '$6,997',
+    description: 'White-glove service',
+    badge: 'Full Service',
+    badgeColor: 'bg-brand text-white',
+    features: [
+      'Everything in Pro, plus:',
+      '10 tool integrations',
+      '2-week warm-up period',
+      'Priority Slack channel',
+      '60 days support',
+      'Quarterly tune-up call',
+    ],
+    cta: 'Get Agency',
+    ctaStyle: 'btn-primary',
+    stripeLink: '#',
+  },
+];
+
+const addOns = [
+  { name: 'Extra warm-up week', price: '+$750' },
+  { name: 'Monthly remote support', price: '$397/mo' },
+  { name: 'Additional integration', price: '+$297 each' },
+];
+
+const faqs = [
+  {
+    question: "Can it integrate with our ATS (Bullhorn, Greenhouse, Lever, etc.)?",
+    answer: "Yes. OpenClaw integrates via API where available, and uses browser automation for systems without APIs. It works with Bullhorn, Greenhouse, Lever, Workable, JazzHR, and most major ATS platforms.",
+  },
+  {
+    question: "How does interview scheduling work?",
+    answer: "It checks availability across calendars (candidate, hiring manager, panel), finds matching slots, sends booking links or proposes times, handles confirmations, and manages rescheduling. No more email ping-pong.",
+  },
+  {
+    question: "Will candidate emails sound robotic?",
+    answer: "No. I train it on your past communications and voice. Candidates won't know they're talking to AI. You can also require approval for sensitive messages before they send.",
+  },
+  {
+    question: "Can it actually screen resumes?",
+    answer: "It can parse resumes against job requirements and flag candidates who match key criteria. It's not replacing your judgment—it's handling the initial filter so you focus on the best matches.",
+  },
+  {
+    question: "How many roles/candidates can it handle?",
+    answer: "There's no hard limit. Most staffing agencies find it handles 50-100+ active candidates across multiple roles easily. The more routine the tasks, the more it can take on.",
+  },
+  {
+    question: "Is candidate data secure?",
+    answer: "Yes. Everything runs locally on the Mac Mini—candidate PII never leaves your network. The AI gets its own limited-access accounts. You control exactly what it can see and do.",
+  },
+  {
+    question: "What about sourcing—can it find candidates?",
+    answer: "It can automate LinkedIn outreach, search job boards, and compile candidate lists based on your criteria. For true sourcing strategy, you're still in the driver's seat.",
+  },
+  {
+    question: "What's the ROI?",
+    answer: "If your team spends 15+ hours/week on scheduling, ATS updates, and candidate follow-up, that's $3,000-5,000/month in labor. This is a one-time investment that pays for itself in 4-6 weeks.",
+  },
+];
+---
+
+<Layout
+  title="AI Employee for Recruiting & Staffing Agencies | Automate Scheduling, Follow-ups & ATS Updates"
+  description="Done-for-you AI employee setup for recruiting agencies. Automate interview scheduling, candidate communication, and ATS data entry. Mac Mini included, shipped ready to work."
+>
+  <!-- Hero Section -->
+  <section class="theme-bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-accent font-semibold mb-3 text-sm uppercase tracking-wide">For Recruiting & Staffing Agencies</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold theme-text-primary leading-tight">
+            Fill Roles, Not <span class="text-gradient-accent">Spreadsheets</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl theme-text-secondary leading-relaxed">
+            Scheduling, candidate follow-up, ATS updates—the admin work that keeps you from actually recruiting.
+            I'll set up an AI employee that handles the grind, then ship it to your door ready to work 24/7.
+          </p>
+          <p class="mt-4 text-sm theme-text-muted flex flex-wrap items-center gap-2">
+            <span>Powered by OpenClaw</span>
+            <span class="text-brand">•</span>
+            <span>100K+ GitHub stars</span>
+            <span class="text-brand">•</span>
+            <span>Works with Bullhorn, Greenhouse, Lever</span>
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+              See Pricing
+            </a>
+            <a href="#use-cases" class="btn btn-outline text-lg px-8 py-4">
+              What It Can Do
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 via-brand/20 to-primary/20 rounded-3xl blur-xl"></div>
+          <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 shadow-2xl">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="h-3 w-3 rounded-full bg-red-500"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="space-y-4 font-mono text-sm">
+              <div class="text-slate-400">$ openclaw status --today</div>
+              <div class="text-green-400">✓ 14 interviews scheduled</div>
+              <div class="text-green-400">✓ 47 candidate follow-ups sent</div>
+              <div class="text-green-400">✓ 23 ATS records updated</div>
+              <div class="text-green-400">✓ 8 client pipeline updates delivered</div>
+              <div class="text-slate-400 mt-4">$ openclaw pipeline</div>
+              <div class="text-white">→ Sr. Developer: 12 candidates, 3 final round</div>
+              <div class="text-white">→ Sales Manager: 8 candidates, 2 offers out</div>
+              <div class="text-white">→ Marketing Lead: 6 new applications today</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">15+</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Hours Saved Weekly</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">100%</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Candidate Follow-up Rate</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">$0</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Monthly Salary</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Sound familiar?
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          You got into recruiting to match great people with great opportunities. Now you're buried in logistics.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {painPoints.map((point) => (
+          <div class="theme-bg-primary rounded-2xl p-8 border transition-colors" style="border-color: var(--border-color);">
+            <div class="h-12 w-12 bg-brand/10 rounded-xl flex items-center justify-center text-brand mb-4">
+              <Fragment set:html={point.icon} />
+            </div>
+            <h3 class="text-lg font-bold theme-text-primary">{point.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section id="use-cases" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          What your AI employee can do
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          Trained on recruiting workflows. Ready to handle the admin so you can focus on relationships.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {useCases.map((item) => (
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold theme-text-primary">{item.title}</h3>
+              <p class="text-sm theme-text-secondary">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          How it works
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          From intake to delivery in 1-3 weeks. You provide access, I handle everything else.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {processSteps.map((step) => (
+          <div class="text-center">
+            <div class="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto">
+              <span class="text-2xl font-bold text-accent">{step.step}</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold theme-text-primary">{step.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Choose your package
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          One-time investment. No monthly fees for the AI itself. Own your infrastructure.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pricingTiers.map((tier) => (
+          <div class={`rounded-2xl p-8 border transition-colors relative ${tier.badge === 'Recommended' ? 'ring-2 ring-accent' : ''}`} style={`border-color: var(--border-color); background-color: var(--bg-primary);`}>
+            {tier.badge && (
+              <span class={`absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 text-xs font-bold rounded-full ${tier.badgeColor}`}>
+                {tier.badge}
+              </span>
+            )}
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold theme-text-primary">{tier.name}</h3>
+              <div class="mt-2">
+                <span class="text-4xl font-bold text-accent">{tier.price}</span>
+                <span class="theme-text-muted text-sm"> one-time</span>
+              </div>
+              <p class="mt-2 text-sm theme-text-secondary">{tier.description}</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <svg class="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="theme-text-secondary">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={tier.stripeLink} class={`btn ${tier.ctaStyle} w-full`}>
+              {tier.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Add-Ons -->
+      <div class="mt-12 text-center">
+        <h3 class="text-lg font-bold theme-text-primary mb-4">Optional Add-Ons</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {addOns.map((addon) => (
+            <div class="theme-bg-secondary rounded-lg px-4 py-2 text-sm">
+              <span class="theme-text-primary font-medium">{addon.name}:</span>
+              <span class="text-accent font-bold ml-2">{addon.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Alternative CTA -->
+      <div class="mt-12 text-center theme-bg-secondary rounded-2xl p-8">
+        <h3 class="text-xl font-bold theme-text-primary">Not sure which package fits your agency?</h3>
+        <p class="mt-2 theme-text-secondary max-w-xl mx-auto">
+          Book a free 15-minute call. I'll learn about your recruiting workflow and recommend the best setup.
+        </p>
+        <a href="/contact" class="mt-6 btn btn-outline inline-block">
+          Book a Free Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust/Social Proof Section -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-slate-400 text-sm uppercase tracking-wide mb-4">Built on proven technology</p>
+        <div class="flex flex-wrap justify-center items-center gap-6 text-slate-300">
+          <span class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            100K+ GitHub Stars
+          </span>
+          <span class="text-slate-500">•</span>
+          <span>Works with Bullhorn, Greenhouse, Lever</span>
+          <span class="text-slate-500">•</span>
+          <span>Used by staffing agencies worldwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary">
+          Common questions from recruiting and staffing agency owners.
+        </p>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        Ready to focus on recruiting, not admin?
+      </h2>
+      <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+        Stop losing hours to scheduling and data entry. Get a 24/7 AI employee that handles the grind while you focus on placing candidates and closing deals.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+          Choose Your Package
+        </a>
+        <a href="/contact" class="btn btn-outline text-lg px-8 py-4">
+          Book a Free Call First
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
