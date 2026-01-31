@@ -1,0 +1,467 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+
+const painPoints = [
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`,
+    title: 'Outreach is a grind',
+    description: 'Link building, guest post pitches, and PR outreach eat hours every day. Finding contacts, personalizing emails, following up—it never ends.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+    title: 'Reporting takes forever',
+    description: 'Pulling rank data, traffic stats, backlink counts, and formatting it all into client reports. Every. Single. Week.',
+  },
+  {
+    icon: `<svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>`,
+    title: 'Data scattered everywhere',
+    description: 'Ahrefs, SEMrush, GSC, GA4, rank trackers—pulling data from 6 different tools just to answer one client question.',
+  },
+];
+
+const useCases = [
+  {
+    title: 'Automated outreach campaigns',
+    description: 'Find contacts, personalize pitches, send emails, and follow up—all on autopilot with your approval on key messages.',
+  },
+  {
+    title: 'Weekly/monthly SEO reports',
+    description: 'Pull data from Ahrefs, SEMrush, GSC, and GA4. Compile into your template. Send to clients automatically.',
+  },
+  {
+    title: 'Rank tracking updates',
+    description: 'Monitor keyword positions daily, flag significant changes, and update clients on wins and opportunities.',
+  },
+  {
+    title: 'Content brief generation',
+    description: 'Research SERPs, analyze competitors, and draft content briefs with target keywords, structure, and recommendations.',
+  },
+  {
+    title: 'Backlink monitoring',
+    description: 'Track new and lost backlinks, identify toxic links, and compile link building progress reports.',
+  },
+  {
+    title: 'Client communication',
+    description: 'Answer routine questions, provide status updates, and keep clients informed without constant manual effort.',
+  },
+];
+
+const processSteps = [
+  {
+    step: '1',
+    title: 'Intake',
+    description: 'Share access to your SEO tools—Ahrefs, SEMrush, GSC, rank trackers. Plus email and project management.',
+  },
+  {
+    step: '2',
+    title: 'Setup',
+    description: 'I configure OpenClaw with your reporting templates, outreach sequences, and client workflows.',
+  },
+  {
+    step: '3',
+    title: 'Warm-Up',
+    description: 'I run your AI employee on real tasks—pulling reports, drafting outreach, monitoring rankings.',
+  },
+  {
+    step: '4',
+    title: 'Delivery',
+    description: 'I ship the Mac Mini to your office. Plug in and your AI team member handles the grind.',
+  },
+];
+
+const pricingTiers = [
+  {
+    name: 'Starter',
+    price: '$2,997',
+    description: 'Perfect for testing the waters',
+    badge: '',
+    badgeColor: '',
+    features: [
+      'Mac Mini M4 included',
+      '4 tool integrations',
+      '3-day warm-up period',
+      'SEO workflow training',
+      'Security configuration',
+      '14 days email support',
+    ],
+    cta: 'Get Started',
+    ctaStyle: 'btn-outline',
+    stripeLink: '#',
+  },
+  {
+    name: 'Pro',
+    price: '$4,497',
+    description: 'Most popular for SEO agencies',
+    badge: 'Recommended',
+    badgeColor: 'bg-accent text-dark',
+    features: [
+      'Everything in Starter, plus:',
+      '6 tool integrations',
+      '1-week warm-up period',
+      'Custom outreach automations',
+      '30 days email support',
+      'Priority setup',
+    ],
+    cta: 'Get Pro',
+    ctaStyle: 'btn-accent',
+    stripeLink: '#',
+  },
+  {
+    name: 'Agency',
+    price: '$6,997',
+    description: 'White-glove service',
+    badge: 'Full Service',
+    badgeColor: 'bg-brand text-white',
+    features: [
+      'Everything in Pro, plus:',
+      '10 tool integrations',
+      '2-week warm-up period',
+      'Priority Slack channel',
+      '60 days support',
+      'Quarterly tune-up call',
+    ],
+    cta: 'Get Agency',
+    ctaStyle: 'btn-primary',
+    stripeLink: '#',
+  },
+];
+
+const addOns = [
+  { name: 'Extra warm-up week', price: '+$750' },
+  { name: 'Monthly remote support', price: '$397/mo' },
+  { name: 'Additional integration', price: '+$297 each' },
+];
+
+const faqs = [
+  {
+    question: "Can it actually connect to Ahrefs, SEMrush, and other SEO tools?",
+    answer: "Yes. OpenClaw connects via API where available, and uses browser automation for tools without APIs. It can pull data from Ahrefs, SEMrush, Moz, GSC, GA4, and most rank tracking tools.",
+  },
+  {
+    question: "How does the outreach automation work?",
+    answer: "You define your outreach criteria (target sites, personalization rules, follow-up cadence). The AI finds contacts, drafts personalized pitches, and sends them. You can require approval for first-touch emails or let it run fully automated for follow-ups.",
+  },
+  {
+    question: "Will outreach emails sound robotic?",
+    answer: "No. I train it on your past outreach emails and voice. It writes like you, not like generic AI. Most recipients won't know the difference. You can also review and edit any email before it sends.",
+  },
+  {
+    question: "Can it generate content briefs?",
+    answer: "Yes. It analyzes top-ranking content, identifies patterns, extracts key topics and questions, and drafts briefs with recommended structure, word count, keywords, and internal linking opportunities.",
+  },
+  {
+    question: "What about rank tracking—does it replace my rank tracker?",
+    answer: "It integrates with your existing rank tracker (not replaces it). It pulls the data, identifies significant changes, and includes the insights in reports or alerts. Think of it as a layer on top of your tools.",
+  },
+  {
+    question: "Is client data secure?",
+    answer: "Yes. Everything runs locally on the Mac Mini—client data never leaves your network. The AI gets its own limited-access accounts. You control exactly what it can see and do.",
+  },
+  {
+    question: "How many client accounts can it handle?",
+    answer: "There's no hard limit. It depends on task volume and complexity. Most SEO agencies find it handles reporting and monitoring for 15-25+ clients easily.",
+  },
+  {
+    question: "What's the ROI?",
+    answer: "If you spend 15+ hours/week on outreach, reporting, and data pulling, that's $3,000-5,000/month in labor. This is a one-time investment that pays for itself in 4-6 weeks, then works indefinitely.",
+  },
+];
+---
+
+<Layout
+  title="AI Employee for SEO Agencies | Automate Outreach, Reporting & Rank Tracking"
+  description="Done-for-you AI employee setup for SEO agencies. Automate link building outreach, client reporting, and rank monitoring. Mac Mini included, shipped ready to work."
+>
+  <!-- Hero Section -->
+  <section class="theme-bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-accent font-semibold mb-3 text-sm uppercase tracking-wide">For SEO Agencies</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold theme-text-primary leading-tight">
+            Automate the <span class="text-gradient-accent">SEO Grind</span>
+          </h1>
+          <p class="mt-6 text-lg sm:text-xl theme-text-secondary leading-relaxed">
+            Outreach, reporting, rank tracking, data pulling—the repetitive work that eats your margins.
+            I'll set up an AI employee that handles it all, then ship it to your door ready to work 24/7.
+          </p>
+          <p class="mt-4 text-sm theme-text-muted flex flex-wrap items-center gap-2">
+            <span>Powered by OpenClaw</span>
+            <span class="text-brand">•</span>
+            <span>100K+ GitHub stars</span>
+            <span class="text-brand">•</span>
+            <span>Integrates with Ahrefs, SEMrush, GSC</span>
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+            <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+              See Pricing
+            </a>
+            <a href="#use-cases" class="btn btn-outline text-lg px-8 py-4">
+              What It Can Do
+            </a>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -inset-4 bg-gradient-to-r from-accent/20 via-brand/20 to-primary/20 rounded-3xl blur-xl"></div>
+          <div class="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 shadow-2xl">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="h-3 w-3 rounded-full bg-red-500"></div>
+              <div class="h-3 w-3 rounded-full bg-yellow-500"></div>
+              <div class="h-3 w-3 rounded-full bg-green-500"></div>
+            </div>
+            <div class="space-y-4 font-mono text-sm">
+              <div class="text-slate-400">$ openclaw status --today</div>
+              <div class="text-green-400">✓ 47 outreach emails sent</div>
+              <div class="text-green-400">✓ 12 follow-ups delivered</div>
+              <div class="text-green-400">✓ 6 client reports compiled</div>
+              <div class="text-green-400">✓ 3 rank alerts triggered</div>
+              <div class="text-slate-400 mt-4">$ openclaw wins</div>
+              <div class="text-white">→ ClientA: "seo services" #8 → #4</div>
+              <div class="text-white">→ ClientB: 2 new backlinks acquired</div>
+              <div class="text-white">→ ClientC: Traffic up 12% WoW</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-3 gap-8 text-center">
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">20+</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Hours Saved Weekly</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">100s</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Outreach Emails/Day</div>
+        </div>
+        <div>
+          <div class="text-3xl md:text-5xl font-bold text-accent">$0</div>
+          <div class="mt-2 text-sm md:text-base text-slate-300">Monthly Salary</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain Points Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Sound familiar?
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          You got into SEO for the strategy. Now you spend most of your time on repetitive execution.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {painPoints.map((point) => (
+          <div class="theme-bg-primary rounded-2xl p-8 border transition-colors" style="border-color: var(--border-color);">
+            <div class="h-12 w-12 bg-brand/10 rounded-xl flex items-center justify-center text-brand mb-4">
+              <Fragment set:html={point.icon} />
+            </div>
+            <h3 class="text-lg font-bold theme-text-primary">{point.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases Section -->
+  <section id="use-cases" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          What your AI employee can do
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          Trained on SEO workflows. Ready to grind so you don't have to.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {useCases.map((item) => (
+          <div class="flex items-start gap-4">
+            <div class="flex-shrink-0">
+              <svg class="h-6 w-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="font-bold theme-text-primary">{item.title}</h3>
+              <p class="text-sm theme-text-secondary">{item.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          How it works
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          From intake to delivery in 1-3 weeks. You provide access, I handle everything else.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {processSteps.map((step) => (
+          <div class="text-center">
+            <div class="h-16 w-16 bg-accent/10 rounded-2xl flex items-center justify-center mx-auto">
+              <span class="text-2xl font-bold text-accent">{step.step}</span>
+            </div>
+            <h3 class="mt-4 text-xl font-bold theme-text-primary">{step.title}</h3>
+            <p class="mt-2 theme-text-secondary text-sm">{step.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Choose your package
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+          One-time investment. No monthly fees for the AI itself. Own your infrastructure.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {pricingTiers.map((tier) => (
+          <div class={`rounded-2xl p-8 border transition-colors relative ${tier.badge === 'Recommended' ? 'ring-2 ring-accent' : ''}`} style={`border-color: var(--border-color); background-color: var(--bg-primary);`}>
+            {tier.badge && (
+              <span class={`absolute -top-3 left-1/2 transform -translate-x-1/2 px-4 py-1 text-xs font-bold rounded-full ${tier.badgeColor}`}>
+                {tier.badge}
+              </span>
+            )}
+            <div class="text-center mb-6">
+              <h3 class="text-xl font-bold theme-text-primary">{tier.name}</h3>
+              <div class="mt-2">
+                <span class="text-4xl font-bold text-accent">{tier.price}</span>
+                <span class="theme-text-muted text-sm"> one-time</span>
+              </div>
+              <p class="mt-2 text-sm theme-text-secondary">{tier.description}</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <svg class="h-5 w-5 text-accent flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="theme-text-secondary">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a href={tier.stripeLink} class={`btn ${tier.ctaStyle} w-full`}>
+              {tier.cta}
+            </a>
+          </div>
+        ))}
+      </div>
+
+      <!-- Add-Ons -->
+      <div class="mt-12 text-center">
+        <h3 class="text-lg font-bold theme-text-primary mb-4">Optional Add-Ons</h3>
+        <div class="flex flex-wrap justify-center gap-4">
+          {addOns.map((addon) => (
+            <div class="theme-bg-secondary rounded-lg px-4 py-2 text-sm">
+              <span class="theme-text-primary font-medium">{addon.name}:</span>
+              <span class="text-accent font-bold ml-2">{addon.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Alternative CTA -->
+      <div class="mt-12 text-center theme-bg-secondary rounded-2xl p-8">
+        <h3 class="text-xl font-bold theme-text-primary">Not sure which package fits your agency?</h3>
+        <p class="mt-2 theme-text-secondary max-w-xl mx-auto">
+          Book a free 15-minute call. I'll learn about your SEO workflow and recommend the best setup.
+        </p>
+        <a href="/contact" class="mt-6 btn btn-outline inline-block">
+          Book a Free Call
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust/Social Proof Section -->
+  <section class="theme-bg-inverse py-12">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <p class="text-slate-400 text-sm uppercase tracking-wide mb-4">Built on proven technology</p>
+        <div class="flex flex-wrap justify-center items-center gap-6 text-slate-300">
+          <span class="flex items-center gap-2">
+            <svg class="h-5 w-5 text-accent" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+            </svg>
+            100K+ GitHub Stars
+          </span>
+          <span class="text-slate-500">•</span>
+          <span>Integrates with Ahrefs, SEMrush, GSC</span>
+          <span class="text-slate-500">•</span>
+          <span>Used by SEO agencies worldwide</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Frequently Asked Questions
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary">
+          Common questions from SEO agency owners.
+        </p>
+      </div>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="theme-bg-secondary py-16 lg:py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        Ready to scale your SEO agency without more headcount?
+      </h2>
+      <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
+        Stop grinding on outreach and reports. Get a 24/7 AI employee that handles the repetitive work while you focus on strategy and growth.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#pricing" class="btn btn-accent text-lg px-8 py-4">
+          Choose Your Package
+        </a>
+        <a href="/contact" class="btn btn-outline text-lg px-8 py-4">
+          Book a Free Call First
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
