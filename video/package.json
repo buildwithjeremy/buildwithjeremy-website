@@ -4,21 +4,34 @@
   "description": "AI Employee explainer video built with Remotion",
   "scripts": {
     "dev": "npx remotion studio",
-    "build": "npx remotion render AIEmployeeVideo out/ai-employee.mp4",
-    "render": "npx remotion render AIEmployeeVideo out/ai-employee.mp4",
-    "render:preview": "npx remotion render AIEmployeeVideo out/ai-employee.mp4 --frames=0-90"
+    "build": "npx remotion render AIEmployeeVideoV2 out/ai-employee-v2.mp4",
+    "render": "npx remotion render AIEmployeeVideoV2 out/ai-employee-v2.mp4",
+    "render:v1": "npx remotion render AIEmployeeVideo out/ai-employee-v1.mp4",
+    "render:preview": "npx remotion render AIEmployeeVideoV2 out/ai-employee-v2.mp4 --frames=0-90"
   },
-  "keywords": ["remotion", "video", "ai-employee"],
+  "keywords": [
+    "remotion",
+    "video",
+    "ai-employee"
+  ],
   "author": "Build with Jeremy",
   "license": "ISC",
   "dependencies": {
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@remotion/bundler": "^4.0.414",
     "@remotion/cli": "^4.0.414",
+    "@remotion/media-utils": "^4.0.414",
+    "@remotion/paths": "^4.0.414",
+    "@remotion/three": "^4.0.414",
+    "@remotion/transitions": "^4.0.414",
     "@types/react": "^19.2.10",
     "@types/react-dom": "^19.2.3",
+    "@types/three": "^0.182.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "remotion": "^4.0.414",
+    "three": "^0.182.0",
     "typescript": "^5.9.3"
   }
 }
