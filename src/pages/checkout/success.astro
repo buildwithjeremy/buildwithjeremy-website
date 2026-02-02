@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Purchase Complete | AI Employee Setup"
+  description="Thank you for your purchase. Your AI employee setup is now in progress."
+>
+  <section class="theme-bg-primary min-h-[70vh] flex items-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div class="h-20 w-20 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="h-10 w-10 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        Purchase Complete!
+      </h1>
+
+      <p class="mt-4 text-lg theme-text-secondary">
+        Thank you for your order. Your AI employee setup is now in progress.
+      </p>
+
+      <div class="mt-8 theme-bg-secondary rounded-2xl p-8 text-left">
+        <h2 class="text-xl font-bold theme-text-primary mb-4">What happens next?</h2>
+        <ol class="space-y-4">
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 h-8 w-8 bg-accent/10 rounded-full flex items-center justify-center text-accent font-bold">1</span>
+            <div>
+              <p class="font-medium theme-text-primary">Check your email</p>
+              <p class="text-sm theme-text-secondary">You'll receive a receipt and intake form within the next few minutes.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 h-8 w-8 bg-accent/10 rounded-full flex items-center justify-center text-accent font-bold">2</span>
+            <div>
+              <p class="font-medium theme-text-primary">Complete the intake form</p>
+              <p class="text-sm theme-text-secondary">Share access to your tools and answer a few questions about your workflows.</p>
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 h-8 w-8 bg-accent/10 rounded-full flex items-center justify-center text-accent font-bold">3</span>
+            <div>
+              <p class="font-medium theme-text-primary">I'll get to work</p>
+              <p class="text-sm theme-text-secondary">I'll configure your AI employee, run the warm-up period, and ship it to your door.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn btn-outline">
+          Return Home
+        </a>
+        <a href="/contact" class="btn btn-primary">
+          Have Questions?
+        </a>
+      </div>
+
+      <p class="mt-8 text-sm theme-text-muted">
+        Questions? Email me at <a href="mailto:jeremy@buildwithjeremy.com" class="text-accent hover:underline">jeremy@buildwithjeremy.com</a>
+      </p>
+    </div>
+  </section>
+</Layout>

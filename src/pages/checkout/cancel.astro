@@ -1,0 +1,49 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Checkout Cancelled | AI Employee Setup"
+  description="Your checkout was cancelled. No charges have been made."
+>
+  <section class="theme-bg-primary min-h-[70vh] flex items-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <div class="h-20 w-20 bg-brand/10 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="h-10 w-10 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+
+      <h1 class="text-3xl md:text-4xl font-bold theme-text-primary">
+        Checkout Cancelled
+      </h1>
+
+      <p class="mt-4 text-lg theme-text-secondary">
+        No worries! Your cart is still waiting if you decide to come back.
+      </p>
+
+      <p class="mt-2 text-sm theme-text-muted">
+        No charges have been made to your card.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/ai-employee/" class="btn btn-accent">
+          Back to Pricing
+        </a>
+        <a href="/contact" class="btn btn-outline">
+          Have Questions?
+        </a>
+      </div>
+
+      <div class="mt-12 theme-bg-secondary rounded-2xl p-8">
+        <h2 class="text-lg font-bold theme-text-primary mb-2">Not sure if this is right for you?</h2>
+        <p class="theme-text-secondary text-sm mb-4">
+          Book a free 15-minute call. I'll answer your questions and help you figure out if an AI employee makes sense for your business.
+        </p>
+        <a href="/contact" class="text-accent hover:underline font-medium">
+          Schedule a free call →
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
