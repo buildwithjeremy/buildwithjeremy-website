@@ -67,6 +67,7 @@ export const POST: APIRoute = async ({ request, url }) => {
       shipping_address_collection: {
         allowed_countries: ['US', 'CA'],
       },
+      allow_promotion_codes: true,
     });
 
     return new Response(
