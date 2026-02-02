@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://buildwithjeremy.com',
-  output: 'static',
+  output: 'hybrid',
   adapter: vercel(),
   integrations: [
     react(),
