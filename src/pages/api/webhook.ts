@@ -4,11 +4,13 @@ import { Resend } from 'resend';
 
 export const prerender = false;
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
-const webhookSecret = import.meta.env.STRIPE_WEBHOOK_SECRET;
+// Use process.env for runtime env vars (import.meta.env gets inlined at build time)
 
 export const POST: APIRoute = async ({ request }) => {
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+  const resend = new Resend(process.env.RESEND_API_KEY || '');
+  const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
+
   const body = await request.text();
   const signature = request.headers.get('stripe-signature');
 

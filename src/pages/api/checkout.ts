@@ -4,42 +4,41 @@ import Stripe from 'stripe';
 // Disable prerendering for this API route (server-side only)
 export const prerender = false;
 
-const stripeKey = import.meta.env.STRIPE_SECRET_KEY;
-if (!stripeKey) {
-  console.error('STRIPE_SECRET_KEY is not set!');
-}
-const stripe = new Stripe(stripeKey || '');
+// Use process.env for runtime env vars (import.meta.env gets inlined at build time)
+const getStripe = () => {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key) {
+    throw new Error('STRIPE_SECRET_KEY is not set');
+  }
+  return new Stripe(key);
+};
 
-// Product configuration with Stripe price IDs
-// Price IDs - uses live prices in production, test prices in development
-const isProduction = import.meta.env.PROD;
-
-const products: Record<string, { name: string; priceId: string; price: number }> = {
+// Price IDs - live prices for production, test prices for development
+const products: Record<string, { name: string; livePriceId: string; testPriceId: string; price: number }> = {
   starter: {
     name: 'AI Employee Starter',
-    priceId: isProduction ? 'price_1SwPuNBUNvYd8nY7YasGaThB' : 'price_1SvwiJBUNvYd8nY7UdWUHfZa',
+    livePriceId: 'price_1SwPuNBUNvYd8nY7YasGaThB',
+    testPriceId: 'price_1SvwiJBUNvYd8nY7UdWUHfZa',
     price: 2997,
   },
   pro: {
     name: 'AI Employee Pro',
-    priceId: isProduction ? 'price_1SwPuOBUNvYd8nY7woIg0cmQ' : 'price_1SvwiOBUNvYd8nY7bFFUyiX4',
+    livePriceId: 'price_1SwPuOBUNvYd8nY7woIg0cmQ',
+    testPriceId: 'price_1SvwiOBUNvYd8nY7bFFUyiX4',
     price: 4497,
   },
   agency: {
     name: 'AI Employee Agency',
-    priceId: isProduction ? 'price_1SwPuOBUNvYd8nY70CQPxwlE' : 'price_1SvwiPBUNvYd8nY7IKvBIXPD',
+    livePriceId: 'price_1SwPuOBUNvYd8nY70CQPxwlE',
+    testPriceId: 'price_1SvwiPBUNvYd8nY7IKvBIXPD',
     price: 6997,
   },
 };
 
 export const POST: APIRoute = async ({ request, url }) => {
   try {
-    if (!stripeKey) {
-      return new Response(
-        JSON.stringify({ error: 'Payment system not configured. STRIPE_SECRET_KEY is missing.' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
-      );
-    }
+    const stripe = getStripe();
+    const isLive = process.env.STRIPE_SECRET_KEY?.startsWith('sk_live');
 
     const body = await request.json();
     const { tier, niche } = body;
@@ -52,6 +51,8 @@ export const POST: APIRoute = async ({ request, url }) => {
     }
 
     const product = products[tier];
+    const priceId = isLive ? product.livePriceId : product.testPriceId;
+
     const successUrl = new URL('/checkout/success', url.origin);
     successUrl.searchParams.set('session_id', '{CHECKOUT_SESSION_ID}');
 
@@ -61,7 +62,7 @@ export const POST: APIRoute = async ({ request, url }) => {
       payment_method_types: ['card'],
       line_items: [
         {
-          price: product.priceId,
+          price: priceId,
           quantity: 1,
         },
       ],
