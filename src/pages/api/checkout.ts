@@ -4,7 +4,11 @@ import Stripe from 'stripe';
 // Disable prerendering for this API route (server-side only)
 export const prerender = false;
 
-const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+const stripeKey = import.meta.env.STRIPE_SECRET_KEY;
+if (!stripeKey) {
+  console.error('STRIPE_SECRET_KEY is not set!');
+}
+const stripe = new Stripe(stripeKey || '');
 
 // Product configuration with Stripe price IDs
 // Price IDs - uses live prices in production, test prices in development
@@ -30,6 +34,13 @@ const products: Record<string, { name: string; priceId: string; price: number }>
 
 export const POST: APIRoute = async ({ request, url }) => {
   try {
+    if (!stripeKey) {
+      return new Response(
+        JSON.stringify({ error: 'Payment system not configured. STRIPE_SECRET_KEY is missing.' }),
+        { status: 500, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const body = await request.json();
     const { tier, niche } = body;
 
