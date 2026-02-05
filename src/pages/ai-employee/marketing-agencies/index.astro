@@ -72,6 +72,7 @@ const processSteps = [
 const pricingTiers = [
   {
     name: 'Starter',
+    tier: 'starter',
     price: '$2,997',
     description: 'Perfect for testing the waters',
     badge: '',
@@ -86,10 +87,10 @@ const pricingTiers = [
     ],
     cta: 'Get Started',
     ctaStyle: 'btn-outline',
-    stripeLink: '#',
   },
   {
     name: 'Pro',
+    tier: 'pro',
     price: '$4,497',
     description: 'Most popular for agencies',
     badge: 'Recommended',
@@ -104,10 +105,10 @@ const pricingTiers = [
     ],
     cta: 'Get Pro',
     ctaStyle: 'btn-accent',
-    stripeLink: '#',
   },
   {
     name: 'Agency',
+    tier: 'agency',
     price: '$6,997',
     description: 'White-glove service',
     badge: 'Full Service',
@@ -122,9 +123,10 @@ const pricingTiers = [
     ],
     cta: 'Get Agency',
     ctaStyle: 'btn-primary',
-    stripeLink: '#',
   },
 ];
+
+const niche = 'marketing-agencies';
 
 const addOns = [
   { name: 'Extra warm-up week', price: '+$750' },
@@ -362,9 +364,14 @@ const faqs = [
                 </li>
               ))}
             </ul>
-            <a href={tier.stripeLink} class={`btn ${tier.ctaStyle} w-full`}>
+            <button
+              type="button"
+              class={`btn ${tier.ctaStyle} w-full checkout-btn`}
+              data-tier={tier.tier}
+              data-niche={niche}
+            >
               {tier.cta}
-            </a>
+            </button>
           </div>
         ))}
       </div>
@@ -505,3 +512,38 @@ const faqs = [
     </div>
   </section>
 </Layout>
+
+<script>
+  document.querySelectorAll('.checkout-btn').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const target = e.currentTarget as HTMLButtonElement;
+      const tier = target.dataset.tier;
+      const niche = target.dataset.niche;
+
+      target.disabled = true;
+      target.textContent = 'Redirecting...';
+
+      try {
+        const response = await fetch('/api/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tier, niche }),
+        });
+
+        const data = await response.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Failed to create checkout session');
+        }
+      } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Something went wrong. Please try again or contact support.');
+        target.disabled = false;
+        target.textContent = target.dataset.tier === 'starter' ? 'Get Started' :
+                            target.dataset.tier === 'pro' ? 'Get Pro' : 'Get Agency';
+      }
+    });
+  });
+</script>
