@@ -6,175 +6,159 @@ import {
   useVideoConfig,
   spring,
   Easing,
-  Img,
-  staticFile,
 } from "remotion";
 import { colors } from "../../config/colors";
+import { MacMini3D, RadialGlow, GlowPulse } from "../components";
 
-export const MacMiniShowcase: React.FC = () => {
+// Feature label with motion blur entrance effect
+const FeatureLabel: React.FC<{
+  text: string;
+  icon: string;
+  side: "left" | "right";
+  delay: number;
+}> = ({ text, icon, side, delay }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Product entrance from below with spring
-  const productY = spring({
-    frame,
+  const progress = spring({
+    frame: frame - delay,
     fps,
     config: { damping: 15, stiffness: 80 },
-    from: 200,
-    to: 0,
   });
 
-  // Product scale for emphasis
-  const productScale = spring({
-    frame: frame - 30,
-    fps,
-    config: { damping: 20 },
-    from: 0.8,
-    to: 1,
-  });
-
-  // Floating labels animation
-  const labelOpacity = interpolate(frame, [60, 90], [0, 1], {
+  const x = interpolate(progress, [0, 1], [side === "left" ? -80 : 80, 0]);
+  const opacity = interpolate(progress, [0, 0.3], [0, 1], {
     extrapolateRight: "clamp",
-    extrapolateLeft: "clamp",
   });
 
-  const label1X = spring({
-    frame: frame - 70,
-    fps,
-    config: { damping: 12 },
-    from: -50,
-    to: 0,
-  });
+  // Motion blur simulation - slight horizontal stretch during movement
+  const scaleX = interpolate(progress, [0, 0.5, 1], [1.3, 1.1, 1]);
 
-  const label2X = spring({
-    frame: frame - 90,
-    fps,
-    config: { damping: 12 },
-    from: 50,
-    to: 0,
-  });
+  if (frame < delay) {
+    return null;
+  }
 
-  // Spotlight glow effect
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: 12,
+        flexDirection: side === "left" ? "row" : "row-reverse",
+        transform: `translateX(${x}px) scaleX(${scaleX})`,
+        opacity,
+        transformOrigin: side === "left" ? "left center" : "right center",
+      }}
+    >
+      <span style={{ fontSize: 36 }}>{icon}</span>
+      <span
+        style={{
+          fontSize: 24,
+          fontWeight: 600,
+          color: colors.white,
+          whiteSpace: "nowrap",
+          textShadow: `0 2px 10px rgba(0,0,0,0.5)`,
+        }}
+      >
+        {text}
+      </span>
+    </div>
+  );
+};
+
+export const MacMiniShowcase: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps, durationInFrames } = useVideoConfig();
+
+  // Spotlight intensity animation
   const spotlightIntensity = interpolate(
     frame,
-    [0, 60, 120, 180, 240],
-    [0.3, 0.8, 0.5, 0.9, 0.7]
+    [0, 30, 60, 120, 180, 240],
+    [0.2, 0.6, 1, 0.7, 0.9, 0.8],
+    { extrapolateRight: "clamp" }
   );
+
+  // OpenClaw badge entrance
+  const badgeProgress = spring({
+    frame: frame - 160,
+    fps,
+    config: { damping: 12, stiffness: 100 },
+  });
+
+  const badgeScale = interpolate(badgeProgress, [0, 1], [0.8, 1]);
+  const badgeOpacity = interpolate(badgeProgress, [0, 0.3], [0, 1], {
+    extrapolateRight: "clamp",
+  });
 
   // Features that appear around the product
   const features = [
-    { text: "Mac Mini M4", icon: "🖥️", side: "left" },
-    { text: "Runs 24/7", icon: "⚡", side: "right" },
-    { text: "100% Local", icon: "🔒", side: "left" },
-    { text: "Your Data Stays Yours", icon: "🛡️", side: "right" },
+    { text: "Mac Mini M4", icon: "🖥️", side: "left" as const, yOffset: -120 },
+    { text: "Runs 24/7", icon: "⚡", side: "right" as const, yOffset: -60 },
+    { text: "100% Local", icon: "🔒", side: "left" as const, yOffset: 60 },
+    {
+      text: "Your Data Stays Yours",
+      icon: "🛡️",
+      side: "right" as const,
+      yOffset: 120,
+    },
   ];
 
   return (
     <AbsoluteFill
       style={{
         backgroundColor: colors.dark,
-        justifyContent: "center",
-        alignItems: "center",
       }}
     >
-      {/* Spotlight gradient behind product */}
-      <div
+      {/* Spotlight glow behind product */}
+      <AbsoluteFill
         style={{
-          position: "absolute",
-          width: 800,
-          height: 800,
-          borderRadius: "50%",
-          background: `radial-gradient(circle, ${colors.accent}${Math.floor(spotlightIntensity * 20).toString(16).padStart(2, '0')} 0%, transparent 70%)`,
-          filter: "blur(60px)",
-        }}
-      />
-
-      {/* Product image container */}
-      <div
-        style={{
-          transform: `translateY(${productY}px) scale(${Math.max(0.8, productScale)})`,
-          display: "flex",
-          flexDirection: "column",
+          justifyContent: "center",
           alignItems: "center",
         }}
       >
-        {/* Mac Mini placeholder - using CSS shape */}
-        <div
-          style={{
-            width: 400,
-            height: 160,
-            background: `linear-gradient(180deg, #e8e8e8 0%, #c4c4c4 50%, #1a1a1a 50%, #0a0a0a 100%)`,
-            borderRadius: 24,
-            boxShadow: `0 40px 80px rgba(0,0,0,0.5), 0 0 ${60 * spotlightIntensity}px ${colors.accent}40`,
-            position: "relative",
-            overflow: "hidden",
-          }}
-        >
-          {/* Top surface details */}
-          <div
-            style={{
-              position: "absolute",
-              top: 25,
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              background: "linear-gradient(180deg, #2a2a2a 0%, #1a1a1a 100%)",
-              boxShadow: "inset 0 2px 4px rgba(255,255,255,0.1)",
-            }}
-          />
-          {/* Power indicator */}
-          <div
-            style={{
-              position: "absolute",
-              bottom: 30,
-              right: 40,
-              width: 8,
-              height: 8,
-              borderRadius: "50%",
-              background: colors.accent,
-              boxShadow: `0 0 10px ${colors.accent}`,
-            }}
-          />
-        </div>
+        <RadialGlow
+          color={colors.accent}
+          size={900}
+          minOpacity={0.05 * spotlightIntensity}
+          maxOpacity={0.2 * spotlightIntensity}
+          cycleDuration={120}
+          blur={80}
+          startFrame={0}
+        />
+      </AbsoluteFill>
 
-        {/* "Powered by OpenClaw" badge */}
+      {/* Secondary purple glow */}
+      <AbsoluteFill
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <div
           style={{
-            marginTop: 40,
-            padding: "12px 24px",
-            background: `${colors.brand}20`,
-            borderRadius: 30,
-            border: `1px solid ${colors.brand}40`,
-            opacity: labelOpacity,
+            position: "absolute",
+            width: 600,
+            height: 600,
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${colors.brand}15 0%, transparent 70%)`,
+            filter: "blur(60px)",
+            transform: "translateY(50px)",
           }}
-        >
-          <span style={{ color: colors.white, fontSize: 20 }}>
-            Powered by <span style={{ color: colors.accent, fontWeight: 600 }}>OpenClaw</span>
-            <span style={{ color: colors.textMuted, marginLeft: 10 }}>126K+ ⭐</span>
-          </span>
-        </div>
-      </div>
+        />
+      </AbsoluteFill>
+
+      {/* 3D Mac Mini */}
+      <MacMini3D
+        rotationStart={-0.2}
+        rotationEnd={Math.PI * 0.35}
+        entranceStartFrame={0}
+        entranceDuration={40}
+      />
 
       {/* Floating feature labels */}
       {features.map((feature, i) => {
-        const delay = 100 + i * 25;
-        const opacity = interpolate(frame, [delay, delay + 20], [0, 1], {
-          extrapolateRight: "clamp",
-          extrapolateLeft: "clamp",
-        });
-        const x = spring({
-          frame: frame - delay,
-          fps,
-          config: { damping: 15 },
-          from: feature.side === "left" ? -30 : 30,
-          to: 0,
-        });
-
-        const yOffset = (i % 2 === 0 ? -1 : 1) * (80 + i * 40);
-        const xOffset = feature.side === "left" ? -450 : 450;
+        const delay = 60 + i * 30;
+        const xOffset = feature.side === "left" ? -500 : 500;
 
         return (
           <div
@@ -182,29 +166,63 @@ export const MacMiniShowcase: React.FC = () => {
             style={{
               position: "absolute",
               left: `calc(50% + ${xOffset}px)`,
-              top: `calc(50% + ${yOffset}px)`,
-              transform: `translateX(${feature.side === "left" ? x : -x}px)`,
-              opacity,
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              flexDirection: feature.side === "left" ? "row" : "row-reverse",
+              top: `calc(50% + ${feature.yOffset}px)`,
             }}
           >
-            <span style={{ fontSize: 36 }}>{feature.icon}</span>
-            <span
-              style={{
-                fontSize: 24,
-                fontWeight: 600,
-                color: colors.white,
-                whiteSpace: "nowrap",
-              }}
-            >
-              {feature.text}
-            </span>
+            <FeatureLabel
+              text={feature.text}
+              icon={feature.icon}
+              side={feature.side}
+              delay={delay}
+            />
           </div>
         );
       })}
+
+      {/* "Powered by OpenClaw" badge */}
+      {frame >= 160 && (
+        <div
+          style={{
+            position: "absolute",
+            bottom: 120,
+            left: "50%",
+            transform: `translateX(-50%) scale(${badgeScale})`,
+            opacity: badgeOpacity,
+          }}
+        >
+          <GlowPulse
+            color={colors.accent}
+            minRadius={10}
+            maxRadius={25}
+            cycleDuration={45}
+            minScale={1}
+            maxScale={1.02}
+            startFrame={180}
+            style={{
+              padding: "16px 32px",
+              background: `linear-gradient(135deg, ${colors.brand}30 0%, ${colors.dark}90 100%)`,
+              borderRadius: 40,
+              border: `1px solid ${colors.brand}50`,
+            }}
+          >
+            <span style={{ color: colors.white, fontSize: 22, fontWeight: 500 }}>
+              Powered by{" "}
+              <span style={{ color: colors.accent, fontWeight: 700 }}>
+                OpenClaw
+              </span>
+              <span
+                style={{
+                  color: colors.textMuted,
+                  marginLeft: 12,
+                  fontSize: 18,
+                }}
+              >
+                126K+ ⭐
+              </span>
+            </span>
+          </GlowPulse>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };

@@ -27,3 +27,4 @@ pnpm-debug.log*
 # Remotion video output
 video/out/
 video/dist/
+.vercel
