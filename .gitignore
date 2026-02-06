@@ -28,3 +28,4 @@ pnpm-debug.log*
 video/out/
 video/dist/
 .vercel
+.env*.local
