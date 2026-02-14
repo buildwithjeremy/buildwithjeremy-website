@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
+import { hosting, unlimitedEdits, addons } from '../../config/pricing';
 
 export const prerender = false;
 
@@ -9,64 +10,6 @@ const getStripe = () => {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
   return new Stripe(key);
-};
-
-// Core products
-const hosting = {
-  name: 'Custom App - Hosting/Management',
-  priceId: 'price_1Sxv3uBUNvYd8nY7SUUyUsj9',
-  amount: 5000,
-};
-
-const unlimitedEdits = {
-  name: 'Custom App - Unlimited Edits',
-  priceId: 'price_1SxuzTBUNvYd8nY780UwbIXu',
-  amount: 30000,
-};
-
-// Add-on products (all monthly recurring)
-const addons: Record<string, {
-  name: string;
-  priceId: string;
-  amount: number;
-  supportsQuantity: boolean;
-}> = {
-  'client-portal': {
-    name: 'Client Portal',
-    priceId: 'price_1T0fNIBUNvYd8nY7fK03wsFS',
-    amount: 2500,
-    supportsQuantity: false,
-  },
-  'ai-automation': {
-    name: 'AI Automation',
-    priceId: 'price_1T0fNkBUNvYd8nY7vAv2r5lV',
-    amount: 2500,
-    supportsQuantity: false,
-  },
-  'video-generation': {
-    name: 'Video Generation',
-    priceId: 'price_1T0fOFBUNvYd8nY74f3K0ahO',
-    amount: 5000,
-    supportsQuantity: false,
-  },
-  'image-generation': {
-    name: 'Image Generation',
-    priceId: 'price_1T0fP1BUNvYd8nY79yfitxOU',
-    amount: 2500,
-    supportsQuantity: false,
-  },
-  'voice-agent': {
-    name: 'Voice Agent',
-    priceId: 'price_1T0fPIBUNvYd8nY7L1JwR0HG',
-    amount: 5000,
-    supportsQuantity: false,
-  },
-  'api-integration': {
-    name: 'External API Integration',
-    priceId: 'price_1T0fQ1BUNvYd8nY7T6NgcYVJ',
-    amount: 2500,
-    supportsQuantity: true,
-  },
 };
 
 interface AddonSelection {

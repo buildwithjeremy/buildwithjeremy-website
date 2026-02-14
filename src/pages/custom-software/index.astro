@@ -1,5 +1,19 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import {
+  hosting,
+  unlimitedEdits,
+  addons,
+  formatPrice,
+  formatAddonPrice,
+  getClientPricing,
+} from '../../config/pricing';
+
+// Serialize pricing for client-side JS (no Stripe IDs leak to the browser)
+const clientPricing = JSON.stringify(getClientPricing());
+
+// Pre-compute addon entries for the template
+const addonEntries = Object.entries(addons);
 ---
 
 <Layout
@@ -33,39 +47,21 @@ import Layout from '../../layouts/Layout.astro';
           </div>
           <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
             <div>
-              <h2 class="text-xl font-bold theme-text-primary">Core App Hosting</h2>
-              <p class="text-sm theme-text-secondary mt-1">Everything you need to keep your system running and supported.</p>
+              <h2 class="text-xl font-bold theme-text-primary">{hosting.label}</h2>
+              <p class="text-sm theme-text-secondary mt-1">{hosting.description}</p>
             </div>
             <div class="flex items-baseline gap-1 flex-shrink-0">
-              <span class="text-3xl font-bold text-accent">$50</span>
+              <span class="text-3xl font-bold text-accent">{formatPrice(hosting.amount)}</span>
               <span class="theme-text-secondary">/month</span>
             </div>
           </div>
           <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-sm theme-text-secondary">
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Hosting & infrastructure
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Monitoring & backups
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Security patches & updates
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Bug fixes
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              Email & phone support
-            </div>
-            <div class="flex items-center gap-2">
-              <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              PDF generation & docs
-            </div>
+            {['Hosting & infrastructure', 'Monitoring & backups', 'Security patches & updates', 'Bug fixes', 'Email & phone support', 'PDF generation & docs'].map((item) => (
+              <div class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                {item}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -92,39 +88,21 @@ import Layout from '../../layouts/Layout.astro';
             <div class="flex-1">
               <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
                 <div>
-                  <h3 class="text-xl font-bold theme-text-primary">Unlimited Edits</h3>
-                  <p class="text-sm theme-text-secondary mt-1">Ongoing feature requests, tweaks, and improvements — no scoping, no quoting.</p>
+                  <h3 class="text-xl font-bold theme-text-primary">{unlimitedEdits.label}</h3>
+                  <p class="text-sm theme-text-secondary mt-1">{unlimitedEdits.description}</p>
                 </div>
                 <div class="flex items-baseline gap-1 flex-shrink-0">
-                  <span class="text-3xl font-bold text-accent">+$300</span>
+                  <span class="text-3xl font-bold text-accent">+{formatPrice(unlimitedEdits.amount)}</span>
                   <span class="theme-text-secondary">/month</span>
                 </div>
               </div>
               <div class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm theme-text-secondary">
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  Unlimited feature requests
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  Small changes in ~48 hours
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  One request active at a time
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  Larger features as weekly epics
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  Async updates (written + Loom)
-                </div>
-                <div class="flex items-center gap-2">
-                  <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                  Monthly 30-min check-in call
-                </div>
+                {['Unlimited feature requests', 'Small changes in ~48 hours', 'One request active at a time', 'Larger features as weekly epics', 'Async updates (written + Loom)', 'Monthly 30-min check-in call'].map((item) => (
+                  <div class="flex items-center gap-2">
+                    <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    {item}
+                  </div>
+                ))}
               </div>
               <p class="mt-3 text-xs theme-text-muted">Month-to-month. Start when you need it, pause when you don't.</p>
             </div>
@@ -138,96 +116,33 @@ import Layout from '../../layouts/Layout.astro';
         <p class="theme-text-secondary mb-6">Each add-on adds real capability — and real maintenance complexity. Add or drop anytime.</p>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-          <!-- Client Portal -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="client-portal" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">Client Portal</span>
-                <span class="text-accent font-bold text-sm">+$25/mo</span>
+          {addonEntries.map(([key, addon]) => (
+            <label
+              class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+              style="border-color: var(--border-color);"
+            >
+              <input type="checkbox" data-addon={key} class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between">
+                  <span class="font-semibold theme-text-primary text-sm">{addon.label}</span>
+                  <span class="text-accent font-bold text-sm">{formatAddonPrice(addon)}</span>
+                </div>
+                <p class="text-xs theme-text-muted mt-1">{addon.description}</p>
+                {addon.supportsQuantity && (
+                  <div class="api-qty hidden mt-2 flex items-center gap-2">
+                    <label class="text-xs theme-text-secondary">How many?</label>
+                    <select data-addon-qty={key} class="text-xs rounded-md border px-2 py-1 theme-bg-primary theme-text-primary" style="border-color: var(--border-color);">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                )}
               </div>
-              <p class="text-xs theme-text-muted mt-1">Secure login, dashboard, and client-specific views.</p>
-            </div>
-          </label>
-
-          <!-- AI Automation -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="ai-automation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">AI Automation</span>
-                <span class="text-accent font-bold text-sm">+$25/mo</span>
-              </div>
-              <p class="text-xs theme-text-muted mt-1">AI-powered workflows, webhooks, and task automation.</p>
-            </div>
-          </label>
-
-          <!-- Video Generation -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="video-generation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">Video Generation</span>
-                <span class="text-accent font-bold text-sm">+$50/mo</span>
-              </div>
-              <p class="text-xs theme-text-muted mt-1">AI video creation. Usage fees may apply.</p>
-            </div>
-          </label>
-
-          <!-- Image Generation -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="image-generation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">Image Generation</span>
-                <span class="text-accent font-bold text-sm">+$25/mo</span>
-              </div>
-              <p class="text-xs theme-text-muted mt-1">AI image creation. Usage fees may apply.</p>
-            </div>
-          </label>
-
-          <!-- Voice Agent -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="voice-agent" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">Voice Agent</span>
-                <span class="text-accent font-bold text-sm">+$50/mo</span>
-              </div>
-              <p class="text-xs theme-text-muted mt-1">AI voice assistant. Usage fees may apply.</p>
-            </div>
-          </label>
-
-          <!-- External API Integration -->
-          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
-            style="border-color: var(--border-color);">
-            <input type="checkbox" data-addon="api-integration" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
-            <div class="flex-1">
-              <div class="flex items-baseline justify-between">
-                <span class="font-semibold theme-text-primary text-sm">API Integration</span>
-                <span class="text-accent font-bold text-sm">+$25/mo each</span>
-              </div>
-              <p class="text-xs theme-text-muted mt-1">Connect to external tools (QuickBooks, Stripe, Calendly, etc.).</p>
-              <!-- Quantity selector (hidden until checked) -->
-              <div class="api-qty hidden mt-2 flex items-center gap-2">
-                <label class="text-xs theme-text-secondary">How many?</label>
-                <select data-addon-qty="api-integration" class="text-xs rounded-md border px-2 py-1 theme-bg-primary theme-text-primary" style="border-color: var(--border-color);">
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-              </div>
-            </div>
-          </label>
-
+            </label>
+          ))}
         </div>
       </div>
 
@@ -238,10 +153,10 @@ import Layout from '../../layouts/Layout.astro';
             <div>
               <p class="text-sm theme-text-secondary">Monthly total</p>
               <div class="flex items-baseline gap-2">
-                <span id="total-price" class="text-3xl font-bold text-accent">$50</span>
+                <span id="total-price" class="text-3xl font-bold text-accent">{formatPrice(hosting.amount)}</span>
                 <span class="theme-text-secondary">/month</span>
               </div>
-              <p id="summary-line" class="text-xs theme-text-muted mt-1">Core App Hosting</p>
+              <p id="summary-line" class="text-xs theme-text-muted mt-1">{hosting.label}</p>
             </div>
             <button
               id="checkout-btn"
@@ -261,7 +176,7 @@ import Layout from '../../layouts/Layout.astro';
         <div class="max-w-2xl mx-auto space-y-4">
           <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
-              What's included in the $50/mo base?
+              What's included in the {formatPrice(hosting.amount)}/mo base?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <p class="mt-3 text-sm theme-text-secondary">Hosting, infrastructure, monitoring, backups, security patches, dependency updates, bug fixes, and email & phone support. Your system stays up, secure, and maintained. No per-seat pricing — just one flat fee.</p>
@@ -278,7 +193,7 @@ import Layout from '../../layouts/Layout.astro';
               Can I add or remove add-ons later?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
-            <p class="mt-3 text-sm theme-text-secondary">Yes. Add-ons can be added or dropped at any time. Drop one, your bill goes down by $25. Changes take effect on your next billing cycle.</p>
+            <p class="mt-3 text-sm theme-text-secondary">Yes. Add-ons can be added or dropped at any time. Changes take effect on your next billing cycle.</p>
           </details>
           <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
@@ -300,22 +215,27 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 
+  <!-- Pricing data for client-side JS (no Stripe IDs) -->
+  <script id="pricing-data" type="application/json" set:html={clientPricing} />
+
   <script>
-    // State — hosting ($50/mo) is always included
+    // Load pricing from the server-rendered config
+    const pricingData = JSON.parse(
+      document.getElementById('pricing-data')!.textContent!
+    );
+
+    const HOSTING_PRICE: number = pricingData.hosting.amount;
+    const EDITS_PRICE: number = pricingData.unlimitedEdits.amount;
+    const addonPrices: Record<string, number> = {};
+    const addonQuantitySupport: Record<string, boolean> = {};
+    for (const [key, addon] of Object.entries(pricingData.addons) as [string, any][]) {
+      addonPrices[key] = addon.amount;
+      addonQuantitySupport[key] = addon.supportsQuantity;
+    }
+
+    // State — hosting is always included
     let includeEdits = false;
     const selectedAddons = new Map<string, number>();
-
-    // Prices (cents)
-    const HOSTING_PRICE = 5000;
-    const EDITS_PRICE = 30000;
-    const addonPrices: Record<string, number> = {
-      'client-portal': 2500,
-      'ai-automation': 2500,
-      'video-generation': 5000,
-      'image-generation': 2500,
-      'voice-agent': 5000,
-      'api-integration': 2500,
-    };
 
     // DOM refs
     const editsToggle = document.getElementById('unlimited-edits-toggle') as HTMLInputElement;
@@ -350,8 +270,8 @@ import Layout from '../../layouts/Layout.astro';
           selectedAddons.delete(addonId);
         }
 
-        // Toggle quantity selector for API integration
-        if (addonId === 'api-integration') {
+        // Toggle quantity selector for quantity-supporting addons
+        if (addonQuantitySupport[addonId]) {
           const qtyContainer = cb.closest('.addon-card')?.querySelector('.api-qty') as HTMLElement;
           if (qtyContainer) {
             qtyContainer.classList.toggle('hidden', !cb.checked);
@@ -368,15 +288,19 @@ import Layout from '../../layouts/Layout.astro';
       });
     });
 
-    // Quantity selector for API integrations
-    const qtySelect = document.querySelector<HTMLSelectElement>('[data-addon-qty="api-integration"]');
-    if (qtySelect) {
-      qtySelect.addEventListener('change', () => {
-        if (selectedAddons.has('api-integration')) {
-          selectedAddons.set('api-integration', parseInt(qtySelect.value, 10));
+    // Quantity selectors
+    document.querySelectorAll<HTMLSelectElement>('[data-addon-qty]').forEach((sel) => {
+      sel.addEventListener('change', () => {
+        const addonId = sel.dataset.addonQty!;
+        if (selectedAddons.has(addonId)) {
+          selectedAddons.set(addonId, parseInt(sel.value, 10));
           updateSummary();
         }
       });
+    });
+
+    function formatCents(cents: number): string {
+      return `$${(cents / 100).toLocaleString()}`;
     }
 
     function updateSummary() {
@@ -397,7 +321,7 @@ import Layout from '../../layouts/Layout.astro';
         parts.push(`${addonCount} add-on${addonCount > 1 ? 's' : ''}`);
       }
 
-      totalEl.textContent = `$${(totalCents / 100).toLocaleString()}`;
+      totalEl.textContent = formatCents(totalCents);
       summaryEl.textContent = parts.join(' + ');
     }
 
