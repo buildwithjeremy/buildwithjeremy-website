@@ -11,22 +11,17 @@ const getStripe = () => {
   return new Stripe(key);
 };
 
-// Base subscription products
-const baseProducts: Record<string, {
-  name: string;
-  priceId: string;
-  amount: number;
-}> = {
-  hosting: {
-    name: 'Custom App - Hosting/Management',
-    priceId: 'price_1Sxv3uBUNvYd8nY7SUUyUsj9',
-    amount: 5000,
-  },
-  'unlimited-edits': {
-    name: 'Custom App - Unlimited Edits',
-    priceId: 'price_1SxuzTBUNvYd8nY780UwbIXu',
-    amount: 30000,
-  },
+// Core products
+const hosting = {
+  name: 'Custom App - Hosting/Management',
+  priceId: 'price_1Sxv3uBUNvYd8nY7SUUyUsj9',
+  amount: 5000,
+};
+
+const unlimitedEdits = {
+  name: 'Custom App - Unlimited Edits',
+  priceId: 'price_1SxuzTBUNvYd8nY780UwbIXu',
+  amount: 30000,
 };
 
 // Add-on products (all monthly recurring)
@@ -84,29 +79,37 @@ export const POST: APIRoute = async ({ request, url }) => {
     const stripe = getStripe();
 
     const body = await request.json();
-    const { plan, selectedAddons, customerEmail } = body as {
+    const { plan, includeUnlimitedEdits, selectedAddons, customerEmail } = body as {
       plan: string;
+      includeUnlimitedEdits?: boolean;
       selectedAddons: AddonSelection[];
       customerEmail?: string;
     };
 
-    // Validate base plan
-    if (!plan || !baseProducts[plan]) {
+    // Validate — hosting is always required
+    if (plan !== 'hosting') {
       return new Response(
-        JSON.stringify({ error: 'Invalid plan selected. Choose "hosting" or "unlimited-edits".' }),
+        JSON.stringify({ error: 'Invalid plan. Hosting is the required base plan.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
-    const basePlan = baseProducts[plan];
-
-    // Build line items: base plan first
+    // Build line items: hosting base is always first
     const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = [
       {
-        price: basePlan.priceId,
+        price: hosting.priceId,
         quantity: 1,
       },
     ];
+
+    // Add Unlimited Edits if selected
+    const hasEdits = includeUnlimitedEdits === true;
+    if (hasEdits) {
+      lineItems.push({
+        price: unlimitedEdits.priceId,
+        quantity: 1,
+      });
+    }
 
     // Track selected addon names for metadata
     const addonNames: string[] = [];
@@ -136,6 +139,11 @@ export const POST: APIRoute = async ({ request, url }) => {
       }
     }
 
+    // Build plan name for metadata
+    const planLabel = hasEdits
+      ? 'Hosting + Unlimited Edits'
+      : 'Hosting';
+
     const successUrl = new URL('/checkout/subscription-success', url.origin);
     successUrl.searchParams.set('session_id', '{CHECKOUT_SESSION_ID}');
 
@@ -149,15 +157,17 @@ export const POST: APIRoute = async ({ request, url }) => {
       success_url: successUrl.toString(),
       cancel_url: cancelUrl.toString(),
       metadata: {
-        plan,
-        plan_name: basePlan.name,
+        plan: 'hosting',
+        plan_name: planLabel,
+        includes_unlimited_edits: String(hasEdits),
         addons: addonNames.join(', ') || 'none',
         addon_count: String(addonNames.length),
       },
       subscription_data: {
         metadata: {
-          plan,
-          plan_name: basePlan.name,
+          plan: 'hosting',
+          plan_name: planLabel,
+          includes_unlimited_edits: String(hasEdits),
           addons: addonNames.join(', ') || 'none',
         },
       },
