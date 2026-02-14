@@ -102,6 +102,17 @@ The non-www domain (`buildwithjeremy.com`) redirects to `www.buildwithjeremy.com
 - Check `STRIPE_SECRET_KEY` is set and starts with `sk_live_`
 - Verify the key hasn't expired
 
+### Emails arrive hours after checkout
+This is normal behavior if the webhook URL was misconfigured at the time of checkout. Stripe automatically retries failed webhooks for up to 3 days with exponential backoff. Once the webhook URL is fixed, pending events will be delivered on the next retry.
+
+**Timeline example:**
+- Checkout completed: Thu 7:15 PM (webhook failed due to non-www URL)
+- Webhook URL fixed: Thu evening
+- Stripe retried webhook: Fri 2:22 PM (succeeded)
+- Emails sent: Fri 2:22 PM
+
+To check webhook delivery history: [Stripe Dashboard → Webhooks → Select endpoint → Recent deliveries](https://dashboard.stripe.com/webhooks)
+
 ## Key Expiration Reminder
 
 The current Stripe live secret key expires around **February 12, 2025**. Rotate it before then:

@@ -1,0 +1,406 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Custom Software Plans | Build with Jeremy"
+  description="Hosted maintenance, unlimited edits, and powerful add-ons for your custom-built application. Managed by Build with Jeremy."
+>
+  <section class="theme-bg-primary py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <p class="text-brand font-semibold text-sm uppercase tracking-wide mb-3">Custom Software</p>
+        <h1 class="text-4xl sm:text-5xl font-bold theme-text-primary mb-4">
+          Keep your app running.<br class="hidden sm:block" /> Make it better.
+        </h1>
+        <p class="text-lg theme-text-secondary max-w-2xl mx-auto">
+          Pick the plan that fits, add what you need, and let me handle the rest. Cancel anytime.
+        </p>
+      </div>
+
+      <!-- Cancelled banner (shown when returning from Stripe) -->
+      <div id="cancelled-banner" class="hidden mb-8 p-4 rounded-xl bg-brand/10 text-center">
+        <p class="theme-text-primary">No worries — your selection is still here. No charges were made.</p>
+      </div>
+
+      <!-- Plan Selection -->
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+
+        <!-- Hosting/Management -->
+        <button
+          type="button"
+          data-plan="hosting"
+          class="plan-card group relative text-left rounded-2xl border-2 p-6 transition-all cursor-pointer theme-bg-secondary hover:border-brand"
+          style="border-color: var(--border-color);"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h2 class="text-xl font-bold theme-text-primary">Hosting & Management</h2>
+              <p class="text-sm theme-text-secondary mt-1">Hosting, monitoring, backups, and updates — handled.</p>
+            </div>
+            <div class="flex-shrink-0 ml-4 h-6 w-6 rounded-full border-2 flex items-center justify-center transition-colors"
+              style="border-color: var(--border-color);">
+              <div class="plan-check h-3 w-3 rounded-full bg-brand scale-0 transition-transform"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-3xl font-bold text-accent">$50</span>
+            <span class="theme-text-secondary">/month</span>
+          </div>
+        </button>
+
+        <!-- Unlimited Edits -->
+        <button
+          type="button"
+          data-plan="unlimited-edits"
+          class="plan-card group relative text-left rounded-2xl border-2 p-6 transition-all cursor-pointer theme-bg-secondary hover:border-brand"
+          style="border-color: var(--border-color);"
+        >
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h2 class="text-xl font-bold theme-text-primary">Unlimited Edits</h2>
+              <p class="text-sm theme-text-secondary mt-1">Ongoing content, layout, and feature updates — no limits.</p>
+            </div>
+            <div class="flex-shrink-0 ml-4 h-6 w-6 rounded-full border-2 flex items-center justify-center transition-colors"
+              style="border-color: var(--border-color);">
+              <div class="plan-check h-3 w-3 rounded-full bg-brand scale-0 transition-transform"></div>
+            </div>
+          </div>
+          <div class="flex items-baseline gap-1">
+            <span class="text-3xl font-bold text-accent">$300</span>
+            <span class="theme-text-secondary">/month</span>
+          </div>
+        </button>
+      </div>
+
+      <!-- Add-ons Section -->
+      <div id="addons-section" class="mb-12 opacity-50 pointer-events-none transition-opacity">
+        <h2 class="text-2xl font-bold theme-text-primary mb-2">Add-ons</h2>
+        <p class="theme-text-secondary mb-6">Supercharge your plan with these optional features.</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <!-- Client Portal -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="client-portal" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">Client Portal</span>
+                <span class="text-accent font-bold text-sm">+$25/mo</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">Login, dashboard, and client-specific views.</p>
+            </div>
+          </label>
+
+          <!-- AI Automation -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="ai-automation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">AI Automation</span>
+                <span class="text-accent font-bold text-sm">+$25/mo</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">AI-powered workflows and task automation.</p>
+            </div>
+          </label>
+
+          <!-- Video Generation -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="video-generation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">Video Generation</span>
+                <span class="text-accent font-bold text-sm">+$50/mo</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">AI video creation. Usage fees may apply.</p>
+            </div>
+          </label>
+
+          <!-- Image Generation -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="image-generation" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">Image Generation</span>
+                <span class="text-accent font-bold text-sm">+$25/mo</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">AI image creation. Usage fees may apply.</p>
+            </div>
+          </label>
+
+          <!-- Voice Agent -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="voice-agent" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">Voice Agent</span>
+                <span class="text-accent font-bold text-sm">+$50/mo</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">AI voice assistant. Usage fees may apply.</p>
+            </div>
+          </label>
+
+          <!-- External API Integration -->
+          <label class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+            style="border-color: var(--border-color);">
+            <input type="checkbox" data-addon="api-integration" class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+            <div class="flex-1">
+              <div class="flex items-baseline justify-between">
+                <span class="font-semibold theme-text-primary text-sm">API Integration</span>
+                <span class="text-accent font-bold text-sm">+$25/mo each</span>
+              </div>
+              <p class="text-xs theme-text-muted mt-1">Connect to external tools and services.</p>
+              <!-- Quantity selector (hidden until checked) -->
+              <div class="api-qty hidden mt-2 flex items-center gap-2">
+                <label class="text-xs theme-text-secondary">How many?</label>
+                <select data-addon-qty="api-integration" class="text-xs rounded-md border px-2 py-1 theme-bg-primary theme-text-primary" style="border-color: var(--border-color);">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </div>
+            </div>
+          </label>
+
+        </div>
+      </div>
+
+      <!-- Summary & CTA -->
+      <div class="sticky bottom-0 z-10 -mx-4 sm:mx-0">
+        <div class="theme-bg-secondary border-t sm:border sm:rounded-2xl p-6 shadow-lg" style="border-color: var(--border-color);">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p class="text-sm theme-text-secondary">Monthly total</p>
+              <div class="flex items-baseline gap-2">
+                <span id="total-price" class="text-3xl font-bold text-accent">$0</span>
+                <span class="theme-text-secondary">/month</span>
+              </div>
+              <p id="summary-line" class="text-xs theme-text-muted mt-1">Select a plan to get started</p>
+            </div>
+            <button
+              id="checkout-btn"
+              type="button"
+              disabled
+              class="btn btn-primary w-full sm:w-auto px-8 py-3 text-base font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+            >
+              Subscribe Now
+            </button>
+          </div>
+          <div id="checkout-error" class="hidden mt-3 text-sm text-red-500 text-center"></div>
+        </div>
+      </div>
+
+      <!-- FAQ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">Questions</h2>
+        <div class="max-w-2xl mx-auto space-y-4">
+          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Can I add or remove add-ons later?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Yes — you can upgrade, downgrade, or remove add-ons at any time. Changes take effect on your next billing cycle.</p>
+          </details>
+          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              What does "usage fees may apply" mean?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Some AI features (video, image, voice) use third-party APIs with per-use costs. The monthly fee covers the integration and a reasonable amount of usage. If usage exceeds typical levels, I'll work with you on fair overage pricing before any charges.</p>
+          </details>
+          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Can I cancel anytime?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Yes. No contracts, no cancellation fees. Cancel from the Stripe customer portal or email me and I'll handle it.</p>
+          </details>
+          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Do I need Hosting to add Unlimited Edits?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">They're separate plans. You can subscribe to either one, or both. Add-ons are available with any plan.</p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // State
+    let selectedPlan: string | null = null;
+    const selectedAddons = new Map<string, number>();
+
+    // Price map (cents)
+    const planPrices: Record<string, number> = {
+      hosting: 5000,
+      'unlimited-edits': 30000,
+    };
+    const addonPrices: Record<string, number> = {
+      'client-portal': 2500,
+      'ai-automation': 2500,
+      'video-generation': 5000,
+      'image-generation': 2500,
+      'voice-agent': 5000,
+      'api-integration': 2500,
+    };
+
+    // DOM refs
+    const planCards = document.querySelectorAll<HTMLButtonElement>('.plan-card');
+    const addonsSection = document.getElementById('addons-section')!;
+    const addonCheckboxes = document.querySelectorAll<HTMLInputElement>('.addon-checkbox');
+    const totalEl = document.getElementById('total-price')!;
+    const summaryEl = document.getElementById('summary-line')!;
+    const checkoutBtn = document.getElementById('checkout-btn') as HTMLButtonElement;
+    const errorEl = document.getElementById('checkout-error')!;
+    const cancelledBanner = document.getElementById('cancelled-banner')!;
+
+    // Show cancelled banner if returning from Stripe
+    if (new URLSearchParams(window.location.search).has('cancelled')) {
+      cancelledBanner.classList.remove('hidden');
+      // Clean URL
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+
+    // Plan selection
+    planCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const plan = card.dataset.plan!;
+        selectedPlan = plan;
+
+        // Update visual state
+        planCards.forEach((c) => {
+          const isSelected = c.dataset.plan === plan;
+          c.style.borderColor = isSelected ? 'var(--color-brand)' : 'var(--border-color)';
+          const check = c.querySelector('.plan-check') as HTMLElement;
+          check.style.transform = isSelected ? 'scale(1)' : 'scale(0)';
+        });
+
+        // Enable add-ons
+        addonsSection.classList.remove('opacity-50', 'pointer-events-none');
+
+        updateSummary();
+      });
+    });
+
+    // Add-on toggles
+    addonCheckboxes.forEach((cb) => {
+      cb.addEventListener('change', () => {
+        const addonId = cb.dataset.addon!;
+        if (cb.checked) {
+          selectedAddons.set(addonId, 1);
+        } else {
+          selectedAddons.delete(addonId);
+        }
+
+        // Toggle quantity selector for API integration
+        if (addonId === 'api-integration') {
+          const qtyContainer = cb.closest('.addon-card')?.querySelector('.api-qty') as HTMLElement;
+          if (qtyContainer) {
+            qtyContainer.classList.toggle('hidden', !cb.checked);
+          }
+        }
+
+        // Update card border
+        const card = cb.closest('.addon-card') as HTMLElement;
+        if (card) {
+          card.style.borderColor = cb.checked ? 'var(--color-brand)' : 'var(--border-color)';
+        }
+
+        updateSummary();
+      });
+    });
+
+    // Quantity selector for API integrations
+    const qtySelect = document.querySelector<HTMLSelectElement>('[data-addon-qty="api-integration"]');
+    if (qtySelect) {
+      qtySelect.addEventListener('change', () => {
+        if (selectedAddons.has('api-integration')) {
+          selectedAddons.set('api-integration', parseInt(qtySelect.value, 10));
+          updateSummary();
+        }
+      });
+    }
+
+    function updateSummary() {
+      let totalCents = 0;
+      const parts: string[] = [];
+
+      if (selectedPlan) {
+        totalCents += planPrices[selectedPlan];
+        parts.push(selectedPlan === 'hosting' ? 'Hosting' : 'Unlimited Edits');
+      }
+
+      selectedAddons.forEach((qty, addonId) => {
+        totalCents += addonPrices[addonId] * qty;
+      });
+
+      const addonCount = selectedAddons.size;
+      if (addonCount > 0) {
+        parts.push(`${addonCount} add-on${addonCount > 1 ? 's' : ''}`);
+      }
+
+      totalEl.textContent = `$${(totalCents / 100).toLocaleString()}`;
+
+      if (parts.length > 0) {
+        summaryEl.textContent = parts.join(' + ');
+      } else {
+        summaryEl.textContent = 'Select a plan to get started';
+      }
+
+      checkoutBtn.disabled = !selectedPlan;
+    }
+
+    // Checkout
+    checkoutBtn.addEventListener('click', async () => {
+      if (!selectedPlan) return;
+
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Redirecting to Stripe...';
+      errorEl.classList.add('hidden');
+
+      const addonPayload = Array.from(selectedAddons.entries()).map(([id, qty]) => ({
+        id,
+        quantity: qty,
+      }));
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            plan: selectedPlan,
+            selectedAddons: addonPayload,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Something went wrong');
+        }
+
+        // Redirect to Stripe Checkout
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } catch (err: any) {
+        errorEl.textContent = err.message || 'Failed to start checkout. Please try again.';
+        errorEl.classList.remove('hidden');
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = 'Subscribe Now';
+      }
+    });
+  </script>
+</Layout>
