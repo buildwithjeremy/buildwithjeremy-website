@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Disallow: /checkout/
+Disallow: /api/
+
+Sitemap: https://buildwithjeremy.com/sitemap-index.xml

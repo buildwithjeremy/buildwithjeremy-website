@@ -8,17 +8,33 @@ import {
   formatAddonPrice,
   getClientPricing,
 } from '../../config/pricing';
+import { breadcrumbSchema, faqSchema, SITE_URL } from '../../utils/schema';
 
 // Serialize pricing for client-side JS (no Stripe IDs leak to the browser)
 const clientPricing = JSON.stringify(getClientPricing());
 
 // Pre-compute addon entries for the template
 const addonEntries = Object.entries(addons);
+
+const pricingFaqs = [
+  { question: `What's included in the ${formatPrice(hosting.amount)}/mo base?`, answer: 'Hosting, infrastructure, monitoring, backups, security patches, dependency updates, bug fixes, and email & phone support. Your system stays up, secure, and maintained. No per-seat pricing — just one flat fee.' },
+  { question: 'Can I start with just hosting and add Unlimited Edits later?', answer: "Absolutely. Many clients start with hosting and add Unlimited Edits when they're ready to iterate. You can add or remove it any time — it's month-to-month with no commitment." },
+  { question: 'Can I add or remove add-ons later?', answer: 'Yes. Add-ons can be added or dropped at any time. Changes take effect on your next billing cycle.' },
+  { question: 'What does "usage fees may apply" mean?', answer: "Some AI features (video, image, voice) use third-party APIs with per-use costs. The monthly fee covers the integration and a reasonable amount of usage. If usage exceeds typical levels, we'll work with you on fair overage pricing — no surprises." },
+  { question: 'Can I cancel anytime?', answer: 'Yes. No contracts, no cancellation fees. Email us or manage it directly through your billing portal.' },
+];
 ---
 
 <Layout
   title="Your Plan | Build with Jeremy"
   description="Manage your custom software plan. Hosting, unlimited edits, and powerful add-ons — all managed by Build with Jeremy."
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Your Plan', url: `${SITE_URL}/custom-software` },
+    ]),
+    faqSchema(pricingFaqs),
+  ]}
 >
   <section class="theme-bg-primary py-16 md:py-24">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

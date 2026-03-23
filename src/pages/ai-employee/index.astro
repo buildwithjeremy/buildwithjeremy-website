@@ -1,5 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { breadcrumbSchema, SITE_URL } from '../../utils/schema';
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'AI Employee', url: `${SITE_URL}/ai-employee` },
+  ]),
+];
 
 const niches = [
   {
@@ -32,6 +40,7 @@ const niches = [
 <Layout
   title="AI Employee Setup | Done-For-You AI Assistant, Shipped to Your Door"
   description="I configure an AI employee on a Mac Mini with your tools, brand voice, and workflows—then ship it to your door ready to work 24/7. Choose your industry."
+  jsonLd={jsonLd}
 >
   <!-- Hero Section -->
   <section class="theme-bg-primary py-16 lg:py-24">

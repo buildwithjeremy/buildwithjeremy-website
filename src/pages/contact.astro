@@ -1,5 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, SITE_URL } from '../utils/schema';
+
+const contactFaqs = [
+  { question: 'How soon can we start?', answer: 'Depends on availability. The sprint can often start quickly; retainer engagements may have a short waitlist.' },
+  { question: 'Do you sign NDAs?', answer: 'Yes, if needed. Happy to sign before we discuss details.' },
+  { question: 'Do you work async?', answer: "Yes\u2014I'm async-friendly with a weekly touchpoint to stay aligned. Works well for distributed teams." },
+];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Contact', url: `${SITE_URL}/contact` },
+  ]),
+  faqSchema(contactFaqs),
+];
 
 const greatFit = [
   'Service/logistics businesses with remote or distributed ops',
@@ -19,6 +34,7 @@ const notAFit = [
 <Layout
   title="Work With Me | Free Systems Audit Call | Build with Jeremy"
   description="Book a free Systems Audit Call. I'll map the bottleneck and outline the fastest path to remove it."
+  jsonLd={jsonLd}
 >
   <!-- Calendly CSS -->
   <link slot="head" href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
@@ -169,39 +185,19 @@ const notAFit = [
         <h2 class="text-2xl font-bold theme-text-primary">Quick questions</h2>
       </div>
       <div class="space-y-4">
-        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
-          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
-            How soon can we start?
-            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <div class="px-6 pb-6 theme-text-secondary">
-            Depends on availability. The sprint can often start quickly; retainer engagements may have a short waitlist.
-          </div>
-        </details>
-        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
-          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
-            Do you sign NDAs?
-            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <div class="px-6 pb-6 theme-text-secondary">
-            Yes, if needed. Happy to sign before we discuss details.
-          </div>
-        </details>
-        <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
-          <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
-            Do you work async?
-            <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </summary>
-          <div class="px-6 pb-6 theme-text-secondary">
-            Yes—I'm async-friendly with a weekly touchpoint to stay aligned. Works well for distributed teams.
-          </div>
-        </details>
+        {contactFaqs.map((faq) => (
+          <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">
+              {faq.answer}
+            </div>
+          </details>
+        ))}
       </div>
     </div>
   </section>

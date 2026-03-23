@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../../../utils/schema';
 
 const painPoints = [
   {
@@ -173,6 +174,19 @@ const faqs = [
 <Layout
   title="AI Employee for Social Media Agencies | Automate Scheduling, Engagement & Reporting"
   description="Done-for-you AI employee setup for social media agencies. Automate content scheduling, engagement monitoring, and client reporting. Mac Mini included, shipped ready to work."
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'AI Employee', url: `${SITE_URL}/ai-employee` },
+      { name: 'Social Media Agencies', url: `${SITE_URL}/ai-employee/social-media-agencies` },
+    ]),
+    faqSchema(faqs),
+    serviceSchema({
+      name: 'AI Employee Setup for Social Media Agencies',
+      description: 'Done-for-you AI assistant on a Mac Mini, configured for social media agency workflows and shipped to your door.',
+      url: `${SITE_URL}/ai-employee/social-media-agencies`,
+    }),
+  ]}
 >
   <!-- Hero Section -->
   <section class="theme-bg-primary">

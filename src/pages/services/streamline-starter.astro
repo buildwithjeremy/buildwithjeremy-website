@@ -1,10 +1,23 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { breadcrumbSchema, serviceSchema, SITE_URL } from '../../utils/schema';
 ---
 
 <Layout
   title="Streamline Starter | Build with Jeremy"
   description="Reclaim your peace of mind in 2 weeks with a quick operations audit and action plan to get you unstuck fast."
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Services', url: `${SITE_URL}/services` },
+      { name: 'Streamline Starter', url: `${SITE_URL}/services/streamline-starter` },
+    ]),
+    serviceSchema({
+      name: 'Streamline Starter',
+      description: 'Reclaim your peace of mind in 2 weeks with a quick operations audit and action plan.',
+      url: `${SITE_URL}/services/streamline-starter`,
+    }),
+  ]}
 >
   <!-- Hero Section -->
   <section class="bg-gradient-to-b from-slate-900 to-slate-800 text-white py-16 lg:py-24">

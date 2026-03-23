@@ -7,16 +7,28 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  publishDate?: string;
+  modifiedDate?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 const {
   title = 'Build with Jeremy',
   description = 'Helping solopreneurs and small teams streamline, automate, and scale their businesses.',
   image = '/og-image.jpg',
+  type = 'website',
+  noindex = false,
+  publishDate,
+  modifiedDate,
+  jsonLd,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPath = Astro.url.pathname;
+const ogImageURL = new URL(image, Astro.site).href;
+const jsonLdItems = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
 <!doctype html>
@@ -26,6 +38,7 @@ const currentPath = Astro.url.pathname;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#1e293b" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -33,20 +46,31 @@ const currentPath = Astro.url.pathname;
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:site_name" content="Build with Jeremy" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta property="twitter:image" content={ogImageURL} />
+
+    <!-- Article Meta (for blog posts) -->
+    {publishDate && <meta property="article:published_time" content={publishDate} />}
+    {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+
+    <!-- Structured Data -->
+    {jsonLdItems.map((item) => (
+      <script type="application/ld+json" set:html={JSON.stringify(item)} />
+    ))}
 
     <!-- Fonts - Google Sans Flex with Inter fallback -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

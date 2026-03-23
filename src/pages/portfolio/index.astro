@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { breadcrumbSchema, SITE_URL } from '../../utils/schema';
 
 const projects = await getCollection('portfolio').catch(() => []);
 const sortedProjects = projects.sort((a, b) => {
@@ -10,11 +11,19 @@ const sortedProjects = projects.sort((a, b) => {
   const dateB = b.data.publishDate ? new Date(b.data.publishDate).getTime() : 0;
   return dateB - dateA;
 });
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Portfolio', url: `${SITE_URL}/portfolio` },
+  ]),
+];
 ---
 
 <Layout
   title="Portfolio | Build with Jeremy"
   description="Case studies and success stories from businesses I've helped streamline and scale."
+  jsonLd={jsonLd}
 >
   <section class="py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

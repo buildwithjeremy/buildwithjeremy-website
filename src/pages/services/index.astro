@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../../utils/schema';
 
 const services = [
   {
@@ -92,6 +93,28 @@ const faqs = [
 <Layout
   title="Services | Strategic Ops Partner, Systems Sprint, AI Audit | Build with Jeremy"
   description="Choose the engagement that fits: retainer for ongoing ops partnership, a sprint for fast traction, or an AI audit for practical adoption."
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Services', url: `${SITE_URL}/services` },
+    ]),
+    faqSchema(faqs),
+    serviceSchema({
+      name: 'Strategic Ops Partner',
+      description: 'Ongoing fractional COO partnership with hands-on systems shipping for $500K-$5M service businesses.',
+      url: `${SITE_URL}/services`,
+    }),
+    serviceSchema({
+      name: '2-Week Systems Sprint',
+      description: 'Focused engagement to diagnose the bottleneck, ship 1-2 high-leverage fixes, and deliver a 60-90 day roadmap.',
+      url: `${SITE_URL}/services`,
+    }),
+    serviceSchema({
+      name: 'AI Audit & Team Training',
+      description: 'Practical AI adoption that saves time this quarter. Identify opportunities, train your team, implement 1-2 automations.',
+      url: `${SITE_URL}/services`,
+    }),
+  ]}
 >
   <!-- Header Section -->
   <section class="theme-bg-primary py-16 lg:py-24">

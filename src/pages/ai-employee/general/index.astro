@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../../../utils/schema';
 
 const painPoints = [
   {
@@ -173,6 +174,19 @@ const faqs = [
 <Layout
   title="AI Employee Setup | Your AI Team Member, Shipped to Your Door"
   description="Done-for-you AI employee setup using OpenClaw. Mac Mini included. Integrations configured. Shipped to your door ready to work 24/7."
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'AI Employee', url: `${SITE_URL}/ai-employee` },
+      { name: 'General', url: `${SITE_URL}/ai-employee/general` },
+    ]),
+    faqSchema(faqs),
+    serviceSchema({
+      name: 'AI Employee Setup',
+      description: 'Done-for-you AI assistant on a Mac Mini, configured for your workflows and shipped to your door.',
+      url: `${SITE_URL}/ai-employee/general`,
+    }),
+  ]}
 >
   <!-- Hero Section -->
   <section class="theme-bg-primary">

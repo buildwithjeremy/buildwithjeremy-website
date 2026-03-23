@@ -2,13 +2,22 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import NewsletterForm from '../../components/NewsletterForm.astro';
+import { breadcrumbSchema, SITE_URL } from '../../utils/schema';
 
 const resources = await getCollection('resources').catch(() => []);
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Resources', url: `${SITE_URL}/resources` },
+  ]),
+];
 ---
 
 <Layout
   title="Resources | Build with Jeremy"
   description="Free guides, templates, and tools to help you streamline your business."
+  jsonLd={jsonLd}
 >
   <section class="py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

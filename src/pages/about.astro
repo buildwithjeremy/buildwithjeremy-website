@@ -1,6 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
+import { personSchema, breadcrumbSchema, SITE_URL } from '../utils/schema';
+
+const jsonLd = [
+  personSchema(),
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'About', url: `${SITE_URL}/about` },
+  ]),
+];
 
 const credentials = [
   { value: '12', label: 'Years at Google' },
@@ -31,6 +40,7 @@ const whatToExpect = [
 <Layout
   title="About Jeremy Pittman | Build with Jeremy"
   description="12 years at Google in ops, logistics, and product launches. Now I help service businesses build systems that scale—without the chaos."
+  jsonLd={jsonLd}
 >
   <!-- Hero Section -->
   <section class="theme-bg-primary py-16 lg:py-24">

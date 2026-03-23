@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
+import { breadcrumbSchema, serviceSchema, SITE_URL } from '../../utils/schema';
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
@@ -12,12 +13,26 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 const { Content } = await render(service);
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Services', url: `${SITE_URL}/services` },
+    { name: service.data.title, url: `${SITE_URL}/services/${service.id}` },
+  ]),
+  serviceSchema({
+    name: service.data.title,
+    description: service.data.description || '',
+    url: `${SITE_URL}/services/${service.id}`,
+  }),
+];
 ---
 
 <Layout
   title={`${service.data.title} | Build with Jeremy`}
   description={service.data.description}
   image={service.data.featuredImage}
+  jsonLd={jsonLd}
 >
   <article class="py-16 lg:py-24">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

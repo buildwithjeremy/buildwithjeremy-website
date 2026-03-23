@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
+import { organizationSchema, websiteSchema, faqSchema } from '../utils/schema';
 
 const stats = [
   { value: '$5M+', label: 'Client ARR Enabled' },
@@ -120,6 +121,7 @@ const faqs = [
 <Layout
   title="Strategic Ops Partner for Service Businesses | Build with Jeremy"
   description="I help established service businesses streamline ops, automate admin work, and build systems that let your team handle more volume with fewer mistakes. 12 years at Google. Verified on Upwork."
+  jsonLd={[organizationSchema(), websiteSchema(), faqSchema(faqs)]}
 >
   <!-- Hero Section -->
   <Hero
