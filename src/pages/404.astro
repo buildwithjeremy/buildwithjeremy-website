@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page Not Found | Build with Jeremy"
+  description="The page you're looking for doesn't exist or has been moved."
+  noindex={true}
+>
+  <section class="theme-bg-primary min-h-[70vh] flex items-center">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+      <p class="text-6xl font-bold text-brand">404</p>
+      <h1 class="mt-4 text-3xl md:text-4xl font-bold theme-text-primary">
+        Page not found
+      </h1>
+      <p class="mt-4 text-lg theme-text-secondary">
+        The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/" class="btn btn-primary px-8 py-3">
+          Back to Home
+        </a>
+        <a href="/contact" class="btn btn-outline px-8 py-3">
+          Book a Free Systems Audit
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
