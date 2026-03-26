@@ -1,5 +1,10 @@
 # Build with Jeremy - Project Guidelines
 
+## Brand Abbreviations
+- **Never use "BJ"** as a monogram or acronym for the brand
+- Preferred short form: **"BUILD"**
+- Alternative: **"BWJ"**
+
 ## About This Project
 This is the website for "Build with Jeremy" - a consulting business positioning Jeremy as a **Strategic Ops Partner / Fractional COO** for established small teams looking to scale without chaos.
 
