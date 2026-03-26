@@ -242,10 +242,61 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 
 ---
 
-## SEO Defaults
-- Title format: `{Page Title} | Build with Jeremy`
-- Default description: "Strategic ops partner helping established small teams scale without chaos. 12 years at Google. Fractional COO support, systems sprints, and AI adoption."
-- Include Open Graph and Twitter meta tags
+## SEO Requirements
+
+Every page must follow these rules. They are not optional.
+
+### Layout Props (every page)
+Every `<Layout>` tag must include:
+- `title` — format: `{Page Title} | Build with Jeremy`
+- `description` — unique, 120-160 characters, include primary keyword
+- `jsonLd` — at minimum a `breadcrumbSchema()` (except homepage)
+
+Additional props when applicable:
+- `type="article"` + `publishDate` for blog posts
+- `noindex={true}` for transactional/checkout pages
+- `image` for pages with a custom og:image
+
+### JSON-LD Structured Data
+Import schema helpers from `src/utils/schema.ts`. Every page type needs:
+- **Homepage**: `organizationSchema()` + `websiteSchema()` + `faqSchema()` if FAQs present
+- **About**: `personSchema()` + `breadcrumbSchema()`
+- **Service pages**: `serviceSchema()` + `breadcrumbSchema()` + `faqSchema()` if FAQs present
+- **Blog posts**: `blogPostSchema()` + `breadcrumbSchema()` + `type="article"`
+- **All other pages**: `breadcrumbSchema()` at minimum
+- **Checkout/transactional**: `noindex={true}`, no schema needed
+
+### Link Text
+**Never use generic link text.** Links must describe their destination:
+- "Learn more" — never use
+- "Click here" — never use
+- "Read more" — never use
+
+Instead use descriptive text:
+- "Explore Strategic Ops Partner"
+- "View the 2-Week Sprint details"
+- "Read: How to streamline your ops"
+
+### Images
+- Always include descriptive `alt` text (never empty `alt=""`)
+- Use `.webp` format for photos
+- Hero/above-fold images: `loading="eager"`
+- Below-fold images: `loading="lazy"`
+
+### FAQ Sections
+When a page has FAQ `<details>` elements:
+1. Define FAQs as a typed array in frontmatter: `{ question: string; answer: string }[]`
+2. Pass to `faqSchema(faqs)` in the `jsonLd` prop
+3. Render the `<details>` elements by iterating over the same array (single source of truth)
+
+### Headings
+- Every page must have exactly one `<h1>`
+- Use proper hierarchy: h1 → h2 → h3 (don't skip levels)
+
+### Meta Defaults
+- Default og:image: `/og-image.jpg` (handled by Layout)
+- og:image is automatically resolved to an absolute URL by Layout
+- `og:site_name`, `theme-color`, and `apple-touch-icon` are handled globally in Layout
 
 ---
 
