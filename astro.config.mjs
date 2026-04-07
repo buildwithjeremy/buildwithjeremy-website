@@ -11,6 +11,9 @@ export default defineConfig({
   site: 'https://buildwithjeremy.com',
   output: 'static',
   adapter: vercel(),
+  redirects: {
+    '/jeremy': '/about',
+  },
   integrations: [
     react(),
     keystatic(),
