@@ -158,17 +158,17 @@
   --bg-primary: #0d0d0d;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #333333;
-  --bg-inverse: #ffffff;
+  --bg-inverse: #111827;
   --text-primary: #f2f2f2;
   --text-secondary: #cccccc;
   --text-tertiary: #999999;
   --text-muted: #666666;
-  --text-inverse: #00031a;
-  --text-inverse-muted: #666666;
-  --text-inverse-faint: #999999;
+  --text-inverse: #f2f2f2;
+  --text-inverse-muted: #94a3b8;
+  --text-inverse-faint: #64748b;
   --border-color: #333333;
-  --border-inverse: #e2e8f0;
-  --bg-inverse-card: #f1f5f9;
+  --border-inverse: #334155;
+  --bg-inverse-card: #1e293b;
   color-scheme: dark;
 }
 
