@@ -26,13 +26,13 @@ const footerLinks = {
 };
 ---
 
-<footer class="theme-bg-inverse text-white">
+<footer class="theme-bg-inverse theme-text-inverse">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
-        <a href="/" class="font-bold text-xl text-white">Build with Jeremy</a>
-        <p class="mt-4 text-slate-400 text-sm leading-relaxed">
+        <a href="/" class="font-bold text-xl theme-text-inverse">Build with Jeremy</a>
+        <p class="mt-4 theme-text-inverse-faint text-sm leading-relaxed">
           Strategic ops partner helping established small teams scale without chaos.
         </p>
         <!-- Social Links -->
@@ -42,7 +42,7 @@ const footerLinks = {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="text-slate-400 hover:text-accent transition-colors"
+              class="theme-text-inverse-faint hover:text-accent transition-colors"
               aria-label={link.label}
             >
               {link.icon === 'linkedin' && (
@@ -67,7 +67,7 @@ const footerLinks = {
 
       <!-- Quick Links -->
       <div>
-        <h3 class="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
+        <h3 class="font-semibold text-sm uppercase tracking-wider theme-text-inverse-faint mb-4">
           Quick Links
         </h3>
         <ul class="space-y-3">
@@ -75,7 +75,7 @@ const footerLinks = {
             <li>
               <a
                 href={link.href}
-                class="text-slate-300 hover:text-white transition-colors text-sm"
+                class="theme-text-inverse-muted hover:theme-text-inverse transition-colors text-sm"
               >
                 {link.label}
               </a>
@@ -86,7 +86,7 @@ const footerLinks = {
 
       <!-- AI Employee -->
       <div class="sm:col-span-2 lg:col-span-2">
-        <h3 class="font-semibold text-sm uppercase tracking-wider text-slate-400 mb-4">
+        <h3 class="font-semibold text-sm uppercase tracking-wider theme-text-inverse-faint mb-4">
           AI Employee Setup
         </h3>
         <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
@@ -94,7 +94,7 @@ const footerLinks = {
             <li>
               <a
                 href={link.href}
-                class="text-slate-300 hover:text-white transition-colors text-sm"
+                class="theme-text-inverse-muted hover:theme-text-inverse transition-colors text-sm"
               >
                 {link.label}
               </a>
@@ -105,10 +105,10 @@ const footerLinks = {
     </div>
 
     <!-- Copyright & Theme Toggle -->
-    <div class="mt-12 pt-8 border-t border-slate-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-slate-500 text-sm">&copy; {currentYear} Build with Jeremy. All rights reserved.</p>
+    <div class="mt-12 pt-8 border-t theme-border-inverse flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="theme-text-inverse-faint text-sm">&copy; {currentYear} Build with Jeremy. All rights reserved.</p>
       <div class="flex items-center gap-3">
-        <span class="text-slate-500 text-xs">Theme:</span>
+        <span class="theme-text-inverse-faint text-xs">Theme:</span>
         <ThemeToggle />
       </div>
     </div>

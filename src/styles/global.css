@@ -79,7 +79,11 @@
   --text-tertiary: #666666;
   --text-muted: #999999;
   --text-inverse: #ffffff;
+  --text-inverse-muted: #94a3b8;
+  --text-inverse-faint: #64748b;
   --border-color: #e6e6e6;
+  --border-inverse: #334155;
+  --bg-inverse-card: #1e293b;
   color-scheme: light;
 }
 
@@ -160,7 +164,11 @@
   --text-tertiary: #999999;
   --text-muted: #666666;
   --text-inverse: #00031a;
+  --text-inverse-muted: #666666;
+  --text-inverse-faint: #999999;
   --border-color: #333333;
+  --border-inverse: #e2e8f0;
+  --bg-inverse-card: #f1f5f9;
   color-scheme: dark;
 }
 
@@ -332,6 +340,17 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--color-brand-light);
 }
 
+.btn-outline-inverse {
+  border: 2px solid var(--text-inverse);
+  color: var(--text-inverse);
+  background: transparent;
+}
+
+.btn-outline-inverse:hover {
+  background-color: var(--text-inverse);
+  color: var(--bg-inverse);
+}
+
 /* ===== CARD STYLES ===== */
 .card {
   background-color: var(--bg-primary);
@@ -381,6 +400,36 @@ h1, h2, h3, h4, h5, h6 {
 
 .theme-text-muted {
   color: var(--text-muted);
+}
+
+/* ===== INVERSE SECTION UTILITIES ===== */
+.theme-text-inverse {
+  color: var(--text-inverse);
+}
+
+.theme-text-inverse-muted {
+  color: var(--text-inverse-muted);
+}
+
+.theme-text-inverse-faint {
+  color: var(--text-inverse-faint);
+}
+
+.theme-border-inverse {
+  border-color: var(--border-inverse);
+}
+
+.theme-bg-inverse-card {
+  background-color: var(--bg-inverse-card);
+}
+
+.theme-bg-inverse h1,
+.theme-bg-inverse h2,
+.theme-bg-inverse h3,
+.theme-bg-inverse h4,
+.theme-bg-inverse h5,
+.theme-bg-inverse h6 {
+  color: var(--text-inverse);
 }
 
 /* ===== BRAND COLORS ===== */

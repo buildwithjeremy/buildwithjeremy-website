@@ -38,7 +38,7 @@ const jsonLd = [
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Header -->
       <header class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+        <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
           {service.data.title}
         </h1>
         {service.data.tagline && (
@@ -47,7 +47,7 @@ const jsonLd = [
           </p>
         )}
         {service.data.description && (
-          <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
             {service.data.description}
           </p>
         )}
@@ -65,13 +65,13 @@ const jsonLd = [
 
       <!-- Benefits -->
       {service.data.benefits && service.data.benefits.length > 0 && (
-        <div class="mt-12 bg-slate-100 rounded-2xl p-8">
-          <h2 class="text-2xl font-bold text-gray-900 mb-6">What You Get</h2>
+        <div class="mt-12 theme-bg-secondary rounded-2xl p-8">
+          <h2 class="text-2xl font-bold theme-text-primary mb-6">What You Get</h2>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {service.data.benefits.map((benefit) => (
-              <div class="bg-white rounded-lg p-6">
-                <h3 class="font-bold text-gray-900">{benefit.title}</h3>
-                <p class="mt-2 text-gray-600">{benefit.description}</p>
+              <div class="theme-bg-primary rounded-lg p-6">
+                <h3 class="font-bold theme-text-primary">{benefit.title}</h3>
+                <p class="mt-2 theme-text-secondary">{benefit.description}</p>
               </div>
             ))}
           </div>
@@ -84,9 +84,9 @@ const jsonLd = [
       </div>
 
       <!-- Price & CTA -->
-      <div class="mt-12 bg-slate-900 text-white rounded-2xl p-8 text-center">
+      <div class="mt-12 theme-bg-inverse rounded-2xl p-8 text-center">
         {service.data.price && (
-          <p class="text-lg text-slate-300">Starting at</p>
+          <p class="text-lg theme-text-inverse-muted">Starting at</p>
           <p class="text-3xl font-bold mt-1">{service.data.price}</p>
         )}
         <a href="/contact" class="mt-6 btn btn-primary text-lg px-8 py-4 inline-block">

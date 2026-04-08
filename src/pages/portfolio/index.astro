@@ -28,10 +28,10 @@ const jsonLd = [
   <section class="py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900">
+        <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">
           Portfolio
         </h1>
-        <p class="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+        <p class="mt-4 text-xl theme-text-secondary max-w-2xl mx-auto">
           Real results from real businesses. Here's what happens when we build better systems together.
         </p>
       </div>
@@ -39,7 +39,7 @@ const jsonLd = [
       {sortedProjects.length > 0 ? (
         <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           {sortedProjects.map((project) => (
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="theme-bg-primary rounded-xl shadow-sm border overflow-hidden hover:shadow-md transition-shadow" style="border-color: var(--border-color);">
               {project.data.featuredImage && (
                 <img
                   src={project.data.featuredImage}
@@ -52,23 +52,23 @@ const jsonLd = [
                 {project.data.industry && (
                   <span class="text-sm text-primary font-medium">{project.data.industry}</span>
                 )}
-                <h2 class="mt-2 text-2xl font-bold text-gray-900">
+                <h2 class="mt-2 text-2xl font-bold theme-text-primary">
                   {project.data.title}
                 </h2>
                 {project.data.client && (
-                  <p class="mt-1 text-gray-500">{project.data.client}</p>
+                  <p class="mt-1 theme-text-muted">{project.data.client}</p>
                 )}
                 {project.data.description && (
-                  <p class="mt-4 text-gray-600">
+                  <p class="mt-4 theme-text-secondary">
                     {project.data.description}
                   </p>
                 )}
                 {project.data.results && project.data.results.length > 0 && (
                   <div class="mt-4 flex flex-wrap gap-4">
                     {project.data.results.slice(0, 2).map((result) => (
-                      <div class="bg-slate-100 rounded-lg px-4 py-2">
+                      <div class="theme-bg-tertiary rounded-lg px-4 py-2">
                         <p class="text-lg font-bold text-primary">{result.value}</p>
-                        <p class="text-sm text-gray-600">{result.metric}</p>
+                        <p class="text-sm theme-text-secondary">{result.metric}</p>
                       </div>
                     ))}
                   </div>
@@ -87,12 +87,12 @@ const jsonLd = [
           ))}
         </div>
       ) : (
-        <div class="mt-12 text-center py-16 bg-slate-50 rounded-2xl">
-          <svg class="h-16 w-16 text-gray-300 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div class="mt-12 text-center py-16 theme-bg-secondary rounded-2xl">
+          <svg class="h-16 w-16 theme-text-muted mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
           </svg>
-          <h2 class="mt-4 text-xl font-bold text-gray-900">Case Studies Coming Soon</h2>
-          <p class="mt-2 text-gray-600">
+          <h2 class="mt-4 text-xl font-bold theme-text-primary">Case Studies Coming Soon</h2>
+          <p class="mt-2 theme-text-secondary">
             I'm working on documenting some great success stories. Check back soon!
           </p>
           <a href="/contact" class="mt-6 btn btn-primary inline-block">

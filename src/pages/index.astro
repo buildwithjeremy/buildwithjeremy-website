@@ -144,7 +144,7 @@ const faqs = [
         {stats.map((stat) => (
           <div>
             <div class="text-3xl md:text-5xl font-bold text-accent">{stat.value}</div>
-            <div class="mt-2 text-sm md:text-base text-slate-300">{stat.label}</div>
+            <div class="mt-2 text-sm md:text-base theme-text-inverse-muted">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -299,25 +299,25 @@ const faqs = [
   </section>
 
   <!-- Services Preview Section -->
-  <section class="theme-bg-inverse text-white py-16 lg:py-24">
+  <section class="theme-bg-inverse py-16 lg:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h2 class="text-3xl md:text-4xl font-bold">
           Ways to work together
         </h2>
-        <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+        <p class="mt-4 text-lg theme-text-inverse-muted max-w-2xl mx-auto">
           Choose the engagement that fits—retainer for ongoing partnership, a sprint for fast traction, or an AI audit for practical adoption.
         </p>
       </div>
       <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Service Card 1: Retainer -->
-        <div class="bg-slate-800 dark:bg-slate-700/50 rounded-xl p-8 border border-slate-700 hover:border-primary-light transition-colors">
+        <div class="theme-bg-inverse-card rounded-xl p-8 border theme-border-inverse hover:border-primary-light transition-colors">
           <div class="inline-block px-3 py-1 bg-primary-light/20 text-primary-light text-sm font-semibold rounded-full mb-4">Fractional COO</div>
-          <h3 class="text-xl font-bold">Strategic Ops Partner</h3>
-          <p class="mt-3 text-slate-300">
+          <h3 class="text-xl font-bold theme-text-inverse">Strategic Ops Partner</h3>
+          <p class="mt-3 theme-text-inverse-muted">
             Ongoing partnership with hands-on systems shipping. Operating cadence, workflows, automations, and dashboards.
           </p>
-          <p class="mt-3 text-sm text-slate-400">Best for: $500K–$5M service businesses</p>
+          <p class="mt-3 text-sm theme-text-inverse-faint">Best for: $500K–$5M service businesses</p>
           <a href="/services" class="mt-4 inline-flex items-center text-primary-light font-semibold hover:underline">
             Explore Strategic Ops Partner
             <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -326,13 +326,13 @@ const faqs = [
           </a>
         </div>
         <!-- Service Card 2: Sprint -->
-        <div class="bg-slate-800 dark:bg-slate-700/50 rounded-xl p-8 border border-slate-700 hover:border-accent transition-colors">
+        <div class="theme-bg-inverse-card rounded-xl p-8 border theme-border-inverse hover:border-accent transition-colors">
           <div class="inline-block px-3 py-1 bg-accent/20 text-accent text-sm font-semibold rounded-full mb-4">Quick Start</div>
-          <h3 class="text-xl font-bold">2-Week Systems Sprint</h3>
-          <p class="mt-3 text-slate-300">
+          <h3 class="text-xl font-bold theme-text-inverse">2-Week Systems Sprint</h3>
+          <p class="mt-3 theme-text-inverse-muted">
             Fast clarity + momentum. Workflow map, 1–2 high-leverage fixes shipped, and a 60–90 day roadmap.
           </p>
-          <p class="mt-3 text-sm text-slate-400">Best for: Smaller teams or a "try before retainer" start</p>
+          <p class="mt-3 text-sm theme-text-inverse-faint">Best for: Smaller teams or a "try before retainer" start</p>
           <a href="/services" class="mt-4 inline-flex items-center text-accent font-semibold hover:underline">
             Explore 2-Week Sprint
             <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -341,13 +341,13 @@ const faqs = [
           </a>
         </div>
         <!-- Service Card 3: AI Audit -->
-        <div class="bg-slate-800 dark:bg-slate-700/50 rounded-xl p-8 border border-slate-700 hover:border-brand transition-colors">
+        <div class="theme-bg-inverse-card rounded-xl p-8 border theme-border-inverse hover:border-brand transition-colors">
           <div class="inline-block px-3 py-1 bg-brand/20 text-brand text-sm font-semibold rounded-full mb-4">AI Enablement</div>
-          <h3 class="text-xl font-bold">AI Audit & Training</h3>
-          <p class="mt-3 text-slate-300">
+          <h3 class="text-xl font-bold theme-text-inverse">AI Audit & Training</h3>
+          <p class="mt-3 theme-text-inverse-muted">
             Practical AI adoption that saves time this quarter. Identify opportunities, train your team, implement 1–2 automations.
           </p>
-          <p class="mt-3 text-sm text-slate-400">Best for: Teams ready to leverage AI</p>
+          <p class="mt-3 text-sm theme-text-inverse-faint">Best for: Teams ready to leverage AI</p>
           <a href="/services" class="mt-4 inline-flex items-center text-brand font-semibold hover:underline">
             Explore AI Audit & Training
             <svg class="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -357,7 +357,7 @@ const faqs = [
         </div>
       </div>
       <div class="mt-10 text-center">
-        <a href="/services" class="btn btn-outline text-white border-white hover:bg-white hover:text-slate-900">
+        <a href="/services" class="btn btn-outline-inverse">
           View All Services
         </a>
       </div>
