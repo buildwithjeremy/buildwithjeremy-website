@@ -1,12 +1,17 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { breadcrumbSchema, SITE_URL } from '../../utils/schema';
+import { breadcrumbSchema, serviceSchema, SITE_URL } from '../../utils/schema';
 
 const jsonLd = [
   breadcrumbSchema([
     { name: 'Home', url: SITE_URL },
     { name: 'AI Employee', url: `${SITE_URL}/ai-employee` },
   ]),
+  serviceSchema({
+    name: 'AI Employee Setup',
+    description: 'Done-for-you AI assistant configured on a Mac Mini with your tools, brand voice, and workflows—shipped to your door ready to work 24/7.',
+    url: `${SITE_URL}/ai-employee`,
+  }),
 ];
 
 const niches = [

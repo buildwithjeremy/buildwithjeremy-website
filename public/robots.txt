@@ -4,4 +4,21 @@ Allow: /
 Disallow: /checkout/
 Disallow: /api/
 
+# Allow AI search crawlers that power ChatGPT, Perplexity, and Claude citations
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Block OpenAI training crawler (allows ChatGPT search citations but not model training)
+User-agent: GPTBot
+Disallow: /
+
 Sitemap: https://buildwithjeremy.com/sitemap-index.xml
