@@ -1,0 +1,90 @@
+---
+const GA_ID = 'G-YBJ8JBY8SH';
+const isProd = import.meta.env.PROD;
+---
+
+{isProd && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+    <script define:vars={{ GA_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', GA_ID, { send_page_view: true });
+
+      document.addEventListener('click', (e) => {
+        const btn = e.target.closest('a, button');
+        if (!btn) return;
+        const text = btn.innerText?.trim();
+        const href = btn.href || '';
+
+        if (text?.includes('Systems Audit') || text?.includes('Work With Me')) {
+          gtag('event', 'cta_click', {
+            event_category: 'engagement',
+            event_label: text,
+            cta_location: btn.closest('[data-section]')?.dataset.section || 'unknown'
+          });
+        }
+
+        if (
+          href.includes('linkedin.com') ||
+          href.includes('x.com') ||
+          href.includes('youtube.com') ||
+          href.includes('upwork.com')
+        ) {
+          gtag('event', 'outbound_click', {
+            event_category: 'engagement',
+            link_url: href,
+            link_text: text
+          });
+        }
+
+        if (href.startsWith('mailto:')) {
+          gtag('event', 'contact', {
+            event_category: 'engagement',
+            method: 'email'
+          });
+        }
+      });
+
+      document.querySelectorAll('details').forEach((el) => {
+        el.addEventListener('toggle', () => {
+          if (el.open) {
+            const question = el.querySelector('summary')?.innerText?.trim();
+            gtag('event', 'faq_open', {
+              event_category: 'engagement',
+              faq_question: question,
+              page_path: window.location.pathname
+            });
+          }
+        });
+      });
+
+      window.addEventListener('message', (e) => {
+        if (e.origin !== 'https://calendly.com') return;
+        const evt = e.data?.event;
+        if (evt === 'calendly.event_type_viewed') {
+          gtag('event', 'calendly_viewed', { event_category: 'booking' });
+        }
+        if (evt === 'calendly.date_and_time_selected') {
+          gtag('event', 'calendly_date_selected', { event_category: 'booking' });
+        }
+        if (evt === 'calendly.event_scheduled') {
+          gtag('event', 'generate_lead', {
+            event_category: 'conversion',
+            event_label: 'calendly_booking'
+          });
+        }
+      });
+
+      document.querySelectorAll('form[action*="mailerlite"]').forEach((form) => {
+        form.addEventListener('submit', () => {
+          gtag('event', 'sign_up', {
+            event_category: 'conversion',
+            method: 'newsletter'
+          });
+        });
+      });
+    </script>
+  </>
+)}
