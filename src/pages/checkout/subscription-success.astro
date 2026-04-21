@@ -65,3 +65,9 @@ import Layout from '../../layouts/Layout.astro';
     </div>
   </section>
 </Layout>
+
+<script>
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'purchase', { event_category: 'conversion', event_label: 'custom_software' });
+  }
+</script>

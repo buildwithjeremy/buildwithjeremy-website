@@ -343,6 +343,13 @@ const pricingFaqs = [
 
     // Checkout
     checkoutBtn.addEventListener('click', async () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          event_category: 'ecommerce',
+          value: parseFloat(totalEl.textContent?.replace(/[^0-9.]/g, '') || '0'),
+          currency: 'USD'
+        });
+      }
       checkoutBtn.disabled = true;
       checkoutBtn.textContent = 'Redirecting to Stripe...';
       errorEl.classList.add('hidden');
