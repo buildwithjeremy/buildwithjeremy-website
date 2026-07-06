@@ -119,19 +119,143 @@ const notAFit = [
           </div>
         </div>
 
-        <!-- Right Column: Calendly -->
+        <!-- Right Column: Qualified Booking (2 steps) -->
         <div class="lg:col-span-2">
           <div class="theme-bg-primary rounded-2xl shadow-lg p-6 md:p-8 border transition-colors" style="border-color: var(--border-color);">
-            <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">
-              Book a Free Systems Audit Call
-            </h2>
 
-            <!-- Calendly inline widget -->
-            <div
-              class="calendly-inline-widget"
-              data-url="https://calendly.com/buildwithjeremy/free-consultation?hide_gdpr_banner=1"
-              style="min-width:320px;height:750px;overflow:visible;"
-            ></div>
+            <!-- Step 1: Quick fit check -->
+            <div id="qualify-step">
+              <h2 class="text-2xl font-bold theme-text-primary mb-2 text-center">
+                Book a Free Systems Audit Call
+              </h2>
+              <p class="theme-text-secondary text-center mb-6">
+                Two quick steps: tell me what's breaking, then pick a time.
+              </p>
+
+              <form id="qualify-form" class="space-y-5">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label for="q-name" class="block text-sm font-medium theme-text-primary mb-1.5">Name <span class="text-brand">*</span></label>
+                    <input
+                      id="q-name"
+                      name="name"
+                      type="text"
+                      required
+                      autocomplete="name"
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    />
+                  </div>
+                  <div>
+                    <label for="q-email" class="block text-sm font-medium theme-text-primary mb-1.5">Email <span class="text-brand">*</span></label>
+                    <input
+                      id="q-email"
+                      name="email"
+                      type="email"
+                      required
+                      autocomplete="email"
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    />
+                  </div>
+                  <div>
+                    <label for="q-company" class="block text-sm font-medium theme-text-primary mb-1.5">Company</label>
+                    <input
+                      id="q-company"
+                      name="company"
+                      type="text"
+                      autocomplete="organization"
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    />
+                  </div>
+                  <div>
+                    <label for="q-role" class="block text-sm font-medium theme-text-primary mb-1.5">Which best describes you? <span class="text-brand">*</span></label>
+                    <select
+                      id="q-role"
+                      name="role"
+                      required
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    >
+                      <option value="" disabled selected>Select one…</option>
+                      <option value="service business owner">Service business owner</option>
+                      <option value="agency">Agency</option>
+                      <option value="startup">Startup</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="q-revenue" class="block text-sm font-medium theme-text-primary mb-1.5">Monthly revenue <span class="text-brand">*</span></label>
+                    <select
+                      id="q-revenue"
+                      name="revenue_band"
+                      required
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    >
+                      <option value="" disabled selected>Select one…</option>
+                      <option value="<$20k/mo">Under $20k/mo</option>
+                      <option value="$20-80k/mo">$20–80k/mo</option>
+                      <option value="$80k+/mo">$80k+/mo</option>
+                      <option value="prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label for="q-timeline" class="block text-sm font-medium theme-text-primary mb-1.5">Timeline <span class="text-brand">*</span></label>
+                    <select
+                      id="q-timeline"
+                      name="timeline"
+                      required
+                      class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors"
+                      style="border-color: var(--border-color);"
+                    >
+                      <option value="" disabled selected>Select one…</option>
+                      <option value="ASAP">ASAP</option>
+                      <option value="this quarter">This quarter</option>
+                      <option value="exploring">Just exploring</option>
+                    </select>
+                  </div>
+                </div>
+                <div>
+                  <label for="q-broken" class="block text-sm font-medium theme-text-primary mb-1.5">What's broken?</label>
+                  <textarea
+                    id="q-broken"
+                    name="whats_broken"
+                    rows="4"
+                    placeholder="The workflow, handoff, or admin mess that made you look for help…"
+                    class="w-full px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-secondary theme-text-primary transition-colors resize-y"
+                    style="border-color: var(--border-color);"
+                  ></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary w-full text-lg py-4">
+                  Continue to pick a time →
+                </button>
+                <p class="text-xs theme-text-muted text-center">
+                  No pressure, no pitch. Your answers just make the call more useful.
+                </p>
+              </form>
+
+              <!-- Low-intent path -->
+              <div class="mt-8 pt-6 border-t text-center transition-colors" style="border-color: var(--border-color);">
+                <p class="text-sm theme-text-secondary">
+                  Not ready for a call?
+                  <a href="/resources#newsletter" class="text-brand font-semibold hover:underline">Grab the newsletter instead</a>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Step 2: Calendly -->
+            <div id="booking-step" class="hidden">
+              <h2 class="text-2xl font-bold theme-text-primary mb-2 text-center">
+                Pick a time
+              </h2>
+              <p class="text-sm theme-text-secondary text-center mb-4">
+                Booking as <span id="booking-identity" class="font-semibold theme-text-primary"></span>
+                <button type="button" id="booking-back" class="ml-2 text-brand font-semibold hover:underline">Edit answers</button>
+              </p>
+              <div id="calendly-container" style="min-width:320px;height:750px;overflow:visible;"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -204,4 +328,100 @@ const notAFit = [
 
   <!-- Calendly Script -->
   <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+  <!-- Qualified booking flow -->
+  <script>
+    const form = document.getElementById('qualify-form') as HTMLFormElement | null;
+    const qualifyStep = document.getElementById('qualify-step');
+    const bookingStep = document.getElementById('booking-step');
+    const identityEl = document.getElementById('booking-identity');
+    const backBtn = document.getElementById('booking-back');
+    const container = document.getElementById('calendly-container');
+
+    const CALENDLY_BASE = 'https://calendly.com/buildwithjeremy/free-consultation';
+
+    function initCalendly(url: string) {
+      if (!container) return;
+      container.innerHTML = '';
+      const calendly = (window as any).Calendly;
+      if (calendly?.initInlineWidget) {
+        calendly.initInlineWidget({ url, parentElement: container });
+      } else {
+        // widget.js loads async — fall back to a plain iframe embed
+        const iframe = document.createElement('iframe');
+        iframe.src = `${url}&embed_domain=${encodeURIComponent(window.location.host)}&embed_type=Inline`;
+        iframe.width = '100%';
+        iframe.height = '100%';
+        iframe.frameBorder = '0';
+        iframe.title = 'Select a time to meet';
+        container.appendChild(iframe);
+      }
+    }
+
+    form?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form) return;
+
+      const data = new FormData(form);
+      const name = String(data.get('name') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const company = String(data.get('company') || '').trim();
+      const role = String(data.get('role') || '');
+      const revenueBand = String(data.get('revenue_band') || '');
+      const timeline = String(data.get('timeline') || '');
+      const whatsBroken = String(data.get('whats_broken') || '').trim();
+
+      // GA4 — same gtag pattern as GoogleAnalytics.astro (only defined in prod)
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'qualified_booking_start', {
+          event_category: 'booking',
+          role,
+          revenue_band: revenueBand,
+          timeline,
+        });
+      }
+
+      // Capture the lead even if the booking never completes (fire-and-forget)
+      fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          name,
+          source: 'contact-qualified',
+          fields: {
+            company,
+            role,
+            revenue_band: revenueBand,
+            timeline,
+            whats_broken: whatsBroken,
+          },
+        }),
+      }).catch(() => {});
+
+      // Compact summary → Calendly custom-answer prefill (a1)
+      const summary = [role, revenueBand, timeline, company, whatsBroken]
+        .filter(Boolean)
+        .join(' | ')
+        .slice(0, 250);
+      const params = new URLSearchParams({
+        hide_gdpr_banner: '1',
+        name,
+        email,
+        a1: summary,
+      });
+
+      if (identityEl) identityEl.textContent = `${name} (${email})`;
+      qualifyStep?.classList.add('hidden');
+      bookingStep?.classList.remove('hidden');
+      initCalendly(`${CALENDLY_BASE}?${params.toString()}`);
+      bookingStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    backBtn?.addEventListener('click', () => {
+      bookingStep?.classList.add('hidden');
+      qualifyStep?.classList.remove('hidden');
+      qualifyStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
 </Layout>
