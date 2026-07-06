@@ -47,18 +47,26 @@ const isProd = import.meta.env.PROD;
         }
       });
 
-      document.querySelectorAll('details').forEach((el) => {
-        el.addEventListener('toggle', () => {
-          if (el.open) {
-            const question = el.querySelector('summary')?.innerText?.trim();
-            gtag('event', 'faq_open', {
-              event_category: 'engagement',
-              faq_question: question,
-              page_path: window.location.pathname
-            });
-          }
+      // This script runs in <head>, so bind element listeners once the DOM exists.
+      const bindDomListeners = () => {
+        document.querySelectorAll('details').forEach((el) => {
+          el.addEventListener('toggle', () => {
+            if (el.open) {
+              const question = el.querySelector('summary')?.innerText?.trim();
+              gtag('event', 'faq_open', {
+                event_category: 'engagement',
+                faq_question: question,
+                page_path: window.location.pathname
+              });
+            }
+          });
         });
-      });
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', bindDomListeners);
+      } else {
+        bindDomListeners();
+      }
 
       window.addEventListener('message', (e) => {
         if (e.origin !== 'https://calendly.com') return;
@@ -77,13 +85,14 @@ const isProd = import.meta.env.PROD;
         }
       });
 
-      document.querySelectorAll('form[action*="mailerlite"]').forEach((form) => {
-        form.addEventListener('submit', () => {
+      // Delegated so it works from <head> and for any newsletter form on the page.
+      document.addEventListener('submit', (e) => {
+        if (e.target?.matches?.('form[data-newsletter-form]')) {
           gtag('event', 'sign_up', {
             event_category: 'conversion',
             method: 'newsletter'
           });
-        });
+        }
       });
     </script>
   </>
