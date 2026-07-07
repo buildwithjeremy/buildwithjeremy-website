@@ -20,15 +20,14 @@ const {
       <h2 class="text-2xl md:text-3xl font-bold theme-text-primary">{title}</h2>
       <p class="mt-4 theme-text-secondary">{description}</p>
       <form
-        action="https://app.mailerlite.com/webforms/submit/"
+        action="/api/newsletter"
         method="POST"
         class="mt-6 flex flex-col sm:flex-row gap-3 justify-center"
-        data-code=""
-        target="_blank"
+        data-newsletter-form
       >
         <input
           type="email"
-          name="fields[email]"
+          name="email"
           placeholder="Enter your email"
           required
           class="px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none flex-1 max-w-md theme-bg-primary theme-text-primary transition-colors"
@@ -38,45 +37,57 @@ const {
           {buttonText}
         </button>
       </form>
+      <p class="mt-6 font-semibold text-accent hidden" data-newsletter-success>
+        Thanks — you're on the list!
+      </p>
+      <p class="mt-4 text-sm text-red-500 hidden" data-newsletter-error>
+        Something went wrong. Please try again.
+      </p>
       <p class="mt-4 text-xs theme-text-muted">
         No spam. Unsubscribe anytime.
       </p>
     </div>
   </div>
 ) : variant === 'inline' ? (
-  <form
-    action="https://app.mailerlite.com/webforms/submit/"
-    method="POST"
-    class="flex flex-col sm:flex-row gap-3"
-    data-code=""
-    target="_blank"
-  >
-    <input
-      type="email"
-      name="fields[email]"
-      placeholder="Enter your email"
-      required
-      class="px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none flex-1 theme-bg-primary theme-text-primary transition-colors"
-      style="border-color: var(--border-color);"
-    />
-    <button type="submit" class="btn btn-primary whitespace-nowrap">
-      {buttonText}
-    </button>
-  </form>
+  <div>
+    <form
+      action="/api/newsletter"
+      method="POST"
+      class="flex flex-col sm:flex-row gap-3"
+      data-newsletter-form
+    >
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email"
+        required
+        class="px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none flex-1 theme-bg-primary theme-text-primary transition-colors"
+        style="border-color: var(--border-color);"
+      />
+      <button type="submit" class="btn btn-primary whitespace-nowrap">
+        {buttonText}
+      </button>
+    </form>
+    <p class="mt-3 font-semibold text-accent hidden" data-newsletter-success>
+      Thanks — you're on the list!
+    </p>
+    <p class="mt-3 text-sm text-red-500 hidden" data-newsletter-error>
+      Something went wrong. Please try again.
+    </p>
+  </div>
 ) : (
   <div class="text-center">
     <h3 class="text-xl font-bold theme-text-primary">{title}</h3>
     <p class="mt-2 theme-text-secondary">{description}</p>
     <form
-      action="https://app.mailerlite.com/webforms/submit/"
+      action="/api/newsletter"
       method="POST"
       class="mt-4 flex flex-col sm:flex-row gap-3 justify-center"
-      data-code=""
-      target="_blank"
+      data-newsletter-form
     >
       <input
         type="email"
-        name="fields[email]"
+        name="email"
         placeholder="Enter your email"
         required
         class="px-4 py-3 rounded-lg border focus:ring-2 focus:ring-brand focus:border-transparent outline-none theme-bg-primary theme-text-primary transition-colors"
@@ -86,5 +97,51 @@ const {
         {buttonText}
       </button>
     </form>
+    <p class="mt-4 font-semibold text-accent hidden" data-newsletter-success>
+      Thanks — you're on the list!
+    </p>
+    <p class="mt-4 text-sm text-red-500 hidden" data-newsletter-error>
+      Something went wrong. Please try again.
+    </p>
   </div>
 )}
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form[data-newsletter-form]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const emailInput = form.querySelector<HTMLInputElement>('input[name="email"]');
+      const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const container = form.parentElement;
+      const successEl = container?.querySelector<HTMLElement>('[data-newsletter-success]');
+      const errorEl = container?.querySelector<HTMLElement>('[data-newsletter-error]');
+      const email = emailInput?.value.trim();
+      if (!email || !button) return;
+
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = 'Subscribing…';
+      errorEl?.classList.add('hidden');
+
+      try {
+        const res = await fetch('/api/newsletter', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            source: `newsletter:${window.location.pathname}`,
+          }),
+        });
+        if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+        form.classList.add('hidden');
+        successEl?.classList.remove('hidden');
+      } catch (err) {
+        console.error('[newsletter] subscribe failed:', err);
+        errorEl?.classList.remove('hidden');
+        button.disabled = false;
+        button.textContent = originalText;
+      }
+    });
+  });
+</script>

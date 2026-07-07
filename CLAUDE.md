@@ -37,7 +37,7 @@ This is the website for "Build with Jeremy" - a consulting business positioning 
 
 ### Key Proof Points
 - 12 years at Google
-- $5M+ client ARR enabled
+- 20+ custom systems built
 - 100% Upwork Job Success
 - Verified on Upwork, Top Rated
 
@@ -131,7 +131,7 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 - "runs like a machine"
 
 **Add credibility** with:
-- "$5M+ ARR enabled"
+- "$100K+ in systems delivered"
 - "12 years at Google"
 - Anonymized case studies with real outcomes
 
@@ -167,7 +167,7 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 ### Trust Badges
 - Display on homepage (below testimonials, not in hero)
 - Display on About page
-- Format: "Top Rated on Upwork • 100% Job Success • $10K+ earned"
+- Format: "Top Rated on Upwork • 100% Job Success • $100K+ in systems delivered • 30+ businesses served"
 
 ---
 
@@ -175,7 +175,7 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 
 ### Homepage Sections (in order)
 1. **Hero** - Eyebrow, headline, subheadline, proof line, dual CTAs
-2. **Stats Bar** - $5M+ ARR, 2× Output, 12 Years at Google
+2. **Stats Bar** - 20+ Systems Built, 2× Output, 12 Years at Google
 3. **"What changes when ops are dialed in"** - Benefit bullets
 4. **Process Framework** - Diagnose → Design → Deploy → Discipline
 5. **Case Studies** - 3 anonymized examples with outcomes
