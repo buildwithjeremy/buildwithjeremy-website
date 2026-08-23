@@ -7,8 +7,25 @@ const blog = defineCollection({
     title: z.string(),
     description: z.string().optional(),
     publishDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
     draft: z.boolean().default(false),
     featuredImage: z.string().optional(),
+
+    // --- AEO fields ---
+    // The literal question a reader types, with a self-contained 40-60 word answer.
+    // Rendered above the article body and written so it survives being lifted out
+    // and pasted into a chat window alone. Measured 2026-08-22: top-of-funnel
+    // educational answers in this shape are what Perplexity cites.
+    quickAnswer: z
+      .object({
+        question: z.string(),
+        answer: z.string(),
+      })
+      .optional(),
+    // Becomes FAQPage JSON-LD. Each answer must also stand alone out of context.
+    faqs: z
+      .array(z.object({ question: z.string(), answer: z.string() }))
+      .optional(),
   }),
 });
 

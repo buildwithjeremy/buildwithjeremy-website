@@ -87,12 +87,33 @@ export default config({
         title: fields.slug({ name: { label: 'Title', validation: { isRequired: true } } }),
         description: fields.text({ label: 'Description', multiline: true }),
         publishDate: fields.date({ label: 'Publish Date', validation: { isRequired: true } }),
+        updatedDate: fields.date({ label: 'Last Updated' }),
         draft: fields.checkbox({ label: 'Draft', defaultValue: false }),
         featuredImage: fields.image({
           label: 'Featured Image',
           directory: 'src/assets/images/blog',
           publicPath: '/src/assets/images/blog/',
         }),
+        // Shown above the article and written to survive being lifted out of the
+        // page and pasted into a chat window on its own. Keep the answer 40-60 words.
+        quickAnswer: fields.object(
+          {
+            question: fields.text({ label: 'The question a reader would type' }),
+            answer: fields.text({
+              label: 'Self-contained answer (40-60 words)',
+              multiline: true,
+            }),
+          },
+          { label: 'Quick Answer' }
+        ),
+        // Becomes FAQPage structured data. Each answer must also stand alone.
+        faqs: fields.array(
+          fields.object({
+            question: fields.text({ label: 'Question' }),
+            answer: fields.text({ label: 'Answer', multiline: true }),
+          }),
+          { label: 'FAQs', itemLabel: (props) => props.fields.question.value || 'Question' }
+        ),
         content: fields.mdx({
           label: 'Content',
         }),
