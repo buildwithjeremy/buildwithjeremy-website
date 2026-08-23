@@ -1,0 +1,164 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../utils/schema';
+
+const url = `${SITE_URL}/ai-automation-consulting`;
+
+const faqs = [
+  {
+    question: 'What does an AI automation consultant do?',
+    answer:
+      'Finds the repetitive work inside a business that a machine can reliably do, then builds and installs the thing that does it. The consulting part is deciding what to automate — most of the value is in refusing the ideas that will not pay back, which is the part software vendors have no incentive to tell you.',
+  },
+  {
+    question: 'How do I know if my business is ready to automate anything?',
+    answer:
+      'If a task happens weekly, follows rules you could write down, and currently depends on someone remembering it, it is a candidate. If it needs judgement you would not hand a new employee in their first week, it is not — at least not without a person approving the output.',
+  },
+  {
+    question: 'What does business automation consulting cost?',
+    answer:
+      'I work in two-week sprints and monthly retainers rather than large fixed-scope projects, because the honest answer about what to automate usually changes once you look at real data. The sprint is deliberately small enough to be a low-risk way to find out.',
+  },
+  {
+    question: 'Will automation replace my staff?',
+    answer:
+      'In a business of five to twenty-five people, almost never — the constraint is not that you have too many people, it is that the people you have spend their week on work that does not need them. Automation usually buys back capacity you then point at growth.',
+  },
+  {
+    question: 'What if the AI gets it wrong?',
+    answer:
+      'Then the design was wrong. Anything customer-facing or financial goes through human approval, every automated action is logged so you can see what happened and why, and there is a manual path for everything. A system nobody can audit is a system nobody should trust.',
+  },
+  {
+    question: 'Do you build the software, or just advise on it?',
+    answer:
+      'Both. Advice that stops at "you should automate this" hands the hardest part back to the person who was already too busy. When the answer is custom software rather than configuration, that gets built too — through Build My System.',
+  },
+];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'AI & Automation Consulting', url },
+  ]),
+  serviceSchema({
+    name: 'AI and Business Automation Consulting',
+    description:
+      'AI and automation consulting for small service businesses — decide what is worth automating, then build and install it.',
+    url,
+  }),
+  faqSchema(faqs),
+];
+---
+
+<Layout
+  title="AI & Business Automation Consulting for Small Business"
+  description="Decide what is actually worth automating, then get it built. 12 years building tools at Google, now applied to service businesses of 5 to 25 people."
+  jsonLd={jsonLd}
+>
+  <article class="py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <header>
+        <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">AI &amp; Automation Consulting</p>
+        <h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Most AI advice is a demo. You need a decision.
+        </h1>
+        <p class="mt-6 text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+          The hard part of automating a small business is not the technology — it is knowing which of the twenty
+          things you could automate will actually pay for themselves, and which will quietly become another system
+          nobody maintains. That decision is most of the work, and it is the part nobody selling software will help
+          you with.
+        </p>
+      </header>
+
+      <div class="mt-12 space-y-12">
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">What is worth automating?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            A task qualifies when it happens weekly, follows rules you could write down, and currently depends on
+            somebody remembering it. Those three together are what make automation pay back. Miss any one and you are
+            usually building something that costs more to maintain than the work it replaces.
+          </p>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-lg border border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900/20 p-5">
+              <p class="font-semibold text-gray-900 dark:text-white">Usually worth it</p>
+              <ul class="mt-3 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                <li>Inbound leads routed and answered without anyone watching the inbox</li>
+                <li>Quotes and follow-ups drafted for a human to approve</li>
+                <li>Data moved between the systems you already run</li>
+                <li>Recurring reports that currently mean a manual export</li>
+                <li>Scheduling, reminders, and the follow-up nobody gets to</li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-900/20 p-5">
+              <p class="font-semibold text-gray-900 dark:text-white">Usually not</p>
+              <ul class="mt-3 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                <li>Judgement you would not delegate to a first-week employee</li>
+                <li>Anything a confidently wrong answer would cost you</li>
+                <li>Work that happens a couple of times a month</li>
+                <li>The relationship itself — in service businesses that is often the product</li>
+                <li>A process that is broken; fix it before you automate it</li>
+              </ul>
+            </div>
+          </div>
+          <p class="mt-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            That last one matters more than the rest. Automating a broken process gets you the same bad outcome,
+            faster and with less visibility.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Why I am a useful person to ask</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            12 years at Google building tools and running operations at a scale where manual workarounds stop being
+            survivable very quickly. That environment teaches you a specific instinct: which problems are genuinely
+            worth engineering around, and which ones look like software problems but are really process problems
+            wearing a costume.
+          </p>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            The other half is that I build the thing. When configuration is enough, we configure. When the honest
+            answer is that you need software built around how your business actually works, that gets built too — and
+            I am still there when it meets reality.
+          </p>
+          <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            12 years at Google &middot; 20+ systems built &middot; 100% Job Success Score and Top Rated on Upwork
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
+          <div class="mt-6 space-y-4">
+            {faqs.map((faq) => (
+              <details class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+                <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
+                  <span>{faq.question}</span>
+                  <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
+                </summary>
+                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="rounded-2xl bg-gray-50 dark:bg-gray-800 p-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Bring me the task, not the technology</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Tell me what eats your team's week and I will tell you whether automation is the answer — including when
+            it is not. If the underlying problem turns out to be how the business runs rather than what it runs on,
+            that is
+            <a href="/operations-consulting" class="text-indigo-600 dark:text-indigo-400 font-semibold">operations consulting</a>.
+            If you need a system built rather than a process fixed, that is
+            <a href="https://buildmysystem.co/solutions/ai-integration" class="text-indigo-600 dark:text-indigo-400 font-semibold">Build My System</a>.
+          </p>
+          <a href="/contact" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
+            Book a free Systems Audit call
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</Layout>
