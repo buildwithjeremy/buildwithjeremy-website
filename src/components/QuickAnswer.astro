@@ -1,0 +1,25 @@
+---
+/**
+ * Extractable answer block. See buildmysystem-website for the mirror.
+ *
+ * The literal question a reader types, as an H2, with a self-contained 40-60 word
+ * answer beneath it — no pronouns needing prior context, nothing that breaks when
+ * the paragraph is lifted out and pasted into a chat window alone.
+ *
+ * Measured 2026-08-22: top-of-funnel educational prompts return 16-20 citations on
+ * Perplexity while advisory prompts return none. This format is what gets picked up.
+ */
+interface Props {
+  question: string;
+  answer: string;
+}
+const { question, answer } = Astro.props;
+const words = answer.trim().split(/\s+/).length;
+if (import.meta.env.DEV && (words < 30 || words > 80)) {
+  console.warn(`[QuickAnswer] "${question}" answer is ${words} words; aim for 40-60.`);
+}
+---
+<section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 pt-12 lg:pt-16">
+  <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{question}</h2>
+  <p class="mt-4 text-lg leading-relaxed text-gray-700 dark:text-gray-300">{answer}</p>
+</section>
