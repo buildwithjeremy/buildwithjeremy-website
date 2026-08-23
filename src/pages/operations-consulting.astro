@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import BrandHandoff from '../components/BrandHandoff.astro';
 import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../utils/schema';
 
 const url = `${SITE_URL}/operations-consulting`;
@@ -153,4 +154,6 @@ const jsonLd = [
       </div>
     </div>
   </article>
+
+  <BrandHandoff variant="default" />
 </Layout>

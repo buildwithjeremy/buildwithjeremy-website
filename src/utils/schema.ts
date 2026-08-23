@@ -2,6 +2,14 @@ export const SITE_URL = 'https://buildwithjeremy.com';
 export const SITE_NAME = 'Build with Jeremy';
 export const PERSON_NAME = 'Jeremy Pittman';
 export const PERSON_JOB_TITLE = 'Strategic Ops Partner';
+/**
+ * The sibling brand. Build with Jeremy and Build My System are one operation with
+ * one founder; declaring the relationship in BOTH directions is what lets an
+ * assistant resolve them together instead of treating them as unrelated.
+ * The mirror of this lives in buildmysystem-website/src/utils/schema.ts.
+ */
+export const SIBLING_URL = 'https://buildmysystem.co';
+
 export const SOCIAL_PROFILES = [
   'https://www.linkedin.com/in/jeremy-pittman-49720428',
   'https://x.com/jeremyrpittman',
@@ -12,6 +20,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${SITE_URL}/#organization`,
     name: SITE_NAME,
     url: SITE_URL,
     logo: `${SITE_URL}/favicon.svg`,
@@ -19,7 +28,7 @@ export function organizationSchema() {
       '@type': 'Person',
       name: PERSON_NAME,
     },
-    sameAs: SOCIAL_PROFILES,
+    sameAs: [...SOCIAL_PROFILES, SIBLING_URL],
   };
 }
 
@@ -27,6 +36,7 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${SITE_URL}/#website`,
     name: SITE_NAME,
     url: SITE_URL,
   };
@@ -43,7 +53,7 @@ export function personSchema() {
       '@type': 'Organization',
       name: SITE_NAME,
     },
-    sameAs: SOCIAL_PROFILES,
+    sameAs: [...SOCIAL_PROFILES, SIBLING_URL],
     image: `${SITE_URL}/images/jeremy-head-shot.webp`,
     description: '12 years at Google in ops, logistics, and product launches. Now helping service businesses build systems that scale.',
   };
@@ -71,11 +81,7 @@ export function serviceSchema(service: { name: string; description: string; url:
     name: service.name,
     description: service.description,
     url: service.url,
-    provider: {
-      '@type': 'Organization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    provider: { '@id': `${SITE_URL}/#organization` },
   };
 }
 

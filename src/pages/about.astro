@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import NewsletterForm from '../components/NewsletterForm.astro';
-import { personSchema, breadcrumbSchema, SITE_URL } from '../utils/schema';
+import { breadcrumbSchema, SITE_URL } from '../utils/schema';
 
 const jsonLd = [
-  personSchema(),
   breadcrumbSchema([
     { name: 'Home', url: SITE_URL },
     { name: 'About', url: `${SITE_URL}/about` },

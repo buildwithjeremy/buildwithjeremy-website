@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import QuickAnswer from '../../../components/QuickAnswer.astro';
 import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../../../utils/schema';
 
 const painPoints = [
@@ -188,6 +189,11 @@ const faqs = [
     }),
   ]}
 >
+
+  <QuickAnswer
+    question="Can you hire an AI employee for a marketing team?"
+    answer="Yes, in the practical sense: a machine that owns specific recurring work — client reporting, inbox triage, project updates — rather than a general assistant somebody has to prompt. It runs on your tools with your brand voice, and it is set up around the tasks your team actually repeats every week."
+  />
   <!-- Hero Section -->
   <section class="theme-bg-primary">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
