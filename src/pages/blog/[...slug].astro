@@ -1,7 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
-import { blogPostSchema, breadcrumbSchema, SITE_URL } from '../../utils/schema';
+import { blogPostSchema, breadcrumbSchema, faqSchema, SITE_URL } from '../../utils/schema';
+import QuickAnswer from '../../components/QuickAnswer.astro';
+import BrandHandoff from '../../components/BrandHandoff.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -25,8 +27,12 @@ const jsonLd = [
     description: post.data.description,
     url: `${SITE_URL}/blog/${post.id}`,
     publishDate: post.data.publishDate.toISOString(),
+    modifiedDate: post.data.updatedDate?.toISOString(),
     image: post.data.featuredImage,
   }),
+  // FAQPage pairs with the answer blocks: the same Q/A serves the reader and the
+  // retrieval layer. Only emitted when the post actually declares faqs.
+  ...(post.data.faqs?.length ? [faqSchema(post.data.faqs)] : []),
 ];
 ---
 
@@ -57,7 +63,26 @@ const jsonLd = [
             {post.data.description}
           </p>
         )}
+        {post.data.updatedDate && (
+          <p class="mt-3 text-sm theme-text-muted">
+            Updated{' '}
+            <time datetime={post.data.updatedDate.toISOString()}>
+              {new Date(post.data.updatedDate).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </time>
+          </p>
+        )}
       </header>
+
+      {post.data.quickAnswer && (
+        <QuickAnswer
+          question={post.data.quickAnswer.question}
+          answer={post.data.quickAnswer.answer}
+        />
+      )}
 
       <!-- Featured Image -->
       {post.data.featuredImage && (
@@ -88,4 +113,6 @@ const jsonLd = [
       </div>
     </div>
   </article>
+
+  <BrandHandoff />
 </Layout>

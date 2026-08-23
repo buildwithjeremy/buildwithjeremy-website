@@ -5,6 +5,7 @@ import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,9 @@ export default defineConfig({
   integrations: [
     react(),
     keystatic(),
+    // Required for the blog: the collection globs **/*.mdx and Keystatic authors
+    // blog content with fields.mdx(). Without this the collection cannot load at all.
+    mdx(),
     sitemap({
       filter: (page) => !page.includes('/checkout/'),
       serialize(item) {
