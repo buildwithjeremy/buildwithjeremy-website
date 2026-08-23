@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../utils/schema';
+
+const url = `${SITE_URL}/strategic-operations-partner`;
+
+const faqs = [
+  {
+    question: 'What is a strategic operations partner?',
+    answer:
+      'A strategic operations partner is a senior operator who works inside your business part-time to fix how it runs — the handoffs, the systems, the reporting, the things that break when you grow. Unlike a consultant who delivers a report, a partner stays to build and run what they recommend. Think of it as a fractional COO who also does the implementation.',
+  },
+  {
+    question: 'How is that different from a management consultant?',
+    answer:
+      'A consultant diagnoses and hands you a deck. A partner diagnoses, then builds the system, trains your team on it, and is still there in month six when reality disagrees with the plan. The deliverable is a business that runs differently, not a document describing one that would.',
+  },
+  {
+    question: 'How is it different from hiring an operations manager?',
+    answer:
+      'An operations manager runs the operation you already have. A strategic operations partner changes what the operation is. You usually want the partner first — otherwise you hire a manager into a mess and ask them to fix the thing they are also drowning in.',
+  },
+  {
+    question: 'When does a business actually need one?',
+    answer:
+      'Usually somewhere past $500K in revenue, when the owner has become the bottleneck. The signals are consistent: everything routes through you, growth makes things worse instead of better, your team asks questions only you can answer, and the number you manage by lives in a spreadsheet somebody updates by hand.',
+  },
+  {
+    question: 'What does a strategic operations partner cost?',
+    answer:
+      'Far less than the equivalent full-time hire, because it is part-time and scoped to a specific bottleneck. I work on monthly retainers and on two-week sprints for businesses that want to test the fit before committing. Details are on the services page.',
+  },
+  {
+    question: 'How long does an engagement last?',
+    answer:
+      'Long enough for the systems to outlive the engagement, which is usually a few months rather than a few weeks. The goal is explicitly to become unnecessary — if you still need me in year three to keep things running, I built the wrong thing.',
+  },
+];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Strategic Operations Partner', url },
+  ]),
+  serviceSchema({
+    name: 'Strategic Operations Partner',
+    description:
+      'Part-time senior operations leadership for service businesses — diagnosing bottlenecks, building systems, and staying to run them.',
+    url,
+  }),
+  faqSchema(faqs),
+];
+---
+
+<Layout
+  title="What Is a Strategic Operations Partner?"
+  description="A senior operator who works inside your business part-time to fix how it runs — and stays to build what they recommend. What it is, how it differs from consulting, and when you need one."
+  jsonLd={jsonLd}
+>
+  <article class="py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <header>
+        <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">Strategic Operations Partner</p>
+        <h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+          What is a strategic operations partner?
+        </h1>
+        <p class="mt-6 text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+          A strategic operations partner is a senior operator who works inside your business part-time to fix how it
+          runs — the handoffs, the systems, the reporting, the things that quietly break when you grow. Unlike a
+          consultant who delivers a report and leaves, a partner stays to build and run what they recommend.
+        </p>
+      </header>
+
+      <div class="mt-12 space-y-12">
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Why the distinction matters</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            I spent 12 years at Google in operations, programs, and product launches. The thing that transfers is not
+            the scale — it is knowing what a system looks like before it exists, and being willing to build it rather
+            than describe it. Most operational advice fails at the implementation step, because the person giving it
+            has already left by then.
+          </p>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            So the model here is simple: diagnose the bottleneck, design the system, deploy it, then build the
+            discipline that keeps it running after I stop showing up.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">When does a business need one?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Usually somewhere past $500K in revenue, when the owner has become the bottleneck. The signals are
+            consistent enough that most owners recognise all four:
+          </p>
+          <ul class="mt-6 space-y-4">
+            {[
+              ['Everything routes through you', 'Decisions wait for you. Quotes wait for you. The team is capable and still blocked, because the knowledge lives in your head rather than in a system.'],
+              ['Growth makes things worse', 'A good month creates more chaos than a slow one. That is the clearest sign the operation does not scale — success is currently a problem.'],
+              ['The real numbers live in a spreadsheet', 'You have software, and you still manage by a sheet somebody updates by hand. That gap is where money leaks.'],
+              ['You have hired to fix it and it did not', 'Adding people to an operation that does not work produces a bigger operation that does not work.'],
+            ].map(([t, d]) => (
+              <li class="flex gap-4">
+                <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">{t}</p>
+                  <p class="mt-1 text-gray-700 dark:text-gray-300">{d}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Partner, consultant, or operations manager?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            These get used interchangeably and they are genuinely different jobs.
+          </p>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="border-b-2 border-gray-200 dark:border-gray-700">
+                  <th class="py-3 pr-4 font-semibold text-gray-900 dark:text-white">Role</th>
+                  <th class="py-3 px-4 font-semibold text-gray-900 dark:text-white">Delivers</th>
+                  <th class="py-3 pl-4 font-semibold text-gray-900 dark:text-white">Best when</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700 dark:text-gray-300">
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <td class="py-3 pr-4 font-medium">Management consultant</td>
+                  <td class="py-3 px-4">Analysis and recommendations</td>
+                  <td class="py-3 pl-4">You know you have a problem but not what it is</td>
+                </tr>
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <td class="py-3 pr-4 font-medium">Operations manager</td>
+                  <td class="py-3 px-4">Day-to-day execution</td>
+                  <td class="py-3 pl-4">The operation works and needs running</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4 font-medium">Strategic operations partner</td>
+                  <td class="py-3 px-4">Systems built, deployed, and handed over</td>
+                  <td class="py-3 pl-4">The operation itself needs to change</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            The sequencing matters more than the labels. Hire an operations manager into a broken operation and you
+            have hired someone to drown in it. Fix the operation first, then hire someone to run it.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
+          <div class="mt-6 space-y-4">
+            {faqs.map((faq) => (
+              <details class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+                <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
+                  <span>{faq.question}</span>
+                  <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
+                </summary>
+                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="rounded-2xl bg-gray-50 dark:bg-gray-800 p-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Where to go next</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            If the bottleneck is how the business runs, start with
+            <a href="/operations-consulting" class="text-indigo-600 dark:text-indigo-400 font-semibold">operations consulting</a>.
+            If it is specifically the manual, repetitive work eating your team's week, look at
+            <a href="/ai-automation-consulting" class="text-indigo-600 dark:text-indigo-400 font-semibold">AI and automation consulting</a>.
+            And if what you actually need is software built rather than a process fixed, that is
+            <a href="https://buildmysystem.co" class="text-indigo-600 dark:text-indigo-400 font-semibold">Build My System</a>.
+          </p>
+          <a href="/contact" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
+            Book a free Systems Audit call
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</Layout>

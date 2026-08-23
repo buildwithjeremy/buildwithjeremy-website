@@ -18,6 +18,18 @@ Background: 12 years at Google (ops, logistics, product launches at scale). Now 
 
 - [AI Employee Setup](https://buildwithjeremy.com/ai-employee) — Done-for-you AI assistant configured on a Mac Mini with your tools, brand voice, and workflows. Shipped to your door ready to work 24/7. Specialized setups for agencies.
 
+- [Operations Consulting](https://buildwithjeremy.com/operations-consulting) — Find the constraint capping the business, rebuild the systems around it, train the team to run them. Diagnose, Design, Deploy, Discipline. For service businesses of 5-25 people.
+
+- [AI & Business Automation Consulting](https://buildwithjeremy.com/ai-automation-consulting) — Deciding what is actually worth automating, then building it. A task qualifies when it happens weekly, follows rules you could write down, and depends on someone remembering it. Includes saying no when automation is not the answer.
+
+## What is a strategic operations partner?
+
+A strategic operations partner is a senior operator who works inside your business part-time to fix how it runs — the handoffs, the systems, the reporting, the things that quietly break when you grow. Unlike a consultant who delivers a report and leaves, a partner stays to build and run what they recommend. Think of it as a fractional COO who also does the implementation.
+
+Businesses typically need one past $500K in revenue, when the owner has become the bottleneck: everything routes through them, growth makes things worse rather than better, and the number the business is managed by lives in a hand-updated spreadsheet.
+
+- [Full explanation](https://buildwithjeremy.com/strategic-operations-partner) — including how the role differs from a management consultant and from an operations manager, and when each is the right hire.
+
 ## AI Employee for Agencies
 
 - [AI Employee for Marketing Agencies](https://buildwithjeremy.com/ai-employee/marketing-agencies) — Automate client reporting, communication triage, and project management workflows.

@@ -1,0 +1,156 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../utils/schema';
+
+const url = `${SITE_URL}/operations-consulting`;
+
+const faqs = [
+  {
+    question: 'What does an operations consultant do?',
+    answer:
+      'An operations consultant finds the constraint that is limiting the business and removes it. In practice that means mapping how work actually flows, identifying where it stalls or gets redone, and rebuilding those specific handoffs — usually with better systems, clearer ownership, and reporting the owner can trust without checking.',
+  },
+  {
+    question: 'How much does an operations consultant cost?',
+    answer:
+      'For a small service business, far less than the full-time hire it substitutes for, because the work is part-time and scoped to a specific bottleneck. I work on monthly retainers and on two-week sprints. The sprint exists so you can see the quality of the work before committing to anything longer.',
+  },
+  {
+    question: 'What size business does this make sense for?',
+    answer:
+      'Typically $500K in revenue and up, with five to twenty-five people. Below that the owner can usually still hold the whole operation in their head. Above it, the informal systems that got you here start producing errors faster than you can catch them.',
+  },
+  {
+    question: 'What happens in the first two weeks?',
+    answer:
+      'I map how work actually moves through your business — not how the org chart says it does. That surfaces the real constraint, which is frequently not the one you expected. Then we fix one or two high-leverage things and you get a roadmap for the next 60 to 90 days.',
+  },
+  {
+    question: 'Do you just advise, or do you build?',
+    answer:
+      'Both, and the building is the part that matters. Advice that stops at a recommendation puts the hardest work back on the person who was already too busy to do it. I build the systems, train the team, and stay long enough to see whether they hold.',
+  },
+];
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Operations Consulting', url },
+  ]),
+  serviceSchema({
+    name: 'Operations Consulting',
+    description:
+      'Operations consulting for service businesses — find the constraint, rebuild the systems around it, and train the team to run them.',
+    url,
+  }),
+  faqSchema(faqs),
+];
+---
+
+<Layout
+  title="Operations Consulting for Service Businesses"
+  description="Find the constraint that is capping your business, rebuild the systems around it, and train your team to run them. 12 years at Google, now doing it for service businesses."
+  jsonLd={jsonLd}
+>
+  <article class="py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <header>
+        <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">Operations Consulting</p>
+        <h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+          Your business is not short on effort. It is short on system.
+        </h1>
+        <p class="mt-6 text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+          Most service businesses that stall around $1M are not badly run. They are run entirely on the owner's
+          judgement, which works beautifully right up until it becomes the ceiling. My job is to move what is in your
+          head into something the business can run without you.
+        </p>
+      </header>
+
+      <div class="mt-12 space-y-12">
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">What does an operations consultant actually do?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Finds the constraint that is limiting the business and removes it. That means mapping how work really
+            flows — not how the org chart says it does — then finding where it stalls, gets redone, or waits on one
+            person. Those specific handoffs get rebuilt with clearer ownership, better systems, and reporting you can
+            trust without double-checking it.
+          </p>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            The constraint is usually not where owners expect. It is rarely the thing that feels busiest.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">How I work</h2>
+          <div class="mt-6 space-y-6">
+            {[
+              ['Diagnose', 'Map how work moves today and find the real constraint. Two weeks, and it usually contradicts the assumption you came in with.'],
+              ['Design', 'Build the system that removes it — process, tooling, ownership, and the reporting that tells you it is still working.'],
+              ['Deploy', 'Put it into the business and train the people who have to live in it. This is where most engagements quietly fail, so it gets the most attention.'],
+              ['Discipline', 'Documentation and cadence so it survives contact with a busy quarter. If it only works while I am watching, it does not work.'],
+            ].map(([t, d], i) => (
+              <div class="flex gap-4">
+                <div class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-indigo-600 text-sm font-bold text-white">{i + 1}</div>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">{t}</p>
+                  <p class="mt-1 text-gray-700 dark:text-gray-300">{d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Why me specifically</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            I spent 12 years at Google running operations, programs, and product launches — the environment where
+            "we will just handle it manually" stops being an option very early. Then I spent the last several years
+            applying that to businesses of five to twenty-five people, where the constraint is real and the budget for
+            solving it is not enterprise-sized.
+          </p>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            That combination is the useful part. Plenty of consultants can tell you the process is broken. Fewer can
+            design the system, build the software, and train the team on it — and that is usually what the job
+            actually requires.
+          </p>
+          <p class="mt-4 text-sm text-gray-500 dark:text-gray-400">
+            20+ systems built &middot; 100% Job Success Score and Top Rated on Upwork &middot; 12 years at Google
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
+          <div class="mt-6 space-y-4">
+            {faqs.map((faq) => (
+              <details class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+                <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
+                  <span>{faq.question}</span>
+                  <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
+                </summary>
+                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section class="rounded-2xl bg-gray-50 dark:bg-gray-800 p-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Start with a conversation, not a contract</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            A free Systems Audit call. Thirty minutes, and you leave with a read on where your actual constraint is
+            whether or not we work together. If what you need is closer to
+            <a href="/strategic-operations-partner" class="text-indigo-600 dark:text-indigo-400 font-semibold">an ongoing operations partner</a>
+            or specifically
+            <a href="/ai-automation-consulting" class="text-indigo-600 dark:text-indigo-400 font-semibold">automating repetitive work</a>,
+            those are the same conversation.
+          </p>
+          <a href="/contact" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
+            Book a free Systems Audit call
+          </a>
+        </section>
+
+      </div>
+    </div>
+  </article>
+</Layout>
