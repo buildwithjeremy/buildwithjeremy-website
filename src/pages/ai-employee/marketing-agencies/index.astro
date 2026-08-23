@@ -137,6 +137,10 @@ const addOns = [
 
 const faqs = [
   {
+    question: "Should I hire an AI employee or a marketing coordinator?",
+    answer: "Different jobs. A coordinator gives you judgment — client relationships, the awkward email, the call on what to do when the numbers look wrong. An AI employee gives you production: pulling the numbers, assembling the reports, triaging the inbox, keeping the project tool current. If your work is unpredictable and every client wants something different, hire a person. If it is documented and repetitive, that is production work and this is what it is for. Most agencies end up wanting both, and the AI employee is what frees the coordinator to do the coordinator part.",
+  },
+  {
     question: "Can it actually pull data from Google Analytics and ad platforms?",
     answer: "Yes. OpenClaw can connect to Google Analytics, Google Ads, Meta Ads, LinkedIn Ads, and most major platforms via API or browser automation. It pulls the data, compiles it into your report template, and sends it to clients on schedule.",
   },
@@ -341,8 +345,108 @@ const faqs = [
     </div>
   </section>
 
+  <!-- WHAT YOU'RE ACTUALLY CHOOSING BETWEEN -->
+  <section id="vs-hiring" class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
+          Before you hire: what you're actually choosing between
+        </h2>
+        <p class="mt-4 text-lg theme-text-secondary leading-relaxed">
+          Nobody wakes up wanting to buy an AI employee. You wake up wanting the client reports done
+          by Friday. There are four realistic ways to get that, and I'd rather you picked the right
+          one than the one I sell.
+        </p>
+      </div>
+
+      <div class="mt-10 overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[52rem]">
+          <thead>
+            <tr class="border-b-2" style="border-color: var(--border-color);">
+              <th class="py-4 pr-4 theme-text-primary font-bold text-sm">Option</th>
+              <th class="py-4 px-4 theme-text-primary font-bold text-sm">What it genuinely handles</th>
+              <th class="py-4 px-4 theme-text-primary font-bold text-sm">Time until it's useful</th>
+              <th class="py-4 pl-4 text-accent font-semibold text-sm">Where it breaks</th>
+            </tr>
+          </thead>
+          <tbody class="theme-text-secondary text-sm align-top">
+            <tr class="border-b" style="border-color: var(--border-color);">
+              <td class="py-4 pr-4 font-bold theme-text-primary">A marketing coordinator</td>
+              <td class="py-4 px-4">Judgment, client relationships, the awkward email, anything that needs a person to decide.</td>
+              <td class="py-4 px-4">Weeks to months, depending on how much of your process lives in someone's head.</td>
+              <td class="py-4 pl-4">The work is bursty. Reporting all lands in the same three days of the month, so you either staff for the peak and carry the slack, or you miss the deadline. And everything they learned walks out with them.</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-color);">
+              <td class="py-4 pr-4 font-bold theme-text-primary">An offshore VA</td>
+              <td class="py-4 px-4">Documented, repeatable execution. Genuinely good value when the process is written down.</td>
+              <td class="py-4 px-4">Days to weeks, plus however long it takes you to write the process down.</td>
+              <td class="py-4 pl-4">The question loop. They can run the process; they usually can't make the call when the numbers look wrong. Asking you costs a day in timezone lag, so the safe move is to wait, and the work stalls.</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-color);">
+              <td class="py-4 pr-4 font-bold theme-text-primary">An ops or traffic manager</td>
+              <td class="py-4 px-4">Coordination across accounts. Making sure things happen, on time, in the right order.</td>
+              <td class="py-4 px-4">Months. It's a senior hire and it's a real one.</td>
+              <td class="py-4 pl-4">They're a coordination layer, not a production layer. They make sure the report gets made. They don't make it. If the bottleneck is production, this hire moves the queue rather than shortening it.</td>
+            </tr>
+            <tr class="border-b" style="border-color: var(--border-color);">
+              <td class="py-4 pr-4 font-bold theme-text-primary">An AI employee</td>
+              <td class="py-4 px-4">The repetitive production work: pulling the numbers, assembling the report, triaging the inbox, keeping the project tool current.</td>
+              <td class="py-4 px-4">It arrives already warmed up on your real tasks. Plug in the Mac Mini and it's working.</td>
+              <td class="py-4 pl-4">It needs the process to be describable. If nobody at your agency can explain how the report actually gets made, it can't make it either — and no amount of setup fixes that.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-bold theme-text-primary">The honest version</h3>
+          <p class="mt-3 theme-text-secondary leading-relaxed">
+            An AI employee is not a replacement for a coordinator. I've watched agencies try it that
+            way and it doesn't hold — the moment something needs a judgment call, you need a person,
+            and if you've hired for neither you're back doing it yourself at 9pm.
+          </p>
+          <p class="mt-3 theme-text-secondary leading-relaxed">
+            What it actually does is take the production work off whoever is currently doing it, so
+            the person you already employ spends their week on the parts that need a human. That's a
+            smaller claim than "replace a hire," and it's the one that's true.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold theme-text-primary">How to tell which one you need</h3>
+          <ul class="mt-3 space-y-3 theme-text-secondary leading-relaxed">
+            <li>
+              <strong class="theme-text-primary">If the work is unpredictable</strong> — every client
+              wants something different every month — hire a person. You need judgment, not throughput.
+            </li>
+            <li>
+              <strong class="theme-text-primary">If the work is documented and repetitive</strong> —
+              the same eight reports, the same onboarding sequence, the same status updates — that's
+              production work, and it's what this is for.
+            </li>
+            <li>
+              <strong class="theme-text-primary">If you can't tell which it is</strong>, that's useful
+              information on its own. It usually means the process only exists in one person's head,
+              and the first job is getting it out of there. That's a conversation, not a purchase.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-10 rounded-2xl p-6 theme-bg-secondary">
+        <p class="theme-text-secondary leading-relaxed">
+          <strong class="theme-text-primary">One difference worth naming:</strong> a hire is a recurring
+          cost that scales with your headcount, and the three setups below are one-time. That's not a
+          reason on its own to pick either — a person who wins you a client is worth more than any
+          software — but it does mean the two decisions compound in opposite directions, and it's worth
+          knowing which one you're making.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- Pricing Section -->
-  <section id="pricing" class="theme-bg-primary py-16 lg:py-24">
+  <section id="pricing" class="theme-bg-secondary py-16 lg:py-24">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
@@ -417,7 +521,7 @@ const faqs = [
   </section>
 
   <!-- Social Proof Section -->
-  <section class="theme-bg-secondary py-16 lg:py-20">
+  <section class="theme-bg-primary py-16 lg:py-20">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Stats Bar -->
       <div class="flex flex-wrap justify-center items-center gap-6 mb-12 text-sm">
@@ -455,7 +559,7 @@ const faqs = [
   </section>
 
   <!-- FAQ Section -->
-  <section class="theme-bg-primary py-16 lg:py-24">
+  <section class="theme-bg-secondary py-16 lg:py-24">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
         <h2 class="text-3xl md:text-4xl font-bold theme-text-primary">
