@@ -11,9 +11,19 @@ import mdx from '@astrojs/mdx';
 export default defineConfig({
   site: 'https://buildwithjeremy.com',
   output: 'static',
+  // One URL form only. The sitemap and every canonical tag already declare the
+  // trailing-slash form, but with trailingSlash unset Astro defaults to 'ignore' and
+  // Vercel answered BOTH forms with a 200 — so Google indexed /contact and /contact/
+  // as separate pages and split the ranking signal (GSC 2026-08-29: /contact at
+  // position 3.0 alongside /contact/ at 2.1; /ai-employee at 3.0 alongside
+  // /ai-employee/ at 15.6). 'always' matches the form Google already settled on, so
+  // the bare form now 308-redirects instead of duplicating.
+  // BMS solves the same bug with 'never'; the two sites differ on purpose — see the
+  // work item. Switching BWJ to 'never' would re-open every URL Google has indexed.
+  trailingSlash: 'always',
   adapter: vercel(),
   redirects: {
-    '/jeremy': '/about',
+    '/jeremy': '/about/',
   },
   integrations: [
     react(),
