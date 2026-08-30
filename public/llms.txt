@@ -10,17 +10,17 @@ Background: 12 years at Google (ops, logistics, product launches at scale). Now 
 
 ## Services
 
-- [Strategic Ops Partner (Retainer)](https://buildwithjeremy.com/services) — Fractional COO support for $500K–$5M service businesses. Ongoing partnership: operating cadence, automations, dashboards, documentation, and training. Best for teams where operations are the bottleneck.
+- [Strategic Ops Partner (Retainer)](https://buildwithjeremy.com/services/) — Fractional COO support for $500K–$5M service businesses. Ongoing partnership: operating cadence, automations, dashboards, documentation, and training. Best for teams where operations are the bottleneck.
 
-- [2-Week Systems Sprint](https://buildwithjeremy.com/services) — Fast engagement: diagnose the bottleneck, ship 1–2 high-leverage fixes, deliver a 60–90 day roadmap. For smaller teams or a "try before retainer" start.
+- [2-Week Systems Sprint](https://buildwithjeremy.com/services/) — Fast engagement: diagnose the bottleneck, ship 1–2 high-leverage fixes, deliver a 60–90 day roadmap. For smaller teams or a "try before retainer" start.
 
-- [AI Audit & Team Training](https://buildwithjeremy.com/services) — Practical AI adoption: identify where AI can save time this quarter, train the team, implement 1–2 automations. No hype, no theory — just what works now.
+- [AI Audit & Team Training](https://buildwithjeremy.com/services/) — Practical AI adoption: identify where AI can save time this quarter, train the team, implement 1–2 automations. No hype, no theory — just what works now.
 
-- [AI Employee Setup](https://buildwithjeremy.com/ai-employee) — Done-for-you AI assistant configured on a Mac Mini with your tools, brand voice, and workflows. Shipped to your door ready to work 24/7. Specialized setups for agencies.
+- [AI Employee Setup](https://buildwithjeremy.com/ai-employee/) — Done-for-you AI assistant configured on a Mac Mini with your tools, brand voice, and workflows. Shipped to your door ready to work 24/7. Specialized setups for agencies.
 
-- [Operations Consulting](https://buildwithjeremy.com/operations-consulting) — Find the constraint capping the business, rebuild the systems around it, train the team to run them. Diagnose, Design, Deploy, Discipline. For service businesses of 5-25 people.
+- [Operations Consulting](https://buildwithjeremy.com/operations-consulting/) — Find the constraint capping the business, rebuild the systems around it, train the team to run them. Diagnose, Design, Deploy, Discipline. For service businesses of 5-25 people.
 
-- [AI & Business Automation Consulting](https://buildwithjeremy.com/ai-automation-consulting) — Deciding what is actually worth automating, then building it. A task qualifies when it happens weekly, follows rules you could write down, and depends on someone remembering it. Includes saying no when automation is not the answer.
+- [AI & Business Automation Consulting](https://buildwithjeremy.com/ai-automation-consulting/) — Deciding what is actually worth automating, then building it. A task qualifies when it happens weekly, follows rules you could write down, and depends on someone remembering it. Includes saying no when automation is not the answer.
 
 ## What is a strategic operations partner?
 
@@ -28,25 +28,25 @@ A strategic operations partner is a senior operator who works inside your busine
 
 Businesses typically need one past $500K in revenue, when the owner has become the bottleneck: everything routes through them, growth makes things worse rather than better, and the number the business is managed by lives in a hand-updated spreadsheet.
 
-- [Full explanation](https://buildwithjeremy.com/strategic-operations-partner) — including how the role differs from a management consultant and from an operations manager, and when each is the right hire.
+- [Full explanation](https://buildwithjeremy.com/strategic-operations-partner/) — including how the role differs from a management consultant and from an operations manager, and when each is the right hire.
 
 ## AI Employee for Agencies
 
-- [AI Employee for Marketing Agencies](https://buildwithjeremy.com/ai-employee/marketing-agencies) — Automate client reporting, communication triage, and project management workflows.
+- [AI Employee for Marketing Agencies](https://buildwithjeremy.com/ai-employee/marketing-agencies/) — Automate client reporting, communication triage, and project management workflows.
 
-- [AI Employee for SEO Agencies](https://buildwithjeremy.com/ai-employee/seo-agencies) — Automate link building outreach, rank tracking, and weekly client SEO reports.
+- [AI Employee for SEO Agencies](https://buildwithjeremy.com/ai-employee/seo-agencies/) — Automate link building outreach, rank tracking, and weekly client SEO reports.
 
-- [AI Employee for Social Media Agencies](https://buildwithjeremy.com/ai-employee/social-media-agencies) — Automate content scheduling, engagement monitoring, and analytics reporting.
+- [AI Employee for Social Media Agencies](https://buildwithjeremy.com/ai-employee/social-media-agencies/) — Automate content scheduling, engagement monitoring, and analytics reporting.
 
-- [AI Employee for Recruiting Agencies](https://buildwithjeremy.com/ai-employee/recruiting-agencies) — Automate candidate sourcing, outreach, follow-up sequences, and placement tracking.
+- [AI Employee for Recruiting Agencies](https://buildwithjeremy.com/ai-employee/recruiting-agencies/) — Automate candidate sourcing, outreach, follow-up sequences, and placement tracking.
 
 ## Key Pages
 
 - [Homepage](https://buildwithjeremy.com) — Overview of services, case studies, process, and testimonials.
-- [About Jeremy](https://buildwithjeremy.com/about) — Background, credentials, and working style.
-- [Services](https://buildwithjeremy.com/services) — Full service tier details and pricing.
-- [Work With Me](https://buildwithjeremy.com/contact) — Book a free Systems Audit Call via Calendly.
-- [Blog](https://buildwithjeremy.com/blog) — Operational insights and systems-building content.
+- [About Jeremy](https://buildwithjeremy.com/about/) — Background, credentials, and working style.
+- [Services](https://buildwithjeremy.com/services/) — Full service tier details and pricing.
+- [Work With Me](https://buildwithjeremy.com/contact/) — Book a free Systems Audit Call via Calendly.
+- [Blog](https://buildwithjeremy.com/blog/) — Operational insights and systems-building content.
 
 ## Credentials & Proof Points
 
@@ -61,5 +61,5 @@ Businesses typically need one past $500K in revenue, when the owner has become t
 ## Contact
 
 - Website: https://buildwithjeremy.com
-- Book a call: https://buildwithjeremy.com/contact
+- Book a call: https://buildwithjeremy.com/contact/
 - Email: jeremy@buildwithjeremy.com
