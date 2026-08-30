@@ -22,9 +22,11 @@ export default defineConfig({
   // work item. Switching BWJ to 'never' would re-open every URL Google has indexed.
   trailingSlash: 'always',
   adapter: vercel(),
-  redirects: {
-    '/jeremy': '/about/',
-  },
+  // NOTE: /jeremy -> /about/ lives in vercel.json, not here. Astro normalises a
+  // redirect key back to the bare form, so the route it emits ('^/jeremy$') is
+  // ordered AFTER the trailingSlash 308 and never matches — /jeremy would 308 to
+  // /jeremy/ and then 404. vercel.json redirects run before framework routes.
+
   integrations: [
     react(),
     keystatic(),
