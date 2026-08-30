@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/jeremy",
+      "destination": "https://buildwithjeremy.com/about/",
+      "permanent": true
+    },
+    {
       "source": "/:path(.*)",
       "has": [
         {
