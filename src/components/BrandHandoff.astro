@@ -5,6 +5,17 @@
  * Build with Jeremy answers "who do I hire". Build My System answers "what do we
  * build". A reader who crosses that line should find the other side rather than
  * bouncing, and the link tells search engines the two entities are related.
+ *
+ * These hrefs carry NO utm parameters, deliberately. They used to
+ * (?utm_source=buildwithjeremy-com&utm_medium=cross-brand) and because these are
+ * crawlable in-page links, Googlebot indexed the parameterised URL as a separate
+ * page: GSC 28d to 2026-09-12 showed /pricing?utm_source=... at 28 impressions
+ * against 9 for /pricing/ and 0 for the canonical /pricing. The query form serves
+ * 200, so the canonical tag was only ever a hint. Nothing was lost by removing the
+ * tags: the handoff had recorded zero GA4 sessions in four weeks, and because the
+ * two domains are separate GA4 still attributes the referral to buildwithjeremy.com.
+ *
+ * Do not re-add utm parameters to a crawlable site-to-site link.
  */
 interface Props {
   variant?: 'build' | 'default';
@@ -17,13 +28,13 @@ const copy =
         heading: 'Already know you need something built?',
         body: 'If the diagnosis is done and what you actually need is custom software — a CRM, a dispatch system, something that replaces the five tools you are paying for — that gets built under Build My System. Same operation, transparent pricing.',
         cta: 'See what building it costs',
-        href: 'https://buildmysystem.co/pricing?utm_source=buildwithjeremy-com&utm_medium=cross-brand',
+        href: 'https://buildmysystem.co/pricing',
       }
     : {
         heading: 'When the answer turns out to be software',
         body: 'Plenty of operational problems end with something needing to be built. When that happens I do not hand you to a dev shop — it gets built under Build My System, which is the same operation with a product side and published pricing.',
         cta: 'Look at Build My System',
-        href: 'https://buildmysystem.co?utm_source=buildwithjeremy-com&utm_medium=cross-brand',
+        href: 'https://buildmysystem.co',
       };
 ---
 <section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 py-12">
