@@ -4,9 +4,9 @@
 
 ## About
 
-Jeremy Pittman helps service businesses remove operational bottlenecks so they can scale without adding headcount or chaos. The core approach: Diagnose the bottleneck → Design the system → Deploy automations and tools → Discipline with documentation and training. He has built 20+ custom systems for 30+ businesses and consistently doubled admin output for clients.
+Jeremy Pittman helps service businesses remove operational bottlenecks so they can scale without adding headcount or chaos. The core approach: Diagnose the bottleneck → Design the system → Deploy automations and tools → Discipline with documentation and training. He has taken on 30+ client engagements to date.
 
-Background: 12 years at Google (ops, logistics, product launches at scale). Now full-time consultant working with home services, logistics, staffing, and agency businesses.
+Background: 12 years at Google in operations, programs, and product launches. Now full-time consultant working with home services, logistics, staffing, and agency businesses.
 
 ## Services
 
@@ -50,13 +50,11 @@ Businesses typically need one past $500K in revenue, when the owner has become t
 
 ## Credentials & Proof Points
 
-- 12 years at Google (Operations, Logistics, Product Launches)
-- 20+ custom systems built
-- 2× admin output increase for clients
+- 12 years at Google in operations, programs, and product launches
+- 30+ client engagements to date
 - Top Rated on Upwork
 - 100% Job Success Score
-- $100K+ in systems delivered, 30+ businesses served
-- Verified consultant for service businesses, agencies, and startups
+- Systems live in the trades, field services, logistics, home services, professional services, fitness, and legal
 
 ## Contact
 
