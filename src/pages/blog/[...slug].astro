@@ -99,6 +99,24 @@ const jsonLd = [
         <Content />
       </div>
 
+      <!-- FAQ: the same array feeds faqSchema above, so the marked-up Q/A is visible on the page -->
+      {post.data.faqs?.length ? (
+        <section class="mt-12">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
+          <div class="mt-6 space-y-4">
+            {post.data.faqs.map((faq) => (
+              <details class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+                <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
+                  <span>{faq.question}</span>
+                  <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
+                </summary>
+                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+      ) : null}
+
       <!-- Back to Blog -->
       <div class="mt-12 pt-8 border-t" style="border-color: var(--border-color);">
         <a
