@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:shared": "node scripts/check-shared-files.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
