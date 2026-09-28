@@ -6,6 +6,24 @@ import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
+import fs from 'node:fs';
+
+// Index pages whose content collection has no entries yet. They still render (the
+// /resources newsletter form is linked from /contact), but they are "coming soon"
+// shells: the page sets noindex while its collection is empty, and the sitemap
+// must not advertise them either. Both flip back automatically when the first
+// entry lands, so nobody has to remember to undo this.
+const hasEntries = (dir) => {
+  try {
+    return fs.readdirSync(new URL(`./src/content/${dir}/`, import.meta.url), { recursive: true })
+      .some((f) => /\.(md|mdx)$/.test(String(f)));
+  } catch {
+    return false;
+  }
+};
+const EMPTY_INDEX_PATHS = ['portfolio', 'resources']
+  .filter((dir) => !hasEntries(dir))
+  .map((dir) => `https://buildwithjeremy.com/${dir}/`);
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,7 +52,7 @@ export default defineConfig({
     // blog content with fields.mdx(). Without this the collection cannot load at all.
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/checkout/'),
+      filter: (page) => !page.includes('/checkout/') && !EMPTY_INDEX_PATHS.includes(page),
       serialize(item) {
         // Boost AI employee pages for faster crawl discovery
         if (item.url.includes('/ai-employee/')) {
