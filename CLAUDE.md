@@ -36,10 +36,11 @@ This is the website for "Build with Jeremy" - a consulting business positioning 
 - Focus on outcomes: throughput, capacity, calm operations
 
 ### Key Proof Points
-- 12 years at Google
-- 20+ custom systems built
-- 100% Upwork Job Success
-- Verified on Upwork, Top Rated
+Source of truth for every claim: `~/Documents/BWJ-Marketing/proof/proof-points.md`. Use APPROVED claims as written, remove RETIRED ones on sight, and if a number is not there it is not approved.
+- 12 years at Google in operations, programs, and product launches
+- 30+ client engagements to date
+- 100% Job Success Score on Upwork, Top Rated
+- Systems live in the trades, field services, logistics, home services, professional services, fitness, and legal
 
 ### Service Tiers (3 offerings)
 1. **Strategic Ops Partner (Retainer)** - Fractional COO support, ongoing partnership
@@ -98,9 +99,9 @@ buildmysystem-website in the same sitting, and run `npm run check:shared`. Site-
 - "runs like a machine"
 
 **Add credibility** with:
-- "$100K+ in systems delivered"
+- "30+ client engagements to date"
 - "12 years at Google"
-- Anonymized case studies with real outcomes
+- Anonymized case studies from `proof/case-studies.md` in the proof bank (never invent an outcome)
 
 ---
 
@@ -114,7 +115,7 @@ buildmysystem-website in the same sitting, and run `npm run check:shared`. Site-
 ### Trust Badges
 - Display on homepage (below testimonials, not in hero)
 - Display on About page
-- Format: "Top Rated on Upwork • 100% Job Success • $100K+ in systems delivered • 30+ businesses served"
+- Format: "Top Rated on Upwork • 100% Job Success • 12 years at Google • 30+ client engagements to date"
 
 ---
 
@@ -122,7 +123,7 @@ buildmysystem-website in the same sitting, and run `npm run check:shared`. Site-
 
 ### Homepage Sections (in order)
 1. **Hero** - Eyebrow, headline, subheadline, proof line, dual CTAs
-2. **Stats Bar** - 20+ Systems Built, 2× Output, 12 Years at Google
+2. **Stats Bar** - 30+ Client Engagements, 100% Upwork Job Success, 12 Years at Google
 3. **"What changes when ops are dialed in"** - Benefit bullets
 4. **Process Framework** - Diagnose → Design → Deploy → Discipline
 5. **Case Studies** - 3 anonymized examples with outcomes
