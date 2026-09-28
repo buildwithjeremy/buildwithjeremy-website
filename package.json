@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:claims": "node scripts/check-claims.mjs",
+    "prebuild": "node scripts/check-claims.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",
