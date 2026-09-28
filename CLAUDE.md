@@ -52,46 +52,13 @@ Source of truth for every claim: `~/Documents/BWJ-Marketing/proof/proof-points.m
 
 ---
 
-## Brand Colors
+## Design System
 
-### Primary Palette
-| Name | Hex | CSS Variable | Usage |
-|------|-----|--------------|-------|
-| **Brand Purple** | #5565f1 | `--color-brand` | Primary brand color, links, navigation active states, general accents |
-| **Primary Blue** | #122fed | `--color-primary` | Authority/trust elements, headings, Strategic Ops Partner service |
-| **Accent Green** | #4dfe43 | `--color-accent` | CTAs, highlights, success indicators, stats numbers, checkmarks, 2-Week Sprint service |
-
-### Color Usage Rules
-1. **Section-level consistency**: All icons/elements within a section should use the same color
-2. **Accent Green for action/success**: Stats numbers, checkmarks, positive outcomes, highlights
-3. **Primary Blue for authority**: Experience headings, trust indicators
-4. **Brand Purple for identity**: Links, navigation, general UI accents, AI Audit service
-5. **Service card differentiation**:
-   - Primary Blue/Light for "Strategic Ops Partner" (featured)
-   - Accent Green for "2-Week Sprint"
-   - Brand Purple for "AI Audit"
-
-### CSS Classes
-- `text-brand` / `bg-brand` - Brand purple
-- `text-primary-color` / `bg-primary-color` - Deep blue
-- `text-accent` / `bg-accent` - Bright green
-- `text-accent-dark` - Darker green for icons on light backgrounds
-- `theme-bg-primary`, `theme-bg-secondary`, `theme-text-primary`, etc. - Theme-aware classes
-
----
-
-## Typography
-
-### Font Stack
-```css
-font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
-```
-
-### Headings
-- Use `font-bold` (700 weight)
-- H1: `text-4xl sm:text-5xl lg:text-6xl`
-- H2: `text-3xl md:text-4xl`
-- H3: `text-xl` or `text-lg`
+Colors, typography, buttons, cards, theme-aware classes and dark mode are documented once, in
+`docs/design-system.md`, and shared byte-for-byte with buildmysystem-website through
+`src/styles/tokens.css`. This repo holds the canonical copy: edit `tokens.css` here, copy it to
+buildmysystem-website in the same sitting, and run `npm run check:shared`. Site-only styles go in
+`src/styles/global.css`, never in `tokens.css`.
 
 ---
 
@@ -145,26 +112,6 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 - Supports `proofLine` prop for credentials (e.g., "12 years at Google • Verified on Upwork • 100% Job Success")
 - Proof line uses bullet separators (•) between items
 
-### Buttons
-- `.btn-primary` - Brand purple, main CTAs
-- `.btn-secondary` - Primary blue
-- `.btn-accent` - Bright green (use sparingly)
-- `.btn-outline` - Outlined brand purple
-
-### Cards
-- Use `rounded-xl` or `rounded-2xl`
-- Border: `border` with `style="border-color: var(--border-color);"`
-- Hover: `hover:border-accent` or similar subtle effect
-
-### Icons in Sections
-- Keep icon colors consistent within each section
-- Use `bg-{color}/10` for icon backgrounds
-- Standard sizes: `h-12 w-12` (small), `h-16 w-16` (large)
-
-### Stats/Numbers
-- Use `text-accent` for stat values
-- Large bold numbers: `text-3xl md:text-5xl font-bold`
-
 ### Trust Badges
 - Display on homepage (below testimonials, not in hero)
 - Display on About page
@@ -213,9 +160,7 @@ font-family: 'Google Sans Flex', 'Inter', system-ui, sans-serif;
 4. **Quick Questions** - FAQ accordion
 
 ### Theme Toggle
-- Located in footer only (not header)
-- Small and unobtrusive
-- Uses JavaScript-based icon switching
+- Footer only, small and unobtrusive (mechanism: `docs/design-system.md`)
 
 ---
 
@@ -302,7 +247,8 @@ When a page has FAQ `<details>` elements:
 ---
 
 ## File Locations
-- Styles: `src/styles/global.css`
+- Styles: `src/styles/tokens.css` (shared, canonical) + `src/styles/global.css` (site-only)
+- Design system doc: `docs/design-system.md`
 - Layout: `src/layouts/Layout.astro`
 - Components: `src/components/`
 - Pages: `src/pages/`
