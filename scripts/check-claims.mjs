@@ -28,11 +28,11 @@ const SRC = path.join(ROOT, 'src');
 
 /** RETIRED or unsourced claims. Any of these reaching a build is a bug. */
 const BANNED = [
-  { re: /\$\s?[0-9.]+\s?M\+?\s*(client\s+)?revenue\s+enabled/i,
+  { re: /\$\s?[0-9.]+\s?M\+?\s*(client\s+)?(revenue|arr)\s+enabled/i,
     why: 'RETIRED: "$XM+ revenue enabled" is conflicting and unsourced. See proof-points.md NEEDS DECISION.' },
-  { re: /revenue\s+enabled/i,
+  { re: /(revenue|arr)\s+enabled/i,
     why: 'RETIRED: "revenue enabled" is an unfalsifiable attribution claim. Say what was measured instead.' },
-  { re: /\b(20|17)\s?\+?\s*(custom\s+)?systems?\s+(built|shipped|delivered)/i,
+  { re: /\b(20|17)\s?\+?\s*(custom\s+)?systems?\s+(built|shipped|delivered)|\b(built|shipped|delivered)\s+(20|17)\s?\+?\s*(custom\s+)?systems?\b/i,
     why: 'SUPERSEDED: the approved engagement count is "30+ client engagements to date" (Build Suite: 34 as of 2026-09-17).' },
   { re: /100%\s+client\s+satisfaction/i,
     why: 'UNSOURCED: no such metric is measured. The approved analogue is "100% Job Success Score on Upwork, Top Rated".' },
@@ -88,10 +88,13 @@ function stripComments(text) {
 
 const violations = [];
 const warnings = [];
-const files = walk(SRC);
+// public/llms.txt is outward-facing and is the page AI crawlers read first, so it
+// gets the same check as src/.
+const LLMS = path.join(ROOT, 'public', 'llms.txt');
+const files = [...walk(SRC), ...(fs.existsSync(LLMS) ? [LLMS] : [])];
 
 for (const file of files) {
-  const rel = path.relative(SRC, file);
+  const rel = file.startsWith(SRC + path.sep) ? path.relative(SRC, file) : path.relative(ROOT, file);
   if (SKIP_FILES.has(rel)) continue;
   const lines = stripComments(fs.readFileSync(file, 'utf8')).split('\n');
 
