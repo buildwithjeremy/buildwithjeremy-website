@@ -34,6 +34,8 @@ const BANNED = [
     why: 'RETIRED: "revenue enabled" is an unfalsifiable attribution claim. Say what was measured instead.' },
   { re: /\b(20|17)\s?\+?\s*(custom\s+)?systems?\s+(built|shipped|delivered)|\b(built|shipped|delivered)\s+(20|17)\s?\+?\s*(custom\s+)?systems?\b/i,
     why: 'SUPERSEDED: the approved engagement count is "30+ client engagements to date" (Build Suite: 34 as of 2026-09-17).' },
+  { re: /value:\s*['"](20|17)\s?\+?['"]\s*,\s*label:\s*['"][^'"]*systems?\b/i,
+    why: 'SUPERSEDED (stat split across value/label): the approved engagement count is "30+ client engagements to date".' },
   { re: /100%\s+client\s+satisfaction/i,
     why: 'UNSOURCED: no such metric is measured. The approved analogue is "100% Job Success Score on Upwork, Top Rated".' },
   { re: /\$10K\+\s*earned|\b17\s+projects\b/i,
