@@ -7,6 +7,7 @@ const services = [
     tag: 'Fractional COO',
     tagColor: 'primary-light',
     title: 'Strategic Ops Partner',
+    tier: 'retainer',
     subtitle: 'Ongoing partnership with hands-on systems shipping',
     description: 'For established service businesses where operations are the bottleneck. I work alongside you as a fractional COO—building systems, shipping automations, and creating operating cadence that scales.',
     bestFor: '$500K–$5M service businesses ready for ongoing support',
@@ -30,6 +31,7 @@ const services = [
     tag: 'Quick Start',
     tagColor: 'accent',
     title: '2-Week Systems Sprint',
+    tier: 'sprint',
     subtitle: 'Clarity + momentum fast',
     description: 'A focused engagement to diagnose the bottleneck, ship 1–2 high-leverage fixes, and give you a clear roadmap for the next 60–90 days.',
     bestFor: 'Smaller teams, a fast reset, or a "try before retainer" start',
@@ -47,6 +49,7 @@ const services = [
     tag: 'AI Enablement',
     tagColor: 'brand',
     title: 'AI Audit & Team Training',
+    tier: 'ai-audit',
     subtitle: 'Practical AI adoption that saves time this quarter',
     description: 'Identify the best AI opportunities for your business (not random tools), train your team on workflows that matter, and implement 1–2 automations.',
     bestFor: 'Teams ready to leverage AI but unsure where to start',
@@ -171,7 +174,7 @@ const faqs = [
               </div>
             )}
 
-            <a href={service.ctaLink} class={`mt-8 btn ${service.featured ? 'btn-primary' : 'btn-outline'} w-full text-center`}>
+            <a href={service.ctaLink} data-track="service_interest" data-track-tier={service.tier} class={`mt-8 btn ${service.featured ? 'btn-primary' : 'btn-outline'} w-full text-center`}>
               {service.ctaText}
             </a>
           </div>

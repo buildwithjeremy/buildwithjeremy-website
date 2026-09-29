@@ -1,18 +1,49 @@
 ---
+import { TRACKING } from '../config/tracking.mjs';
+
 const GA_ID = import.meta.env.PUBLIC_GA4_ID;
 const isProd = import.meta.env.PROD;
+// Tracking contract (src/config/tracking.mjs, docs/tracking.md): only the
+// scroll_depth page list is needed here. Tagged-element events need no config;
+// the delegated click listener below reads data-track attributes.
+const SCROLL = TRACKING.scrollDepth;
 ---
 
 {isProd && GA_ID && (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script define:vars={{ GA_ID }}>
+    <script define:vars={{ GA_ID, SCROLL }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', GA_ID, { send_page_view: true });
+      // Internal traffic flag: ?internal=1 marks this browser, ?internal=0 clears it.
+      // The GA4 internal-traffic data filter excludes traffic_type internal.
+      // If storage is blocked the visit is treated as external.
+      const gaConfig = { send_page_view: true };
+      try {
+        const flag = new URLSearchParams(location.search).get('internal');
+        if (flag === '1') localStorage.setItem('bwj_internal', '1');
+        if (flag === '0') localStorage.removeItem('bwj_internal');
+        if (localStorage.getItem('bwj_internal') === '1') gaConfig.traffic_type = 'internal';
+      } catch (err) {}
+      gtag('config', GA_ID, gaConfig);
 
+      // The one delegated click listener. Bound on document, so it works from
+      // the head before the DOM exists and for any element added later.
       document.addEventListener('click', (e) => {
+        // Declarative events: data-track names the event, each data-track-x attribute adds param x.
+        const tracked = e.target.closest?.('[data-track]');
+        if (tracked) {
+          const params = { source_page: location.pathname };
+          for (const attr of tracked.attributes) {
+            if (attr.name.startsWith('data-track-')) {
+              params[attr.name.slice(11).split('-').join('_')] = attr.value;
+            }
+          }
+          gtag('event', tracked.getAttribute('data-track'), params);
+        }
+
+        // Legacy text/href-based events (see docs/tracking.md).
         const btn = e.target.closest('a, button');
         if (!btn) return;
         const text = btn.innerText?.trim();
@@ -62,10 +93,37 @@ const isProd = import.meta.env.PROD;
           });
         });
       };
+      // scroll_depth: each threshold fires once per page view, only on contract pages.
+      const bindScrollDepth = () => {
+        const trim = (p) => (p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p);
+        const here = trim(location.pathname);
+        const onList = SCROLL.pages.some((p) => trim(p) === here);
+        if (!onList) return;
+        const pending = [...SCROLL.thresholds];
+        let queued = false;
+        const measure = () => {
+          queued = false;
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - window.innerHeight;
+          if (max <= 0) return;
+          const pct = (window.scrollY / max) * 100;
+          while (pending.length && pct >= pending[0]) {
+            gtag('event', SCROLL.event, { percent: pending.shift(), source_page: location.pathname });
+          }
+          if (!pending.length) window.removeEventListener('scroll', onScroll);
+        };
+        const onScroll = () => {
+          if (!queued) { queued = true; requestAnimationFrame(measure); }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+      };
+
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', bindDomListeners);
+        document.addEventListener('DOMContentLoaded', bindScrollDepth);
       } else {
         bindDomListeners();
+        bindScrollDepth();
       }
 
       window.addEventListener('message', (e) => {
