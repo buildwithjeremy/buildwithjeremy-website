@@ -251,7 +251,18 @@ export const POST: APIRoute = async ({ request }) => {
     const session = event.data.object as Stripe.Checkout.Session;
     const isSubscription = session.mode === 'subscription';
 
-    if (isSubscription) {
+    // This endpoint hears every completed checkout on the Stripe account, including
+    // ones that did not start on this site (hosting subscriptions set up by hand,
+    // one-off payment pages). Only act on sessions this site created, identified by
+    // the metadata checkout.ts and subscribe.ts stamp. Everything else is acknowledged
+    // and ignored, so no unrelated customer ever gets an AI Employee or plan email.
+    const fromThisSite = isSubscription
+      ? Boolean(session.metadata?.plan_name)
+      : Boolean(session.metadata?.tier);
+
+    if (!fromThisSite) {
+      console.log(`Ignoring checkout ${session.id}: not created by this site`);
+    } else if (isSubscription) {
       // ─── Subscription checkout (Custom Software plans) ───
       await handleSubscriptionCheckout(session, resend, stripe);
     } else {
