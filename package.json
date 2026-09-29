@@ -9,7 +9,9 @@
     "astro": "astro",
     "check:shared": "node scripts/check-shared-files.mjs",
     "check:claims": "node scripts/check-claims.mjs",
-    "prebuild": "node scripts/check-claims.mjs"
+    "check:tracking": "node scripts/check-tracking.mjs",
+    "prebuild": "node scripts/check-claims.mjs",
+    "postbuild": "node scripts/check-tracking.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.14",

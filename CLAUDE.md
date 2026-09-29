@@ -253,3 +253,8 @@ When a page has FAQ `<details>` elements:
 - Components: `src/components/`
 - Pages: `src/pages/`
 - Images: `public/images/`
+
+## GA4 tracking
+Clicks are tracked declaratively: `data-track` attributes in markup, contract in `src/config/tracking.mjs`, checked on every build by `scripts/check-tracking.mjs`.
+When you add, remove, rename or restructure a CTA, service card, pricing control or page, update the tags and the contract in the same change; a red `check-tracking` means exactly that.
+Details: `docs/tracking.md`.

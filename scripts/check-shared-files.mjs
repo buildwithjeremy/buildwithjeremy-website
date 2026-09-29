@@ -18,7 +18,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const SHARED = ['src/styles/tokens.css', 'scripts/check-shared-files.mjs'];
+const SHARED = ['src/styles/tokens.css', 'scripts/check-shared-files.mjs', 'scripts/check-tracking.mjs'];
 const REPOS = ['buildwithjeremy-website', 'buildmysystem-website'];
 const CANONICAL = 'buildwithjeremy-website';
 
