@@ -467,7 +467,7 @@ const faqs = [
       </div>
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <details class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
             <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
               {faq.question}
               <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

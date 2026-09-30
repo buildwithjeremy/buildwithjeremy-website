@@ -132,7 +132,7 @@ const notAFit = [
                 Two quick steps: tell me what's breaking, then pick a time.
               </p>
 
-              <form id="qualify-form" class="space-y-5">
+              <form id="qualify-form" data-track-form="qualify" class="space-y-5">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div>
                     <label for="q-name" class="block text-sm font-medium theme-text-primary mb-1.5">Name <span class="text-brand">*</span></label>
@@ -254,7 +254,7 @@ const notAFit = [
                 Booking as <span id="booking-identity" class="font-semibold theme-text-primary"></span>
                 <button type="button" id="booking-back" class="ml-2 text-brand font-semibold hover:underline">Edit answers</button>
               </p>
-              <div id="calendly-container" style="min-width:320px;height:750px;overflow:visible;"></div>
+              <div id="calendly-container" data-track-embed="calendly" style="min-width:320px;height:750px;overflow:visible;"></div>
             </div>
           </div>
         </div>
@@ -310,7 +310,7 @@ const notAFit = [
       </div>
       <div class="space-y-4">
         {contactFaqs.map((faq) => (
-          <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
             <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
               {faq.question}
               <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -331,7 +331,7 @@ const notAFit = [
 
   <!-- Qualified booking flow -->
   <script>
-    const form = document.getElementById('qualify-form') as HTMLFormElement | null;
+    const form = document.querySelector<HTMLFormElement>('[data-track-form="qualify"]');
     const qualifyStep = document.getElementById('qualify-step');
     const bookingStep = document.getElementById('booking-step');
     const identityEl = document.getElementById('booking-identity');

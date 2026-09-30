@@ -176,6 +176,7 @@ const pricingFaqs = [
             </div>
             <button
               id="checkout-btn"
+              data-track-source="checkout"
               type="button"
               class="btn btn-primary w-full sm:w-auto px-8 py-3 text-base font-semibold transition-opacity"
             >
@@ -190,35 +191,35 @@ const pricingFaqs = [
       <div class="mt-16">
         <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">Questions</h2>
         <div class="max-w-2xl mx-auto space-y-4">
-          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
               What's included in the {formatPrice(hosting.amount)}/mo base?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <p class="mt-3 text-sm theme-text-secondary">Hosting, infrastructure, monitoring, backups, security patches, dependency updates, bug fixes, and email & phone support. Your system stays up, secure, and maintained. No per-seat pricing — just one flat fee.</p>
           </details>
-          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
               Can I start with just hosting and add Unlimited Edits later?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <p class="mt-3 text-sm theme-text-secondary">Absolutely. Many clients start with hosting and add Unlimited Edits when they're ready to iterate. You can add or remove it any time — it's month-to-month with no commitment.</p>
           </details>
-          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
               Can I add or remove add-ons later?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <p class="mt-3 text-sm theme-text-secondary">Yes. Add-ons can be added or dropped at any time. Changes take effect on your next billing cycle.</p>
           </details>
-          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
               What does "usage fees may apply" mean?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
             </summary>
             <p class="mt-3 text-sm theme-text-secondary">Some AI features (video, image, voice) use third-party APIs with per-use costs. The monthly fee covers the integration and a reasonable amount of usage. If usage exceeds typical levels, we'll work with you on fair overage pricing — no surprises.</p>
           </details>
-          <details class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
             <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
               Can I cancel anytime?
               <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
@@ -259,7 +260,7 @@ const pricingFaqs = [
     const addonCheckboxes = document.querySelectorAll<HTMLInputElement>('.addon-checkbox');
     const totalEl = document.getElementById('total-price')!;
     const summaryEl = document.getElementById('summary-line')!;
-    const checkoutBtn = document.getElementById('checkout-btn') as HTMLButtonElement;
+    const checkoutBtn = document.querySelector<HTMLButtonElement>('[data-track-source="checkout"]')!;
     const errorEl = document.getElementById('checkout-error')!;
     const cancelledBanner = document.getElementById('cancelled-banner')!;
 

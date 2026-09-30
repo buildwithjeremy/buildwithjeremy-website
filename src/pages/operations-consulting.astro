@@ -125,7 +125,7 @@ const jsonLd = [
           <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
           <div class="mt-6 space-y-4">
             {faqs.map((faq) => (
-              <details class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
+              <details data-track="faq_open" class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
                 <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
                   <span>{faq.question}</span>
                   <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
@@ -146,7 +146,7 @@ const jsonLd = [
             <a href="/ai-automation-consulting/" class="text-indigo-600 dark:text-indigo-400 font-semibold">automating repetitive work</a>,
             those are the same conversation.
           </p>
-          <a href="/contact/" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
+          <a href="/contact/" data-track="cta_click" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
             Book a free Systems Audit call
           </a>
         </section>
