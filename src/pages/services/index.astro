@@ -174,7 +174,7 @@ const faqs = [
               </div>
             )}
 
-            <a href={service.ctaLink} data-track="service_interest" data-track-tier={service.tier} class={`mt-8 btn ${service.featured ? 'btn-primary' : 'btn-outline'} w-full text-center`}>
+            <a href={service.ctaLink} data-track="service_interest cta_click" data-track-tier={service.tier} class={`mt-8 btn ${service.featured ? 'btn-primary' : 'btn-outline'} w-full text-center`}>
               {service.ctaText}
             </a>
           </div>
@@ -274,7 +274,7 @@ const faqs = [
       </div>
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <details class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group theme-bg-primary rounded-xl border transition-colors" style="border-color: var(--border-color);">
             <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
               {faq.question}
               <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -299,7 +299,7 @@ const faqs = [
       <p class="mt-4 text-lg theme-text-inverse-muted max-w-2xl mx-auto">
         Book a free Systems Audit Call and I'll recommend the right path. No pressure, no pitch—just clarity on what's breaking and how to fix it.
       </p>
-      <a href="/contact/" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
+      <a href="/contact/" data-track="cta_click" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
         Book a Free Systems Audit
       </a>
     </div>

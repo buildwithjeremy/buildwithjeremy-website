@@ -3,16 +3,19 @@ import { TRACKING } from '../config/tracking.mjs';
 
 const GA_ID = import.meta.env.PUBLIC_GA4_ID;
 const isProd = import.meta.env.PROD;
-// Tracking contract (src/config/tracking.mjs, docs/tracking.md): only the
-// scroll_depth page list is needed here. Tagged-element events need no config;
-// the delegated click listener below reads data-track attributes.
+// Tracking contract (src/config/tracking.mjs, docs/tracking.md). The script
+// needs the scroll_depth pages and the names of the click-type events; the
+// delegated click listener reads everything else from data-track attributes.
 const SCROLL = TRACKING.scrollDepth;
+const CLICK_EVENTS = TRACKING.events
+  .filter((e) => (e.type ?? 'click') === 'click' && (e.on ?? 'click') === 'click')
+  .map((e) => e.name);
 ---
 
 {isProd && GA_ID && (
   <>
     <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-    <script define:vars={{ GA_ID, SCROLL }}>
+    <script define:vars={{ GA_ID, SCROLL, CLICK_EVENTS }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -28,34 +31,40 @@ const SCROLL = TRACKING.scrollDepth;
       } catch (err) {}
       gtag('config', GA_ID, gaConfig);
 
+      // Marker attributes name an element for code; they are not event params.
+      const MARKERS = ['data-track-form', 'data-track-embed', 'data-track-source'];
+
       // The one delegated click listener. Bound on document, so it works from
       // the head before the DOM exists and for any element added later.
       document.addEventListener('click', (e) => {
-        // Declarative events: data-track names the event, each data-track-x attribute adds param x.
+        // Click events: data-track lists the event(s), each data-track-x attribute adds param x.
         const tracked = e.target.closest?.('[data-track]');
         if (tracked) {
-          const params = { source_page: location.pathname };
-          for (const attr of tracked.attributes) {
-            if (attr.name.startsWith('data-track-')) {
-              params[attr.name.slice(11).split('-').join('_')] = attr.value;
+          for (const name of tracked.getAttribute('data-track').split(/\s+/)) {
+            if (!CLICK_EVENTS.includes(name)) continue;
+            if (name === 'cta_click') {
+              gtag('event', 'cta_click', {
+                event_category: 'engagement',
+                event_label: tracked.innerText?.trim(),
+                cta_location: tracked.closest('[data-section]')?.dataset.section || 'unknown'
+              });
+              continue;
             }
+            const params = { source_page: location.pathname };
+            for (const attr of tracked.attributes) {
+              if (attr.name.startsWith('data-track-') && !MARKERS.includes(attr.name)) {
+                params[attr.name.slice(11).split('-').join('_')] = attr.value;
+              }
+            }
+            gtag('event', name, params);
           }
-          gtag('event', tracked.getAttribute('data-track'), params);
         }
 
-        // Legacy text/href-based events (see docs/tracking.md).
+        // Auto events (rule-based, any matching link on any page).
         const btn = e.target.closest('a, button');
         if (!btn) return;
         const text = btn.innerText?.trim();
         const href = btn.href || '';
-
-        if (text?.includes('Systems Audit') || text?.includes('Work With Me')) {
-          gtag('event', 'cta_click', {
-            event_category: 'engagement',
-            event_label: text,
-            cta_location: btn.closest('[data-section]')?.dataset.section || 'unknown'
-          });
-        }
 
         if (
           href.includes('linkedin.com') ||
@@ -78,21 +87,19 @@ const SCROLL = TRACKING.scrollDepth;
         }
       });
 
-      // This script runs in <head>, so bind element listeners once the DOM exists.
-      const bindDomListeners = () => {
-        document.querySelectorAll('details').forEach((el) => {
-          el.addEventListener('toggle', () => {
-            if (el.open) {
-              const question = el.querySelector('summary')?.innerText?.trim();
-              gtag('event', 'faq_open', {
-                event_category: 'engagement',
-                faq_question: question,
-                page_path: window.location.pathname
-              });
-            }
-          });
+      // faq_open: <details data-track="faq_open">, on open only. toggle does not
+      // bubble, so this listens in the capture phase on document.
+      document.addEventListener('toggle', (e) => {
+        const el = e.target;
+        if (!el.open || !el.matches?.('details[data-track~="faq_open"]')) return;
+        const question = el.querySelector('summary')?.innerText?.trim();
+        gtag('event', 'faq_open', {
+          event_category: 'engagement',
+          faq_question: question,
+          page_path: window.location.pathname
         });
-      };
+      }, true);
+
       // scroll_depth: each threshold fires once per page view, only on contract pages.
       const bindScrollDepth = () => {
         const trim = (p) => (p.length > 1 && p.endsWith('/') ? p.slice(0, -1) : p);
@@ -119,13 +126,12 @@ const SCROLL = TRACKING.scrollDepth;
       };
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', bindDomListeners);
         document.addEventListener('DOMContentLoaded', bindScrollDepth);
       } else {
-        bindDomListeners();
         bindScrollDepth();
       }
 
+      // Embed events: Calendly postMessage (container tagged data-track-embed="calendly").
       window.addEventListener('message', (e) => {
         if (e.origin !== 'https://calendly.com') return;
         const evt = e.data?.event;
@@ -143,9 +149,10 @@ const SCROLL = TRACKING.scrollDepth;
         }
       });
 
-      // Delegated so it works from <head> and for any newsletter form on the page.
+      // Newsletter sign_up. Delegated so it works from <head> and for any
+      // form carrying the contract marker.
       document.addEventListener('submit', (e) => {
-        if (e.target?.matches?.('form[data-newsletter-form]')) {
+        if (e.target?.matches?.('form[data-track-form="newsletter"]')) {
           gtag('event', 'sign_up', {
             event_category: 'conversion',
             method: 'newsletter'

@@ -429,7 +429,7 @@ const faqs = [
       </div>
       <div class="space-y-4">
         {faqs.map((faq) => (
-          <details class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+          <details data-track="faq_open" class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
             <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
               {faq.question}
               <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -454,7 +454,7 @@ const faqs = [
       <p class="mt-4 text-lg theme-text-secondary max-w-2xl mx-auto">
         Book a free Systems Audit Call. I'll map the bottleneck and outline the fastest path to remove it—no pressure, no pitch.
       </p>
-      <a href="/contact/" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
+      <a href="/contact/" data-track="cta_click" class="mt-8 btn btn-primary text-lg px-8 py-4 inline-block">
         Book a Free Systems Audit
       </a>
     </div>
