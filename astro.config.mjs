@@ -65,7 +65,10 @@ export default defineConfig({
           item.changefreq = 'monthly';
           item.priority = 0.7;
         }
-        item.lastmod = new Date().toISOString().split('T')[0];
+        // No lastmod on purpose. It used to be the build date, which told Google every
+        // page changed on every deploy; Google then ignores the signal (Dr. Gore's
+        // sitemap stopped being re-read for this reason, 2026-10). Only set lastmod
+        // from a real per-page content date, never from new Date().
         return item;
       },
     }),
