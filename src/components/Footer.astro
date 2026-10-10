@@ -5,11 +5,17 @@ const currentYear = new Date().getFullYear();
 
 const footerLinks = {
   main: [
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
+    { href: '/about/', label: 'About' },
+    { href: '/services/', label: 'Services' },
     { href: '/custom-software/', label: 'Custom Software' },
     { href: 'https://start.buildwithjeremy.com/streamlinestarter', label: 'Streamline Starter' },
-    { href: '/contact', label: 'Contact' },
+    { href: '/contact/', label: 'Contact' },
+  ],
+  consulting: [
+    { href: '/operations-consulting/', label: 'Operations Consulting' },
+    { href: '/ai-automation-consulting/', label: 'AI & Automation Consulting' },
+    { href: '/strategic-operations-partner/', label: 'Strategic Operations Partner' },
+    { href: '/blog/', label: 'Blog' },
   ],
   aiEmployee: [
     { href: '/ai-employee/', label: 'Overview' },
@@ -28,7 +34,7 @@ const footerLinks = {
 
 <footer class="theme-bg-inverse theme-text-inverse">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
       <!-- Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
         <a href="/" class="font-bold text-xl theme-text-inverse">Build with Jeremy</a>
@@ -72,6 +78,25 @@ const footerLinks = {
         </h3>
         <ul class="space-y-3">
           {footerLinks.main.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="theme-text-inverse-muted hover:theme-text-inverse transition-colors text-sm"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Consulting -->
+      <div>
+        <h3 class="font-semibold text-sm uppercase tracking-wider theme-text-inverse-faint mb-4">
+          Consulting
+        </h3>
+        <ul class="space-y-3">
+          {footerLinks.consulting.map((link) => (
             <li>
               <a
                 href={link.href}
