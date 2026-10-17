@@ -84,7 +84,73 @@ const jsonLd = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">How I work</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">When does a service business need an operations consultant?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Usually somewhere past $500K in revenue, with five to twenty-five people, when the business still runs on
+            the owner's judgement. The signs tend to show up together:
+          </p>
+          <ul class="mt-6 space-y-4">
+            {[
+              ['Jobs stall waiting on one person', 'Quotes, schedules, and decisions sit until the owner or one key employee gets to them.'],
+              ['Work gets done twice', 'Information is retyped between tools, or a job gets redone because a handoff dropped a detail.'],
+              ['A busy month feels worse than a slow one', 'More work produces more mistakes instead of more profit. That is the operation hitting its ceiling.'],
+              ['Nobody trusts the numbers', 'The reports exist, and someone still checks them by hand before anyone acts on them.'],
+            ].map(([t, d]) => (
+              <li class="flex gap-4">
+                <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
+                <div>
+                  <p class="font-semibold text-gray-900 dark:text-white">{t}</p>
+                  <p class="mt-1 text-gray-700 dark:text-gray-300">{d}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Operations consultant, operations manager, or new software?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            All three get suggested for the same symptoms, and they solve different problems.
+          </p>
+          <div class="mt-6 overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead>
+                <tr class="border-b-2 border-gray-200 dark:border-gray-700">
+                  <th class="py-3 pr-4 font-semibold text-gray-900 dark:text-white">Option</th>
+                  <th class="py-3 px-4 font-semibold text-gray-900 dark:text-white">Delivers</th>
+                  <th class="py-3 pl-4 font-semibold text-gray-900 dark:text-white">Best when</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700 dark:text-gray-300">
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <td class="py-3 pr-4 font-medium">Operations consultant</td>
+                  <td class="py-3 px-4">The constraint found, and the systems around it rebuilt</td>
+                  <td class="py-3 pl-4">The way the business runs needs to change</td>
+                </tr>
+                <tr class="border-b border-gray-200 dark:border-gray-700">
+                  <td class="py-3 pr-4 font-medium">Operations manager</td>
+                  <td class="py-3 px-4">Day-to-day running of the operation</td>
+                  <td class="py-3 pl-4">The operation works and needs someone to run it</td>
+                </tr>
+                <tr>
+                  <td class="py-3 pr-4 font-medium">New software</td>
+                  <td class="py-3 px-4">A tool</td>
+                  <td class="py-3 pl-4">You already know exactly which process it replaces</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Order matters. A manager hired into a broken operation spends the job firefighting, and software bought for
+            a broken process makes the same mess faster. Fix how the work flows first, then staff it and tool it.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">How does an operations consulting engagement work?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            In four stages, and the last two are where most engagements succeed or fail.
+          </p>
           <div class="mt-6 space-y-6">
             {[
               ['Diagnose', 'Map how work moves today and find the real constraint. Two weeks, and it usually contradicts the assumption you came in with.'],
@@ -104,7 +170,11 @@ const jsonLd = [
         </section>
 
         <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Why me specifically</h2>
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">What should you look for in an operations consultant?</h2>
+          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+            Someone who has run operations, not only advised on them, and who can build the system they recommend
+            rather than hand you a report. Here is how I measure up against that.
+          </p>
           <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
             I spent 12 years at Google running operations, programs, and product launches — the environment where
             "we will just handle it manually" stops being an option very early. Then I spent the last several years
