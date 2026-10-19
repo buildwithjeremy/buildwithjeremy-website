@@ -29,6 +29,7 @@ npm run check:shared   # tokens.css must match buildmysystem-website
 
 ## Hard rules
 
+- Changes go through a PR, never a direct push to main: one PR per piece of work (batch small tweaks), squash-merged. The Vercel preview on the PR is the review link.
 - Never "BJ" as a monogram or acronym; short forms are "BUILD" or "BWJ".
 - Every page: `<Layout>` with title, unique description and JSON-LD; one `<h1>`; descriptive link text; FAQ arrays feed both markup and `faqSchema()`. Full checklist in `docs/agent-notes.md`.
 
