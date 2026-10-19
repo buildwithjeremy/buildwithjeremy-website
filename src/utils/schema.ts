@@ -54,7 +54,7 @@ export function personSchema() {
       name: SITE_NAME,
     },
     sameAs: [...SOCIAL_PROFILES, SIBLING_URL],
-    image: `${SITE_URL}/images/jeremy-headshot-1200.jpg`,
+    image: `${SITE_URL}/images/jeremy-portrait-1200.jpg`,
     description: '12 years at Google in ops, logistics, and product launches. Now helping service businesses build systems that scale.',
   };
 }
