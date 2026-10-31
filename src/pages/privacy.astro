@@ -1,0 +1,185 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { breadcrumbSchema, SITE_URL } from '../utils/schema';
+
+// Written from what the site actually does (src/pages/api/*, GoogleAnalytics.astro,
+// the Calendly embed on /contact/). If you add a form, a tracker, an embed or a new
+// service provider, update this page and LAST_UPDATED in the same PR.
+const LAST_UPDATED = 'October 30, 2026';
+const CONTACT_EMAIL = 'jeremy@buildwithjeremy.com';
+
+const jsonLd = [
+  breadcrumbSchema([
+    { name: 'Home', url: SITE_URL },
+    { name: 'Privacy Policy', url: `${SITE_URL}/privacy/` },
+  ]),
+];
+---
+
+<Layout
+  title="Privacy Policy | Build with Jeremy"
+  description="What information buildwithjeremy.com collects, why I collect it, who I share it with, and how to access, correct, or delete it."
+  jsonLd={jsonLd}
+>
+  <section class="theme-bg-primary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold theme-text-primary">Privacy Policy</h1>
+      <p class="mt-4 theme-text-secondary">Last updated: {LAST_UPDATED}</p>
+
+      <div class="prose mt-10 max-w-none">
+        <p>
+          Build with Jeremy is my consulting business. I'm Jeremy Pittman, based in California, USA
+          ("I", "me", "Build with Jeremy"). This policy covers buildwithjeremy.com and explains what I
+          collect, why, and what you can ask me to do with it. The short version: I collect what you
+          choose to give me plus basic analytics, I use it to answer you and run the business, and I
+          never sell it.
+        </p>
+
+        <h2>What I collect</h2>
+        <h3>Information you give me</h3>
+        <ul>
+          <li>
+            <strong>Booking a call (/contact/).</strong> The booking form is provided by Calendly. Your
+            name, email, chosen time, and any answers you type go to Calendly and to me.
+          </li>
+          <li>
+            <strong>Newsletter and resource sign-ups.</strong> Your email, your name if you give it,
+            and which form you used.
+          </li>
+          <li>
+            <strong>Checkout.</strong> If you buy a package on this site, payment runs through Stripe's
+            hosted checkout. Stripe collects your card and billing details; I receive your name, email,
+            and what you bought, and never see your full card number.
+          </li>
+          <li>
+            <strong>Email.</strong> Anything you send me directly, including replies to my emails.
+          </li>
+        </ul>
+
+        <h3>Information collected automatically</h3>
+        <ul>
+          <li>
+            <strong>Analytics.</strong> I use Google Analytics 4 to understand which pages are useful.
+            It records pages viewed, clicks on buttons and links, scroll depth on some pages,
+            approximate location, device and browser type, and how you arrived. Google Analytics sets
+            cookies to tell visits apart. It does not receive your name or email from me.
+          </li>
+          <li>
+            <strong>Server logs.</strong> My host, Vercel, logs standard request data such as IP
+            address, browser, and the page requested, for security and reliability.
+          </li>
+          <li>
+            <strong>Fonts.</strong> Pages load fonts from Google Fonts, which means your browser
+            contacts Google's servers and shares your IP address with them.
+          </li>
+          <li>
+            <strong>Browser storage.</strong> The site stores your light or dark theme choice in your
+            browser. It never leaves your device.
+          </li>
+        </ul>
+        <p>
+          I do not run advertising pixels, retargeting, or cross-site ad tracking on this site.
+        </p>
+
+        <h3>If I emailed you first</h3>
+        <p>
+          I sometimes reach out to service businesses by email. For that I use business contact
+          details (name, work email, company, role, and public information about the company) from
+          public sources and business data providers. Reply and ask me to stop, and I will add you to my
+          do-not-contact list. I use AI tools to help research companies and draft replies.
+        </p>
+
+        <h2>How I use it</h2>
+        <ul>
+          <li>To reply to you, prepare for our call, and follow up.</li>
+          <li>To deliver what you bought and send receipts and onboarding emails.</li>
+          <li>To send the newsletter you signed up for. Every issue has an unsubscribe link.</li>
+          <li>To understand how the site is used and improve it.</li>
+          <li>To keep the site secure and prevent abuse.</li>
+          <li>To meet legal, tax, and accounting obligations if you become a client.</li>
+        </ul>
+
+        <h2>Who I share it with</h2>
+        <p>
+          I do not sell your personal information, and I do not share it with anyone for their own
+          marketing. I share it only with the service providers that run parts of the business for me,
+          each under its own privacy terms:
+        </p>
+        <ul>
+          <li><strong>Vercel</strong>: website hosting.</li>
+          <li><strong>Google</strong>: Google Analytics, Google Fonts, and Google Workspace for my email.</li>
+          <li><strong>MailerLite</strong>: my contact list and newsletter.</li>
+          <li><strong>Stripe</strong>: checkout, invoices, and payments.</li>
+          <li><strong>Resend</strong>: purchase confirmation emails and my internal notifications.</li>
+          <li><strong>Calendly</strong>: call booking.</li>
+          <li><strong>Outreach and AI tools</strong>: the email outreach platforms and AI services I use to research and reply to leads.</li>
+        </ul>
+        <p>
+          I may also disclose information if the law requires it, to protect my rights or someone's
+          safety, or as part of a sale or reorganization of the business.
+        </p>
+
+        <h2>How long I keep it</h2>
+        <p>
+          I keep lead and contact information while there is a reasonable chance we will work together,
+          and delete it on request. Client and purchase records are kept as long as the engagement lasts
+          and afterwards as long as tax and accounting rules require. Google Analytics keeps user-level
+          data for at most 14 months.
+        </p>
+
+        <h2>Your choices and rights</h2>
+        <p>
+          Wherever you live, you can ask me to tell you what I hold about you, correct it, delete it, or
+          stop emailing you. Email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and I will
+          respond within 30 days. I may need to confirm the request comes from you. I will not treat you
+          differently for asking. California residents have these rights under the CCPA, and I honor
+          them for everyone.
+        </p>
+        <ul>
+          <li>Unsubscribe from the newsletter with the link at the bottom of any issue.</li>
+          <li>
+            Block or delete cookies in your browser, or install Google's
+            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.
+          </li>
+        </ul>
+
+        <h2>Security</h2>
+        <p>
+          The site is served only over HTTPS, secrets are kept in a password manager, and I limit who
+          can see client and lead data. No system is perfectly secure, so I cannot guarantee it, but I
+          will tell you if a breach affects your information.
+        </p>
+
+        <h2>Client work</h2>
+        <p>
+          This policy covers my website and my own sales process. Data I handle while working inside a
+          client's business, or inside a system I build for a client, belongs to that client and is
+          governed by my agreement with them and by their own privacy policy.
+        </p>
+
+        <h2>Children</h2>
+        <p>
+          This site is for businesses. It is not directed at children under 16, and I do not knowingly
+          collect their information.
+        </p>
+
+        <h2>Other websites</h2>
+        <p>
+          Links to other sites, including buildmysystem.co, LinkedIn, X, YouTube, and Upwork, are
+          covered by those sites' own privacy policies.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          When I change this policy I update the date at the top of this page. If a change materially
+          affects how I use information you already gave me, I will email you first.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Questions or requests: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Layout>
