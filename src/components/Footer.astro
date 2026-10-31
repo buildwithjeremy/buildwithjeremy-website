@@ -131,7 +131,11 @@ const footerLinks = {
 
     <!-- Copyright & Theme Toggle -->
     <div class="mt-12 pt-8 border-t theme-border-inverse flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="theme-text-inverse-faint text-sm">&copy; {currentYear} Build with Jeremy. All rights reserved.</p>
+      <p class="theme-text-inverse-faint text-sm">
+        &copy; {currentYear} Build with Jeremy. All rights reserved.
+        <span class="mx-2" aria-hidden="true">&middot;</span>
+        <a href="/privacy/" class="hover:theme-text-inverse transition-colors">Privacy Policy</a>
+      </p>
       <div class="flex items-center gap-3">
         <span class="theme-text-inverse-faint text-xs">Theme:</span>
         <ThemeToggle />
