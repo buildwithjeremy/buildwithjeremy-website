@@ -1,14 +1,28 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ChangeHistory, { type ChangeEntry } from '../components/ChangeHistory.astro';
 import { breadcrumbSchema, SITE_URL } from '../utils/schema';
 
 // Written from what the site actually does (src/pages/api/*, GoogleAnalytics.astro,
 // the Calendly embed on /contact/). If you add a form, a tracker, an embed or a new
 // service provider, update this page in the same PR: add a CHANGE_HISTORY entry
-// (newest first); the "Last updated" date comes from the newest entry.
-const CHANGE_HISTORY = [
-  { date: 'October 30, 2026', change: 'Clarified when I may send marketing email.' },
-  { date: 'October 30, 2026', change: 'First published.' },
+// (newest first, with a one-line summary and the detail); "Last updated" comes from the newest entry.
+const CHANGE_HISTORY: ChangeEntry[] = [
+  {
+    date: 'October 30, 2026',
+    summary: 'Clarified when I may send marketing email',
+    details: 'I may send occasional marketing email to anyone who has submitted a form, booked a call, signed up for something, or paid me, unless they told me not to. Before this change the policy only mentioned the newsletter for people who signed up for it.',
+  },
+  {
+    date: 'October 30, 2026',
+    summary: 'Replaced the change-notice promise with this change history',
+    details: 'The first version said I would email you before a material change. Changes are now recorded here instead, with the date at the top of the page updated each time.',
+  },
+  {
+    date: 'October 30, 2026',
+    summary: 'First published',
+    details: 'First version of this policy, written from an audit of what the site actually collects: forms, analytics, call booking, checkout, and the service providers that handle that information.',
+  },
 ];
 const LAST_UPDATED = CHANGE_HISTORY[0].date;
 const CONTACT_EMAIL = 'jeremy@buildwithjeremy.com';
@@ -188,14 +202,9 @@ const jsonLd = [
         <p>
           Questions or requests: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
-
-        <h2>Change history</h2>
-        <ul>
-          {CHANGE_HISTORY.map((c) => (
-            <li><strong>{c.date}</strong>: {c.change}</li>
-          ))}
-        </ul>
       </div>
+
+      <ChangeHistory entries={CHANGE_HISTORY} />
     </div>
   </section>
 </Layout>

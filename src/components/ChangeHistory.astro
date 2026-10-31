@@ -1,0 +1,39 @@
+---
+/**
+ * Change history for the legal pages (/privacy, /terms). One expandable entry per
+ * change, newest first; the page's "Last updated" date comes from entries[0].date.
+ * Shared: keep identical in buildwithjeremy-website and buildmysystem-website.
+ */
+export interface ChangeEntry {
+  date: string;
+  summary: string;
+  details: string;
+}
+
+interface Props {
+  entries: ChangeEntry[];
+}
+
+const { entries } = Astro.props;
+---
+
+<section class="mt-16 pt-10 border-t" style="border-color: var(--border-color);" aria-labelledby="change-history">
+  <h2 id="change-history" class="text-2xl font-bold theme-text-primary">Change history</h2>
+  <p class="mt-2 text-sm theme-text-secondary">Every change to this page, newest first. Select an entry to see what changed.</p>
+  <div class="mt-6 space-y-3">
+    {entries.map((entry) => (
+      <details class="group theme-bg-secondary rounded-xl border" style="border-color: var(--border-color);">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer px-5 py-4 theme-text-primary">
+          <span>
+            <span class="block text-sm theme-text-secondary">{entry.date}</span>
+            <span class="font-semibold">{entry.summary}</span>
+          </span>
+          <svg class="h-5 w-5 shrink-0 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <p class="px-5 pb-5 theme-text-secondary">{entry.details}</p>
+      </details>
+    ))}
+  </div>
+</section>
