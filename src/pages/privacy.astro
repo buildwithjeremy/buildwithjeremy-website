@@ -4,8 +4,12 @@ import { breadcrumbSchema, SITE_URL } from '../utils/schema';
 
 // Written from what the site actually does (src/pages/api/*, GoogleAnalytics.astro,
 // the Calendly embed on /contact/). If you add a form, a tracker, an embed or a new
-// service provider, update this page and LAST_UPDATED in the same PR.
-const LAST_UPDATED = 'October 30, 2026';
+// service provider, update this page in the same PR: add a CHANGE_HISTORY entry
+// (newest first); the "Last updated" date comes from the newest entry.
+const CHANGE_HISTORY = [
+  { date: 'October 30, 2026', change: 'First published.' },
+];
+const LAST_UPDATED = CHANGE_HISTORY[0].date;
 const CONTACT_EMAIL = 'jeremy@buildwithjeremy.com';
 
 const jsonLd = [
@@ -171,14 +175,21 @@ const jsonLd = [
 
         <h2>Changes to this policy</h2>
         <p>
-          When I change this policy I update the date at the top of this page. If a change materially
-          affects how I use information you already gave me, I will email you first.
+          When I change this policy I update the date at the top of this page and add a line to the
+          change history below.
         </p>
 
         <h2>Contact</h2>
         <p>
           Questions or requests: <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
         </p>
+
+        <h2>Change history</h2>
+        <ul>
+          {CHANGE_HISTORY.map((c) => (
+            <li><strong>{c.date}</strong>: {c.change}</li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
