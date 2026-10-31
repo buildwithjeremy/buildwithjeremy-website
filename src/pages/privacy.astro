@@ -7,6 +7,7 @@ import { breadcrumbSchema, SITE_URL } from '../utils/schema';
 // service provider, update this page in the same PR: add a CHANGE_HISTORY entry
 // (newest first); the "Last updated" date comes from the newest entry.
 const CHANGE_HISTORY = [
+  { date: 'October 30, 2026', change: 'Clarified when I may send marketing email.' },
   { date: 'October 30, 2026', change: 'First published.' },
 ];
 const LAST_UPDATED = CHANGE_HISTORY[0].date;
@@ -97,7 +98,11 @@ const jsonLd = [
         <ul>
           <li>To reply to you, prepare for our call, and follow up.</li>
           <li>To deliver what you bought and send receipts and onboarding emails.</li>
-          <li>To send the newsletter you signed up for. Every issue has an unsubscribe link.</li>
+          <li>
+            To send occasional marketing email, such as my newsletter, if you have submitted a form,
+            booked a call, signed up for something, or paid me, unless you told me not to. Every
+            marketing email has an unsubscribe link.
+          </li>
           <li>To understand how the site is used and improve it.</li>
           <li>To keep the site secure and prevent abuse.</li>
           <li>To meet legal, tax, and accounting obligations if you become a client.</li>
@@ -140,7 +145,7 @@ const jsonLd = [
           them for everyone.
         </p>
         <ul>
-          <li>Unsubscribe from the newsletter with the link at the bottom of any issue.</li>
+          <li>Unsubscribe from marketing email with the link at the bottom of any message.</li>
           <li>
             Block or delete cookies in your browser, or install Google's
             <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics opt-out add-on</a>.
