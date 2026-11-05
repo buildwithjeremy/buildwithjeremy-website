@@ -22,8 +22,8 @@
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
-    "@remotion/bundler": "^4.0.414",
-    "@remotion/cli": "^4.0.414",
+    "@remotion/bundler": "^4.0.541",
+    "@remotion/cli": "^4.0.541",
     "@remotion/media-utils": "^4.0.414",
     "@remotion/paths": "^4.0.414",
     "@remotion/three": "^4.0.414",
