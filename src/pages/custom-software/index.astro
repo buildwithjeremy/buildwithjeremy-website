@@ -1,13 +1,17 @@
 ---
 // Public custom software page. The BWJ side of the cross-brand pair: Build with
 // Jeremy answers "who do I hire", Build My System answers "what do we build".
-// Mirror of buildmysystem.co/consulting, which points the other way.
-// Cross-site links carry no utm parameters (see BrandHandoff.astro for why).
+// Mirror of buildmysystem.co/consulting (same sections, pointing the other way).
 // The client-only plan builder that used to live here is /your-plan/.
 import Layout from '../../layouts/Layout.astro';
 import { breadcrumbSchema, faqSchema, serviceSchema, SITE_URL } from '../../utils/schema';
+import { crossBrandHref } from '../../utils/cross-brand';
 
 const url = `${SITE_URL}/custom-software`;
+
+const bmsHero = crossBrandHref('https://buildmysystem.co/pricing', 'custom-software-hero');
+const bmsQuote = crossBrandHref('https://buildmysystem.co/pricing', 'custom-software-compare');
+const bmsHome = crossBrandHref('https://buildmysystem.co', 'custom-software-cta');
 
 const faqs = [
   {
@@ -23,7 +27,7 @@ const faqs = [
   {
     question: 'How much does custom software cost?',
     answer:
-      'It depends on how much of the business the system has to run. Build My System publishes its pricing and its quote builder gives you an itemized number in a few minutes. Payment plans are available.',
+      'It depends on how much of the business the system has to run. Build My System publishes its pricing, and its quote builder gives you an itemized number in a few minutes. Payment plans are available.',
   },
   {
     question: 'Should I fix my process before building software?',
@@ -45,6 +49,8 @@ const jsonLd = [
   }),
   faqSchema(faqs),
 ];
+
+const check = 'M5 13l4 4L19 7';
 ---
 
 <Layout
@@ -52,121 +58,192 @@ const jsonLd = [
   description="Need custom software, not consulting? Systems for service businesses are built under Build My System, my software company. Here is which one you need."
   jsonLd={jsonLd}
 >
-  <article class="py-16 lg:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-
-      <header>
-        <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">Custom Software</p>
-        <h1 class="mt-3 text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
+  <!-- HERO -->
+  <section class="theme-bg-primary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="max-w-3xl mx-auto text-center">
+        <p class="text-brand font-semibold mb-3 text-sm uppercase tracking-wide">Custom Software</p>
+        <h1 class="text-4xl sm:text-5xl font-bold theme-text-primary leading-tight">
           Sometimes the answer is a system, not more advice.
         </h1>
-        <p class="mt-6 text-xl leading-relaxed text-gray-700 dark:text-gray-300">
-          Build with Jeremy is my consulting practice. When a business needs software built, that work happens at
-          Build My System, my software company for service businesses. Same team, same standards, published pricing.
+        <p class="mt-6 text-lg theme-text-secondary leading-relaxed">
+          Plenty of operational problems end with something that needs to be built. When that happens, I don't hand
+          you to a dev shop. The software gets built under Build My System, my software company for service
+          businesses: same team, same standards, published pricing.
         </p>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="https://buildmysystem.co/pricing" data-track="cta_click" class="inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
-            Build your quote at Build My System
-          </a>
-          <a href="/contact/" data-track="cta_click" class="inline-block rounded-lg border border-gray-300 dark:border-gray-600 px-6 py-3 font-semibold text-gray-900 dark:text-white hover:border-indigo-600">
-            Book a free Systems Audit call
-          </a>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a href={bmsHero} data-track="cta_click" class="btn btn-accent text-lg px-8 py-4">Build your quote at Build My System</a>
+          <a href="/contact/" data-track="cta_click" class="btn btn-outline text-lg px-8 py-4">Book a free Systems Audit call</a>
         </div>
-      </header>
+      </div>
+    </div>
+  </section>
 
-      <div class="mt-12 space-y-12">
-
-        <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Consulting or software: which do you need?</h2>
-          <div class="mt-6 grid gap-6 sm:grid-cols-2">
-            <div class="rounded-2xl border-2 border-indigo-600 dark:border-indigo-400 p-6">
-              <p class="text-sm font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">Build My System</p>
-              <h3 class="mt-2 text-xl font-bold text-gray-900 dark:text-white">Custom software</h3>
-              <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>You know what you need built</li>
-                <li>The problem is the tools: too many apps, too much retyping</li>
-                <li>You want one system that runs the work and the reporting</li>
-                <li>You want it hosted, maintained, and improved over time</li>
-              </ul>
-              <a href="https://buildmysystem.co" class="mt-6 inline-block font-semibold text-indigo-600 dark:text-indigo-400">Go to Build My System &rarr;</a>
+  <!-- THE DIFFERENCE -->
+  <section class="theme-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <h2 class="text-3xl font-bold theme-text-primary">Software or consulting: which do you need?</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <!-- Build My System -->
+        <div class="card p-8 border-2 border-brand relative flex flex-col">
+          <span class="absolute -top-3 left-6 bg-brand text-white text-xs font-bold px-3 py-1 rounded-full">Custom software</span>
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
             </div>
-            <div class="rounded-2xl border border-gray-200 dark:border-gray-700 p-6">
-              <p class="text-sm font-semibold uppercase tracking-wide text-gray-500 dark:text-gray-400">Build with Jeremy</p>
-              <h3 class="mt-2 text-xl font-bold text-gray-900 dark:text-white">Operations consulting</h3>
-              <ul class="mt-4 space-y-2 text-gray-700 dark:text-gray-300">
-                <li>You need help figuring out what to build</li>
-                <li>The problem is process, ownership, or the team</li>
-                <li>You want a fractional COO on retainer</li>
-                <li>You want the system to stick after it ships</li>
-              </ul>
-              <a href="/services/" class="mt-6 inline-block font-semibold text-indigo-600 dark:text-indigo-400">See consulting services &rarr;</a>
-            </div>
+            <h3 class="text-xl font-bold theme-text-primary">Build My System</h3>
           </div>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Many clients use both</h2>
-          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            The order depends on where the business is stuck.
-          </p>
-          <ul class="mt-6 space-y-4">
+          <p class="theme-text-secondary mb-6">The software your business runs on, built, hosted, and improved for you.</p>
+          <ul class="space-y-3 flex-1">
             {[
-              ['Consulting first', 'Fix the process, then build the system around it. No point automating a workflow that is about to change.'],
-              ['Software first', 'Get the system running, use it for a few months, then bring in consulting to tighten how the team works with it.'],
-              ['Both together', 'An operations retainer alongside a system that is being built and improved in parallel.'],
-            ].map(([t, d]) => (
-              <li class="flex gap-4">
-                <span class="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-indigo-600 dark:bg-indigo-400"></span>
-                <div>
-                  <p class="font-semibold text-gray-900 dark:text-white">{t}</p>
-                  <p class="mt-1 text-gray-700 dark:text-gray-300">{d}</p>
-                </div>
+              'You know what you need built',
+              'The problem is the tools: too many apps, too much retyping',
+              'You want one system that runs the work and the reporting',
+              'You want it hosted, maintained, and improved over time',
+            ].map((item) => (
+              <li class="flex items-start gap-2 theme-text-secondary text-sm">
+                <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={check} /></svg>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Why the software lives at a separate company</h2>
-          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            Consulting is a conversation about how your business runs. Software is a product with a build, a monthly
-            bill, and a system that has to stay up. Keeping them apart means each one has clear pricing and a clear
-            scope, and you can hire one without the other.
-          </p>
-          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            I spent 12 years at Google in operations, programs, and product launches. Both companies run on that: I
-            design the system around how your team actually works, and it gets built to be relied on.
-          </p>
-        </section>
-
-        <section>
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Common questions</h2>
-          <div class="mt-6 space-y-4">
-            {faqs.map((faq) => (
-              <details data-track="faq_open" class="group rounded-lg border border-gray-200 dark:border-gray-700 p-5">
-                <summary class="cursor-pointer font-semibold text-gray-900 dark:text-white list-none flex justify-between gap-4">
-                  <span>{faq.question}</span>
-                  <span class="text-gray-400 transition-transform group-open:rotate-180">&#9662;</span>
-                </summary>
-                <p class="mt-3 text-gray-700 dark:text-gray-300 leading-relaxed">{faq.answer}</p>
-              </details>
-            ))}
+          <div class="mt-auto pt-6 border-t" style="border-color: var(--border-color);">
+            <p class="text-sm theme-text-muted">Published pricing and an itemized quote in a few minutes. Payment plans available.</p>
+            <a href={bmsQuote} data-track="cta_click" class="btn btn-accent w-full text-center mt-4">Build your quote &rarr;</a>
           </div>
-        </section>
+        </div>
 
-        <section class="rounded-2xl bg-gray-50 dark:bg-gray-800 p-8">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Not sure which you need?</h2>
-          <p class="mt-4 text-gray-700 dark:text-gray-300 leading-relaxed">
-            Book a free Systems Audit call. Thirty minutes, and we will work out whether you need software,
-            consulting, or both. If you already know what you want built, go straight to
-            <a href="https://buildmysystem.co/pricing" class="text-indigo-600 dark:text-indigo-400 font-semibold">the Build My System quote builder</a>.
-          </p>
-          <a href="/contact/" data-track="cta_click" class="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-700">
-            Book a free Systems Audit call
-          </a>
-        </section>
-
+        <!-- Build with Jeremy -->
+        <div class="card p-8 flex flex-col">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            </div>
+            <h3 class="text-xl font-bold theme-text-primary">Build with Jeremy</h3>
+          </div>
+          <p class="theme-text-secondary mb-6">Fractional COO, strategic consulting, and process improvement.</p>
+          <ul class="space-y-3 flex-1">
+            {[
+              'You need help figuring out what to build',
+              'The problem is process, ownership, or the team',
+              'You want a fractional COO on retainer',
+              'You want the system to stick after it ships',
+            ].map((item) => (
+              <li class="flex items-start gap-2 theme-text-secondary text-sm">
+                <svg class="w-4 h-4 text-accent-dark flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={check} /></svg>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <div class="mt-auto pt-6 border-t" style="border-color: var(--border-color);">
+            <p class="text-sm theme-text-muted">Starting at $1,250/mo (Strategic Ops Partner retainer)</p>
+            <a href="/services/" data-track="cta_click" class="btn btn-primary w-full text-center mt-4">See consulting services</a>
+          </div>
+        </div>
       </div>
     </div>
-  </article>
+  </section>
+
+  <!-- ABOUT JEREMY -->
+  <section class="theme-bg-primary">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="card p-8">
+        <div class="flex flex-col sm:flex-row gap-6 items-start">
+          <picture class="flex-shrink-0">
+            <source type="image/avif" srcset="/images/jeremy-headshot-avatar-96.avif 96w, /images/jeremy-headshot-avatar-160.avif 160w" sizes="80px" />
+            <source type="image/webp" srcset="/images/jeremy-headshot-avatar-96.webp 96w, /images/jeremy-headshot-avatar-160.webp 160w" sizes="80px" />
+            <img
+              src="/images/jeremy-headshot-avatar-160.jpg"
+              alt="Jeremy Pittman, founder of Build with Jeremy and Build My System"
+              width="80"
+              height="80"
+              class="w-20 h-20 rounded-full object-cover"
+              loading="lazy"
+            />
+          </picture>
+          <div>
+            <h3 class="font-bold theme-text-primary text-xl">Jeremy Pittman</h3>
+            <p class="text-brand text-sm font-medium mb-4">Founder, Build with Jeremy &amp; Build My System</p>
+            <div class="space-y-3 theme-text-secondary text-sm">
+              <p>
+                12 years at Google in operations, programs, and product launches. Now I help service businesses fix how
+                they run and build the systems that keep them running.
+              </p>
+              <p>
+                <strong class="theme-text-primary">Build with Jeremy</strong> is for businesses that need operations
+                consulting. <strong class="theme-text-primary">Build My System</strong> is for businesses that need
+                custom software. Plenty need both.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHEN YOU NEED BOTH -->
+  <section class="theme-bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <h2 class="text-3xl font-bold theme-text-primary">Many clients use both.</h2>
+        <p class="mt-4 text-lg theme-text-secondary">
+          The order depends on where the business is stuck.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        {[
+          ['Consulting first', 'Fix the process, then build the system around it. No point automating a workflow that is about to change.'],
+          ['Software first', 'Get the system running, use it for a few months, then bring in consulting to tighten how the team works with it.'],
+          ['Both together', 'An operations retainer alongside a system that is being built and improved in parallel.'],
+        ].map(([title, body], i) => (
+          <div class="card p-6 text-center">
+            <div class="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center mx-auto mb-4">
+              <span class="text-brand font-bold">{i + 1}</span>
+            </div>
+            <h3 class="font-bold theme-text-primary mb-2">{title}</h3>
+            <p class="theme-text-secondary text-sm">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="theme-bg-primary">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24">
+      <h2 class="text-3xl font-bold theme-text-primary text-center mb-10">Common questions</h2>
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details data-track="faq_open" class="group theme-bg-secondary rounded-xl border transition-colors" style="border-color: var(--border-color);">
+            <summary class="flex items-center justify-between cursor-pointer p-6 font-semibold theme-text-primary">
+              {faq.question}
+              <svg class="h-5 w-5 theme-text-muted group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <div class="px-6 pb-6 theme-text-secondary">{faq.answer}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-gradient-to-br from-brand to-primary py-16 lg:py-24">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-white">Not sure which you need?</h2>
+      <p class="mt-4 text-lg text-white/80">
+        Book a free Systems Audit call. We'll work out together whether you need software, consulting, or both.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/contact/" data-track="cta_click" class="btn btn-accent text-lg px-8 py-4">Book a free Systems Audit call</a>
+        <a href={bmsHome} data-track="cta_click" class="btn text-lg px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-brand transition-colors">
+          Visit Build My System &rarr;
+        </a>
+      </div>
+      <p class="mt-4 text-white/60 text-sm">30 minutes. I'll tell you honestly if we're a good fit.</p>
+    </div>
+  </section>
 </Layout>

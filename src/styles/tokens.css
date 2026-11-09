@@ -238,12 +238,16 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Typography */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-primary);
+/* Typography. In @layer base so a utility on the element wins: unlayered, this
+   rule beat text-white and left every white CTA heading on a brand gradient
+   near-black (fixed 2026-11-09). */
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--text-primary);
+  }
 }
 
 /* ===== PROSE STYLING ===== */
