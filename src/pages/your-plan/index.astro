@@ -1,0 +1,397 @@
+---
+// Client-only plan builder: the Stripe checkout for hosting, Unlimited Edits and
+// add-ons. Shared by direct link after a call, so it is noindex and kept out of
+// the sitemap and site navigation. The public custom software page is
+// /custom-software/, which hands off to buildmysystem.co.
+import Layout from '../../layouts/Layout.astro';
+import {
+  hosting,
+  unlimitedEdits,
+  addons,
+  formatPrice,
+  formatAddonPrice,
+  getClientPricing,
+} from '../../config/pricing';
+import { breadcrumbSchema, faqSchema, SITE_URL } from '../../utils/schema';
+
+// Serialize pricing for client-side JS (no Stripe IDs leak to the browser)
+const clientPricing = JSON.stringify(getClientPricing());
+
+// Pre-compute addon entries for the template
+const addonEntries = Object.entries(addons);
+
+const pricingFaqs = [
+  { question: `What's included in the ${formatPrice(hosting.amount)}/mo base?`, answer: 'Hosting, infrastructure, monitoring, backups, security patches, dependency updates, bug fixes, and email & phone support. Your system stays up, secure, and maintained. No per-seat pricing — just one flat fee.' },
+  { question: 'Can I start with just hosting and add Unlimited Edits later?', answer: "Absolutely. Many clients start with hosting and add Unlimited Edits when they're ready to iterate. You can add or remove it any time — it's month-to-month with no commitment." },
+  { question: 'Can I add or remove add-ons later?', answer: 'Yes. Add-ons can be added or dropped at any time. Changes take effect on your next billing cycle.' },
+  { question: 'What does "usage fees may apply" mean?', answer: "Some AI features (video, image, voice) use third-party APIs with per-use costs. The monthly fee covers the integration and a reasonable amount of usage. If usage exceeds typical levels, we'll work with you on fair overage pricing — no surprises." },
+  { question: 'Can I cancel anytime?', answer: 'Yes. No contracts, no cancellation fees. Email us or manage it directly through your billing portal.' },
+];
+---
+
+<Layout
+  title="Your Plan | Build with Jeremy"
+  description="Manage your custom software plan. Hosting, unlimited edits, and powerful add-ons — all managed by Build with Jeremy."
+  noindex={true}
+  jsonLd={[
+    breadcrumbSchema([
+      { name: 'Home', url: SITE_URL },
+      { name: 'Your Plan', url: `${SITE_URL}/your-plan` },
+    ]),
+    faqSchema(pricingFaqs),
+  ]}
+>
+  <section class="theme-bg-primary py-16 md:py-24">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- Header -->
+      <div class="text-center mb-12">
+        <p class="text-brand font-semibold text-sm uppercase tracking-wide mb-3">Your System is Live</p>
+        <h1 class="text-4xl sm:text-5xl font-bold theme-text-primary mb-4">
+          Your system is built.<br class="hidden sm:block" /> Now keep it running.
+        </h1>
+        <p class="text-lg theme-text-secondary max-w-2xl mx-auto">
+          Hosting is included with every system. Add Unlimited Edits or feature add-ons whenever you're ready. Month-to-month, no contracts.
+        </p>
+      </div>
+
+      <!-- Cancelled banner (shown when returning from Stripe) -->
+      <div id="cancelled-banner" class="hidden mb-8 p-4 rounded-xl bg-brand/10 text-center">
+        <p class="theme-text-primary">No worries — your selection is still here. No charges were made.</p>
+      </div>
+
+      <!-- ═══ BASE PLAN (always included) ═══ -->
+      <div class="mb-8">
+        <div class="rounded-2xl border-2 border-accent p-6 theme-bg-secondary relative">
+          <div class="absolute -top-3 left-6">
+            <span class="bg-accent text-black text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Included</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-4">
+            <div>
+              <h2 class="text-xl font-bold theme-text-primary">{hosting.label}</h2>
+              <p class="text-sm theme-text-secondary mt-1">{hosting.description}</p>
+            </div>
+            <div class="flex items-baseline gap-1 flex-shrink-0">
+              <span class="text-sm theme-text-secondary mr-1">Starting at</span>
+              <span class="text-3xl font-bold text-accent">{formatPrice(hosting.amount)}</span>
+              <span class="theme-text-secondary">/month</span>
+            </div>
+          </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-2 text-sm theme-text-secondary">
+            {['Hosting & infrastructure', 'Monitoring & backups', 'Security patches & updates', 'Bug fixes', 'Email & phone support', 'PDF generation & docs'].map((item) => (
+              <div class="flex items-center gap-2">
+                <svg class="h-4 w-4 text-accent flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                {item}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ UNLIMITED EDITS — featured upgrade ═══ -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold theme-text-primary mb-2">Ready to keep improving?</h2>
+        <p class="theme-text-secondary mb-4">Most clients add this once they're ready to iterate on their system.</p>
+
+        <label
+          id="edits-card"
+          class="block rounded-2xl border-2 p-6 cursor-pointer transition-all theme-bg-secondary hover:border-brand relative"
+          style="border-color: var(--border-color);"
+        >
+          <div class="absolute -top-3 right-6">
+            <span class="bg-brand text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Popular</span>
+          </div>
+          <div class="flex items-start gap-4">
+            <input
+              type="checkbox"
+              id="unlimited-edits-toggle"
+              class="mt-1.5 h-5 w-5 rounded accent-brand flex-shrink-0"
+            />
+            <div class="flex-1">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
+                <div>
+                  <h3 class="text-xl font-bold theme-text-primary">{unlimitedEdits.label}</h3>
+                  <p class="text-sm theme-text-secondary mt-1">{unlimitedEdits.description}</p>
+                </div>
+                <div class="flex items-baseline gap-1 flex-shrink-0">
+                  <span class="text-3xl font-bold text-accent">+{formatPrice(unlimitedEdits.amount)}</span>
+                  <span class="theme-text-secondary">/month</span>
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm theme-text-secondary">
+                {['Unlimited feature requests', 'Small changes in ~48 hours', 'One request active at a time', 'Larger features as weekly epics', 'Async updates (written + Loom)', 'Monthly 30-min check-in call'].map((item) => (
+                  <div class="flex items-center gap-2">
+                    <svg class="h-4 w-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                    {item}
+                  </div>
+                ))}
+              </div>
+              <p class="mt-3 text-xs theme-text-muted">Month-to-month. Start when you need it, pause when you don't.</p>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <!-- ═══ FEATURE ADD-ONS ═══ -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold theme-text-primary mb-2">Feature Add-ons</h2>
+        <p class="theme-text-secondary mb-6">Each add-on adds real capability — and real maintenance complexity. Add or drop anytime.</p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {addonEntries.map(([key, addon]) => (
+            <label
+              class="addon-card flex items-start gap-3 rounded-xl border p-4 cursor-pointer transition-all hover:border-brand theme-bg-secondary"
+              style="border-color: var(--border-color);"
+            >
+              <input type="checkbox" data-addon={key} class="addon-checkbox mt-1 h-4 w-4 rounded accent-brand" />
+              <div class="flex-1">
+                <div class="flex items-baseline justify-between">
+                  <span class="font-semibold theme-text-primary text-sm">{addon.label}</span>
+                  <span class="text-accent font-bold text-sm">{formatAddonPrice(addon)}</span>
+                </div>
+                <p class="text-xs theme-text-muted mt-1">{addon.description}</p>
+                {addon.supportsQuantity && (
+                  <div class="api-qty hidden mt-2 flex items-center gap-2">
+                    <label class="text-xs theme-text-secondary">How many?</label>
+                    <select data-addon-qty={key} class="text-xs rounded-md border px-2 py-1 theme-bg-primary theme-text-primary" style="border-color: var(--border-color);">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </div>
+                )}
+              </div>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <!-- ═══ SUMMARY & CTA ═══ -->
+      <div class="sticky bottom-0 z-10 -mx-4 sm:mx-0">
+        <div class="theme-bg-secondary border-t sm:border sm:rounded-2xl p-6 shadow-lg" style="border-color: var(--border-color);">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <p class="text-sm theme-text-secondary">Monthly total</p>
+              <div class="flex items-baseline gap-2">
+                <span id="total-price" class="text-3xl font-bold text-accent">{formatPrice(hosting.amount)}</span>
+                <span class="theme-text-secondary">/month</span>
+              </div>
+              <p id="summary-line" class="text-xs theme-text-muted mt-1">{hosting.label}</p>
+            </div>
+            <button
+              id="checkout-btn"
+              data-track-source="checkout"
+              type="button"
+              class="btn btn-primary w-full sm:w-auto px-8 py-3 text-base font-semibold transition-opacity"
+            >
+              Subscribe Now
+            </button>
+          </div>
+          <div id="checkout-error" class="hidden mt-3 text-sm text-red-500 text-center"></div>
+        </div>
+      </div>
+
+      <!-- ═══ FAQ ═══ -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-bold theme-text-primary mb-6 text-center">Questions</h2>
+        <div class="max-w-2xl mx-auto space-y-4">
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              What's included in the {formatPrice(hosting.amount)}/mo base?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Hosting, infrastructure, monitoring, backups, security patches, dependency updates, bug fixes, and email & phone support. Your system stays up, secure, and maintained. No per-seat pricing — just one flat fee.</p>
+          </details>
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Can I start with just hosting and add Unlimited Edits later?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Absolutely. Many clients start with hosting and add Unlimited Edits when they're ready to iterate. You can add or remove it any time — it's month-to-month with no commitment.</p>
+          </details>
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Can I add or remove add-ons later?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Yes. Add-ons can be added or dropped at any time. Changes take effect on your next billing cycle.</p>
+          </details>
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              What does "usage fees may apply" mean?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Some AI features (video, image, voice) use third-party APIs with per-use costs. The monthly fee covers the integration and a reasonable amount of usage. If usage exceeds typical levels, we'll work with you on fair overage pricing — no surprises.</p>
+          </details>
+          <details data-track="faq_open" class="group rounded-xl border p-4 theme-bg-secondary" style="border-color: var(--border-color);">
+            <summary class="font-semibold theme-text-primary cursor-pointer list-none flex items-center justify-between">
+              Can I cancel anytime?
+              <svg class="h-5 w-5 transition-transform group-open:rotate-180 theme-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <p class="mt-3 text-sm theme-text-secondary">Yes. No contracts, no cancellation fees. Email us or manage it directly through your billing portal.</p>
+          </details>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Pricing data for client-side JS (no Stripe IDs) -->
+  <script id="pricing-data" type="application/json" set:html={clientPricing} />
+
+  <script>
+    // Load pricing from the server-rendered config
+    const pricingData = JSON.parse(
+      document.getElementById('pricing-data')!.textContent!
+    );
+
+    const HOSTING_PRICE: number = pricingData.hosting.amount;
+    const EDITS_PRICE: number = pricingData.unlimitedEdits.amount;
+    const addonPrices: Record<string, number> = {};
+    const addonQuantitySupport: Record<string, boolean> = {};
+    for (const [key, addon] of Object.entries(pricingData.addons) as [string, any][]) {
+      addonPrices[key] = addon.amount;
+      addonQuantitySupport[key] = addon.supportsQuantity;
+    }
+
+    // State — hosting is always included
+    let includeEdits = false;
+    const selectedAddons = new Map<string, number>();
+
+    // DOM refs
+    const editsToggle = document.getElementById('unlimited-edits-toggle') as HTMLInputElement;
+    const editsCard = document.getElementById('edits-card') as HTMLElement;
+    const addonCheckboxes = document.querySelectorAll<HTMLInputElement>('.addon-checkbox');
+    const totalEl = document.getElementById('total-price')!;
+    const summaryEl = document.getElementById('summary-line')!;
+    const checkoutBtn = document.querySelector<HTMLButtonElement>('[data-track-source="checkout"]')!;
+    const errorEl = document.getElementById('checkout-error')!;
+    const cancelledBanner = document.getElementById('cancelled-banner')!;
+
+    // Show cancelled banner if returning from Stripe
+    if (new URLSearchParams(window.location.search).has('cancelled')) {
+      cancelledBanner.classList.remove('hidden');
+      window.history.replaceState({}, '', window.location.pathname);
+    }
+
+    // Unlimited Edits toggle
+    editsToggle.addEventListener('change', () => {
+      includeEdits = editsToggle.checked;
+      editsCard.style.borderColor = includeEdits ? 'var(--color-brand)' : 'var(--border-color)';
+      updateSummary();
+    });
+
+    // Add-on toggles
+    addonCheckboxes.forEach((cb) => {
+      cb.addEventListener('change', () => {
+        const addonId = cb.dataset.addon!;
+        if (cb.checked) {
+          selectedAddons.set(addonId, 1);
+        } else {
+          selectedAddons.delete(addonId);
+        }
+
+        // Toggle quantity selector for quantity-supporting addons
+        if (addonQuantitySupport[addonId]) {
+          const qtyContainer = cb.closest('.addon-card')?.querySelector('.api-qty') as HTMLElement;
+          if (qtyContainer) {
+            qtyContainer.classList.toggle('hidden', !cb.checked);
+          }
+        }
+
+        // Update card border
+        const card = cb.closest('.addon-card') as HTMLElement;
+        if (card) {
+          card.style.borderColor = cb.checked ? 'var(--color-brand)' : 'var(--border-color)';
+        }
+
+        updateSummary();
+      });
+    });
+
+    // Quantity selectors
+    document.querySelectorAll<HTMLSelectElement>('[data-addon-qty]').forEach((sel) => {
+      sel.addEventListener('change', () => {
+        const addonId = sel.dataset.addonQty!;
+        if (selectedAddons.has(addonId)) {
+          selectedAddons.set(addonId, parseInt(sel.value, 10));
+          updateSummary();
+        }
+      });
+    });
+
+    function formatCents(cents: number): string {
+      return `$${(cents / 100).toLocaleString()}`;
+    }
+
+    function updateSummary() {
+      let totalCents = HOSTING_PRICE;
+      const parts: string[] = ['Hosting'];
+
+      if (includeEdits) {
+        totalCents += EDITS_PRICE;
+        parts.push('Unlimited Edits');
+      }
+
+      selectedAddons.forEach((qty, addonId) => {
+        totalCents += addonPrices[addonId] * qty;
+      });
+
+      const addonCount = selectedAddons.size;
+      if (addonCount > 0) {
+        parts.push(`${addonCount} add-on${addonCount > 1 ? 's' : ''}`);
+      }
+
+      totalEl.textContent = formatCents(totalCents);
+      summaryEl.textContent = parts.join(' + ');
+    }
+
+    // Checkout
+    checkoutBtn.addEventListener('click', async () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          event_category: 'ecommerce',
+          value: parseFloat(totalEl.textContent?.replace(/[^0-9.]/g, '') || '0'),
+          currency: 'USD'
+        });
+      }
+      checkoutBtn.disabled = true;
+      checkoutBtn.textContent = 'Redirecting to Stripe...';
+      errorEl.classList.add('hidden');
+
+      const addonPayload = Array.from(selectedAddons.entries()).map(([id, qty]) => ({
+        id,
+        quantity: qty,
+      }));
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            plan: 'hosting',
+            includeUnlimitedEdits: includeEdits,
+            selectedAddons: addonPayload,
+          }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          throw new Error(data.error || 'Something went wrong');
+        }
+
+        if (data.url) {
+          window.location.href = data.url;
+        }
+      } catch (err: any) {
+        errorEl.textContent = err.message || 'Failed to start checkout. Please try again.';
+        errorEl.classList.remove('hidden');
+        checkoutBtn.disabled = false;
+        checkoutBtn.textContent = 'Subscribe Now';
+      }
+    });
+  </script>
+</Layout>

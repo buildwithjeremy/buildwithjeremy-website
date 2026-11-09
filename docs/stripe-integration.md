@@ -46,7 +46,7 @@ Stripe webhook → /api/webhook (detects mode=subscription) → Resend emails
 | `src/pages/ai-employee/*/index.astro` | Product pages with checkout buttons |
 | **Custom Software** | |
 | `src/pages/api/subscribe.ts` | Creates subscription Stripe sessions (imports from `pricing.ts`) |
-| `src/pages/custom-software/index.astro` | Plan selection page with add-on toggles (imports from `pricing.ts`) |
+| `src/pages/your-plan/index.astro` | Client-only plan selection page at /your-plan/ (noindex, not in the sitemap or nav; shared by direct link) with add-on toggles (imports from `pricing.ts`) |
 | `src/pages/checkout/subscription-success.astro` | Post-subscription success page |
 
 ## Environment Variables (Vercel)

@@ -83,7 +83,7 @@ a computed event name fails unless it is in `GoogleAnalytics.astro` or a file de
 | `scroll_depth` | scroll | `percent`: 25, 50, 75; `source_page` | `/` and `/services/` (GA4 already sends 90) |
 | `sign_up` | programmatic | `event_category`, `method: newsletter` | `form[data-track-form="newsletter"]` on `/`, `/about/`, `/resources/` |
 | `qualified_booking_start` | programmatic | `event_category`, `role`, `revenue_band`, `timeline` | `data-track-form="qualify"` on `/contact/` |
-| `begin_checkout` | programmatic | `event_category`, `value`, `currency` | `data-track-source="checkout"` on `/custom-software/` |
+| `begin_checkout` | programmatic | `event_category`, `value`, `currency` | `data-track-source="checkout"` on `/your-plan/` |
 | `purchase` | programmatic | `event_category`, `event_label` | page load of `/checkout/success/` and `/checkout/subscription-success/` |
 | `calendly_viewed`, `calendly_date_selected` | embed | `event_category` | `data-track-embed="calendly"` on `/contact/` |
 | `generate_lead` | embed | `event_category`, `event_label: calendly_booking` | same; the only key event |
