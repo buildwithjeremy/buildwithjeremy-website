@@ -78,7 +78,7 @@ export const TRACKING = {
         page_path: { auto: true, description: 'location.pathname' },
       },
       expect: [
-        '/', '/services/', '/contact/', '/custom-software/', '/strategic-operations-partner/',
+        '/', '/services/', '/contact/', '/custom-software/', '/your-plan/', '/strategic-operations-partner/',
         '/operations-consulting/', '/ai-automation-consulting/', '/ai-employee/general/',
         '/ai-employee/marketing-agencies/', '/ai-employee/social-media-agencies/',
         '/ai-employee/recruiting-agencies/', '/ai-employee/seo-agencies/',
@@ -115,15 +115,15 @@ export const TRACKING = {
     {
       name: 'begin_checkout',
       type: 'programmatic',
-      description: 'Checkout button on /custom-software/ clicked (before the Stripe redirect).',
+      description: 'Checkout button on /your-plan/ clicked (before the Stripe redirect).',
       params: {
         event_category: { auto: true, description: "'ecommerce'" },
         value: { auto: true, description: 'the displayed total' },
         currency: { auto: true, description: "'USD'" },
       },
-      source: 'src/pages/custom-software/index.astro',
+      source: 'src/pages/your-plan/index.astro',
       marker: 'data-track-source="checkout"',
-      expect: [{ page: '/custom-software/' }],
+      expect: [{ page: '/your-plan/' }],
     },
     {
       name: 'purchase',

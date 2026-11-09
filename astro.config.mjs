@@ -52,7 +52,9 @@ export default defineConfig({
     // blog content with fields.mdx(). Without this the collection cannot load at all.
     mdx(),
     sitemap({
-      filter: (page) => !page.includes('/checkout/') && !EMPTY_INDEX_PATHS.includes(page),
+      // /your-plan/ is the client-only plan builder (noindex, shared by direct link).
+      filter: (page) =>
+        !page.includes('/checkout/') && !page.includes('/your-plan/') && !EMPTY_INDEX_PATHS.includes(page),
       serialize(item) {
         // Boost AI employee pages for faster crawl discovery
         if (item.url.includes('/ai-employee/')) {

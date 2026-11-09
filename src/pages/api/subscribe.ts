@@ -90,7 +90,7 @@ export const POST: APIRoute = async ({ request, url }) => {
     const successUrl = new URL('/checkout/subscription-success', url.origin);
     successUrl.searchParams.set('session_id', '{CHECKOUT_SESSION_ID}');
 
-    const cancelUrl = new URL('/custom-software', url.origin);
+    const cancelUrl = new URL('/your-plan', url.origin);
     cancelUrl.searchParams.set('cancelled', 'true');
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
