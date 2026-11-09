@@ -14,9 +14,11 @@
 
 export const hosting = {
   productId: 'prod_TvmdpdOqPNTm8f',
-  priceId: 'price_1Sxv3uBUNvYd8nY7SUUyUsj9',
+  // $100/mo since 2026-11-09. Subscribers on the old $50/mo price
+  // (price_1Sxv3uBUNvYd8nY7SUUyUsj9) keep it.
+  priceId: 'price_1Ua1QJBUNvYd8nY7VQ9SYMpZ',
   name: 'Custom App - Hosting/Management',
-  amount: 5000, // cents → $50/mo
+  amount: 10000, // cents → $100/mo
   label: 'Core App Hosting',
   description: 'Everything you need to keep your system running and supported.',
 } as const;
