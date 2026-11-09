@@ -25,9 +25,11 @@ export const hosting = {
 
 export const unlimitedEdits = {
   productId: 'prod_TvmYQSYH8lnO2f',
-  priceId: 'price_1SxuzTBUNvYd8nY780UwbIXu',
+  // $500/mo since 2026-11-09. Subscribers on the old $300/mo price
+  // (price_1SxuzTBUNvYd8nY780UwbIXu) keep it.
+  priceId: 'price_1TgIs5BUNvYd8nY7GzVgCrTx',
   name: 'Custom App - Unlimited Edits',
-  amount: 30000, // cents → $300/mo
+  amount: 50000, // cents → $500/mo
   label: 'Unlimited Edits',
   description: 'Ongoing feature requests, tweaks, and improvements — no scoping, no quoting.',
 } as const;

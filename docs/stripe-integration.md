@@ -76,7 +76,7 @@ Stripe webhook → /api/webhook (detects mode=subscription) → Resend emails
 | Product | Product ID | Price ID | Amount |
 |---------|------------|----------|--------|
 | Hosting/Management (base) | `prod_TvmdpdOqPNTm8f` | `price_1Ua1QJBUNvYd8nY7VQ9SYMpZ` | $100/mo (since 2026-11-09; earlier subscribers stay on `price_1Sxv3uBUNvYd8nY7SUUyUsj9` at $50/mo) |
-| Unlimited Edits (optional) | `prod_TvmYQSYH8lnO2f` | `price_1SxuzTBUNvYd8nY780UwbIXu` | $300/mo |
+| Unlimited Edits (optional) | `prod_TvmYQSYH8lnO2f` | `price_1TgIs5BUNvYd8nY7GzVgCrTx` | $500/mo (since 2026-11-09; earlier subscribers stay on `price_1SxuzTBUNvYd8nY780UwbIXu` at $300/mo) |
 | Add-on: Client Portal | `prod_TyccJwxFG3QMqT` | `price_1T0fNIBUNvYd8nY7fK03wsFS` | $25/mo |
 | Add-on: AI Automation | `prod_Tycd6rl7Hqffr9` | `price_1T0fNkBUNvYd8nY7vAv2r5lV` | $25/mo |
 | Add-on: Video Generation | `prod_Tycd2JKoH8YnJE` | `price_1T0fOFBUNvYd8nY74f3K0ahO` | $50/mo |
@@ -87,7 +87,7 @@ Stripe webhook → /api/webhook (detects mode=subscription) → Resend emails
 ### How the Custom Software pricing page works
 
 - **Hosting (starting at $100/mo)** is always included — it's the required base
-- **Unlimited Edits (+$300/mo)** is an optional upgrade toggle
+- **Unlimited Edits (+$500/mo)** is an optional upgrade toggle
 - **Add-ons ($25–$50/mo)** can be toggled independently
 - API Integration supports multiple quantities (1–5)
 - All prices, labels, and descriptions are driven from `src/config/pricing.ts`
