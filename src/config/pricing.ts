@@ -14,18 +14,22 @@
 
 export const hosting = {
   productId: 'prod_TvmdpdOqPNTm8f',
-  priceId: 'price_1Sxv3uBUNvYd8nY7SUUyUsj9',
+  // $100/mo since 2026-11-09. Subscribers on the old $50/mo price
+  // (price_1Sxv3uBUNvYd8nY7SUUyUsj9) keep it.
+  priceId: 'price_1Ua1QJBUNvYd8nY7VQ9SYMpZ',
   name: 'Custom App - Hosting/Management',
-  amount: 5000, // cents → $50/mo
+  amount: 10000, // cents → $100/mo
   label: 'Core App Hosting',
   description: 'Everything you need to keep your system running and supported.',
 } as const;
 
 export const unlimitedEdits = {
   productId: 'prod_TvmYQSYH8lnO2f',
-  priceId: 'price_1SxuzTBUNvYd8nY780UwbIXu',
+  // $500/mo since 2026-11-09. Subscribers on the old $300/mo price
+  // (price_1SxuzTBUNvYd8nY780UwbIXu) keep it.
+  priceId: 'price_1TgIs5BUNvYd8nY7GzVgCrTx',
   name: 'Custom App - Unlimited Edits',
-  amount: 30000, // cents → $300/mo
+  amount: 50000, // cents → $500/mo
   label: 'Unlimited Edits',
   description: 'Ongoing feature requests, tweaks, and improvements — no scoping, no quoting.',
 } as const;
