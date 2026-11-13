@@ -227,7 +227,7 @@ async function handleOneTimeCheckout(
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '');
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2026-10-28.endive' });
   const resend = new Resend(process.env.RESEND_API_KEY || '');
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 

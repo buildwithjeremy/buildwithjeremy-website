@@ -10,7 +10,7 @@ const getStripe = () => {
   if (!key) {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
-  return new Stripe(key);
+  return new Stripe(key, { apiVersion: '2026-10-28.endive' });
 };
 
 // Price IDs - live prices for production, test prices for development
@@ -59,7 +59,7 @@ export const POST: APIRoute = async ({ request, url }) => {
     const cancelUrl = new URL('/checkout/cancel', url.origin);
 
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      allowed_payment_method_types: ['card'],
       line_items: [
         {
           price: priceId,

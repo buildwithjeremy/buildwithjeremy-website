@@ -9,7 +9,7 @@ const getStripe = () => {
   if (!key) {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
-  return new Stripe(key);
+  return new Stripe(key, { apiVersion: '2026-10-28.endive' });
 };
 
 interface AddonSelection {
@@ -94,7 +94,7 @@ export const POST: APIRoute = async ({ request, url }) => {
     cancelUrl.searchParams.set('cancelled', 'true');
 
     const sessionParams: Stripe.Checkout.SessionCreateParams = {
-      payment_method_types: ['card'],
+      allowed_payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'subscription',
       success_url: successUrl.toString(),
