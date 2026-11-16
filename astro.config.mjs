@@ -25,6 +25,10 @@ const EMPTY_INDEX_PATHS = ['portfolio', 'resources']
   .filter((dir) => !hasEntries(dir))
   .map((dir) => `https://buildwithjeremy.com/${dir}/`);
 
+// Keystatic uses local storage, so the admin only works on a dev machine. Keep it out of
+// production builds so /keystatic/ and /api/keystatic/* are not served on the live site.
+const isDev = process.argv.includes('dev');
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://buildwithjeremy.com',
@@ -47,7 +51,7 @@ export default defineConfig({
 
   integrations: [
     react(),
-    keystatic(),
+    ...(isDev ? [keystatic()] : []),
     // Required for the blog: the collection globs **/*.mdx and Keystatic authors
     // blog content with fields.mdx(). Without this the collection cannot load at all.
     mdx(),
