@@ -6,7 +6,7 @@ Jeremy's personal-brand site: Strategic Ops Partner / fractional COO for small s
 
 ## Stack and commands
 
-Astro 5 (static) + React islands + MDX, Tailwind 4, Keystatic CMS for the blog (`/keystatic`, config `keystatic.config.ts`), hosted on Vercel (`vercel.json` holds redirects). API routes in `src/pages/api/`: Stripe checkout/subscribe/webhook (see `docs/stripe-integration.md`) and newsletter.
+Astro 5 (static) + React islands + MDX, Tailwind 4, Keystatic CMS for the blog (admin runs only under `npm run dev` at `/keystatic` locally and is not deployed; config `keystatic.config.ts`), hosted on Vercel (`vercel.json` holds redirects). API routes in `src/pages/api/`: Stripe checkout/subscribe/webhook (see `docs/stripe-integration.md`) and newsletter.
 
 ```bash
 npm run dev
