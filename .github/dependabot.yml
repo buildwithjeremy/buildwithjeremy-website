@@ -7,7 +7,17 @@ updates:
       day: monday
     open-pull-requests-limit: 5
     groups:
-      # One PR a week for routine bumps; majors still arrive on their own.
+      # Astro and its integrations share peer ranges, so a major of one alone fails
+      # the peer check. Their majors arrive together as one PR.
+      astro-major:
+        applies-to: version-updates
+        patterns:
+          - astro
+          - "@astrojs/*"
+          - "@keystatic/astro"
+        update-types:
+          - major
+      # One PR a week for routine bumps; other majors still arrive on their own.
       minor-and-patch:
         applies-to: version-updates
         update-types:
@@ -18,3 +28,9 @@ updates:
         update-types:
           - minor
           - patch
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci
