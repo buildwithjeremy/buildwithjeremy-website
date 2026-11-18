@@ -235,6 +235,15 @@ for (const ev of TRACKING.events) {
   }
 }
 
+// ── Programmatic events call window.gtag, so the GA script must publish it ──
+// define:vars wraps the inline GA script in a function; a bare `function gtag` is
+// then local. That silently dropped every film and quote event from 2026-09-29
+// (buildmysystem-website PR #25) until 2026-10-17.
+checked++;
+if (!/window\.gtag\s*=/.test(gaSource)) {
+  errors.push(`The GA script does not assign window.gtag (checked ${gaWhere}). Programmatic events (scripts outside the GA component that call gtag) are dropped without it.`);
+}
+
 // ── Programmatic events: the source file sends the event and looks up its marker ──
 for (const ev of TRACKING.events) {
   if (typeOf(ev) !== 'programmatic' || !ev.source) continue;

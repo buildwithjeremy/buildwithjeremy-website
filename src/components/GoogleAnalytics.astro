@@ -18,6 +18,10 @@ const CLICK_EVENTS = TRACKING.events
     <script define:vars={{ GA_ID, SCROLL, CLICK_EVENTS }}>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // define:vars wraps this script in a function, so gtag is not global unless we
+      // say so. The checkout pages and the plan builder call gtag from their own
+      // scripts; without this line those events are silently dropped.
+      window.gtag = gtag;
       gtag('js', new Date());
       // Internal traffic flag: ?internal=1 marks this browser, ?internal=0 clears it.
       // The GA4 internal-traffic data filter excludes traffic_type internal.

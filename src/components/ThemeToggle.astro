@@ -60,8 +60,9 @@
 
   // Check for saved theme preference or default to system preference
   const getThemePreference = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+    const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('theme') : null;
+    if (saved) {
+      return saved;
     }
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   };

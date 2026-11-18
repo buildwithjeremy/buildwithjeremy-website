@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@astrojs/react';
 import keystatic from '@keystatic/astro';
 import vercel from '@astrojs/vercel';
-import sitemap from '@astrojs/sitemap';
+import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 import mdx from '@astrojs/mdx';
 import fs from 'node:fs';
 
@@ -13,6 +13,7 @@ import fs from 'node:fs';
 // shells: the page sets noindex while its collection is empty, and the sitemap
 // must not advertise them either. Both flip back automatically when the first
 // entry lands, so nobody has to remember to undo this.
+/** @param {string} dir */
 const hasEntries = (dir) => {
   try {
     return fs.readdirSync(new URL(`./src/content/${dir}/`, import.meta.url), { recursive: true })
@@ -58,13 +59,13 @@ export default defineConfig({
       serialize(item) {
         // Boost AI employee pages for faster crawl discovery
         if (item.url.includes('/ai-employee/')) {
-          item.changefreq = 'weekly';
+          item.changefreq = ChangeFreqEnum.WEEKLY;
           item.priority = 0.8;
         } else if (item.url === 'https://buildwithjeremy.com/') {
-          item.changefreq = 'weekly';
+          item.changefreq = ChangeFreqEnum.WEEKLY;
           item.priority = 1.0;
         } else {
-          item.changefreq = 'monthly';
+          item.changefreq = ChangeFreqEnum.MONTHLY;
           item.priority = 0.7;
         }
         // No lastmod on purpose. It used to be the build date, which told Google every
