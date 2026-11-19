@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
@@ -10,6 +11,10 @@ const MAILERLITE_API_KEY =
 const MAILERLITE_GROUP_ID =
   process.env.MAILERLITE_GROUP_ID ?? import.meta.env.MAILERLITE_GROUP_ID;
 
+const RESEND_API_KEY = process.env.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+const NOTIFICATION_EMAIL =
+  process.env.NOTIFICATION_EMAIL ?? import.meta.env.NOTIFICATION_EMAIL ?? 'jeremy@buildwithjeremy.com';
+
 const MAILERLITE_SUBSCRIBERS_URL = 'https://connect.mailerlite.com/api/subscribers';
 const MAX_FIELD_LENGTH = 1000;
 const MAX_EXTRA_FIELDS = 10;
@@ -19,6 +24,38 @@ const json = (payload: Record<string, unknown>, status: number) =>
     status,
     headers: { 'Content-Type': 'application/json' },
   });
+
+const esc = (v: string) =>
+  v.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+/**
+ * Tell Jeremy a signup happened. Added 2026-11-19: before this, newsletter and
+ * contact-form signups went only to MailerLite and nobody was told. Best-effort;
+ * never blocks the visitor.
+ */
+async function notifyJeremy(email: string, name: string, source: string, fields: Record<string, string>) {
+  if (!RESEND_API_KEY) {
+    console.error('[newsletter] RESEND_API_KEY not set - no signup alert sent');
+    return;
+  }
+  const rows = Object.entries(fields)
+    .map(([k, v]) => `<li><strong>${esc(k)}:</strong> ${esc(v)}</li>`)
+    .join('');
+  try {
+    const { error } = await new Resend(RESEND_API_KEY).emails.send({
+      from: 'Build with Jeremy <notifications@mail.buildwithjeremy.com>',
+      to: NOTIFICATION_EMAIL,
+      replyTo: email,
+      subject: `Website signup: ${name || email}${source ? ` (${source})` : ''}`,
+      html: `<p><strong>${esc(name || '(no name)')}</strong> &lt;${esc(email)}&gt; signed up on buildwithjeremy.com.</p>
+             <p>Source: ${esc(source || 'unknown')}</p>${rows ? `<ul>${rows}</ul>` : ''}
+             <p>Reply to this email to reach them directly.</p>`,
+    });
+    if (error) console.error('[newsletter] Signup alert failed:', error.message);
+  } catch (err) {
+    console.error('[newsletter] Signup alert failed:', err);
+  }
+}
 
 /** Keep only short string values so arbitrary payloads can't be relayed to MailerLite. */
 function sanitizeFields(input: unknown): Record<string, string> {
@@ -62,6 +99,9 @@ export const POST: APIRoute = async ({ request }) => {
   if (!email || !email.includes('@') || email.length > 320) {
     return json({ success: false, error: 'A valid email is required.' }, 400);
   }
+
+  // The alert is independent of MailerLite, so a lead is never silent.
+  await notifyJeremy(email, name, source, extraFields);
 
   // If MailerLite is not configured, still return success (graceful degradation)
   if (!MAILERLITE_API_KEY) {
