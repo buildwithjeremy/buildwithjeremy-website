@@ -7,13 +7,17 @@
  * with no logo mark, so the icon is Jeremy's face on a brand-blue (#5565f1) circle.
  *
  * HOW SMALL SIZES STAY READABLE
- * The head is framed with room around it (shoulders showing) so it does not crowd the
- * circle. At 16-48px the master gets local contrast (CLAHE) before shrinking and a light
+ * The head sits high in the circle: the top of the hair is just inside the top edge, so the
+ * eyes land above centre (Jeremy, 2026-11-20: the first framing left too much space above
+ * the head). Shoulders still show at the bottom. At 16-48px the master gets local contrast (CLAHE) before shrinking and a light
  * sharpen after, so eyes, brows and the smile survive. Sizes 96px and up are a plain
  * Lanczos downscale. Apple touch is full-bleed (iOS fills transparency with black and
  * applies its own mask).
  *
  * sharp is not a direct dependency: it ships with Astro (image service) and is hoisted.
+ *
+ * Also writes the round-crop avatars (public/images/jeremy-headshot-avatar-{96,160}.{jpg,webp,avif}):
+ * same framing on a square brand background, shown with rounded-full on the page.
  *
  * Run: node scripts/make-favicons.mjs "<path to transparent headshot PNG>"
  * (writes into public/, commit the outputs). Framing constants assume the 1714x2000
@@ -30,7 +34,7 @@ const PUBLIC = path.resolve(import.meta.dirname, '..', 'public');
 const BRAND = '#5565f1';
 const FACE_CX = 840; // horizontal centre of the face in the source
 const SPAN = 1750; // source px across the icon (bigger = smaller head, more room)
-const TOP = -120; // source y at the top of the icon (negative = headroom above the hair)
+const TOP = 40; // source y at the top of the icon (hair top is at y=103, so ~60px headroom)
 const MASTER = 512;
 
 /** The person, cropped and scaled to MASTER px, on transparency. */
@@ -109,3 +113,17 @@ out('favicon.ico', ico([{ px: 16, data: f16 }, { px: 32, data: f32 }, { px: 48, 
 out('icon-192.png', await large(round, 192));
 out('icon-512.png', await large(round, 512));
 out('apple-touch-icon.png', await large(square, 180));
+
+// Avatars: square, brand background, displayed as circles (rounded-full).
+const IMAGES = path.join(PUBLIC, 'images');
+for (const px of [96, 160]) {
+  const base = sharp(square).resize(px * 2, px * 2, { kernel: 'lanczos3' }).resize(px, px, { kernel: 'lanczos3' });
+  const name = `jeremy-headshot-avatar-${px}`;
+  const write = (ext, buf) => {
+    fs.writeFileSync(path.join(IMAGES, `${name}.${ext}`), buf);
+    console.log(`images/${name}.${ext}`.padEnd(40), buf.length, 'bytes');
+  };
+  write('jpg', await base.clone().jpeg({ quality: 86, mozjpeg: true }).toBuffer());
+  write('webp', await base.clone().webp({ quality: 82 }).toBuffer());
+  write('avif', await base.clone().avif({ quality: 60 }).toBuffer());
+}
