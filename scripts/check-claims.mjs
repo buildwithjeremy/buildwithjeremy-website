@@ -30,6 +30,8 @@ const SRC = path.join(ROOT, 'src');
 const BANNED = [
   { re: /\$\s?[0-9.]+\s?M\+?\s*(client\s+)?(revenue|arr)\s+enabled/i,
     why: 'RETIRED: "$XM+ revenue enabled" is conflicting and unsourced. See proof-points.md NEEDS DECISION.' },
+  { re: /client\s+arr\b/i,
+    why: 'RETIRED: "Client ARR" (was on the og-image until 2026-11-20). Use "$5.5M+ in client work runs through systems we built".' },
   { re: /(revenue|arr)\s+enabled/i,
     why: 'RETIRED: "revenue enabled" is an unfalsifiable attribution claim. Say what was measured instead.' },
   { re: /\b(20|17)\s?\+?\s*(custom\s+)?systems?\s+(built|shipped|delivered)|\b(built|shipped|delivered)\s+(20|17)\s?\+?\s*(custom\s+)?systems?\b/i,
