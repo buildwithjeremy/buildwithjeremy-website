@@ -404,17 +404,16 @@ const notAFit = [
         .filter(Boolean)
         .join(' | ')
         .slice(0, 250);
-      const params = new URLSearchParams({
-        hide_gdpr_banner: '1',
-        name,
-        email,
-        a1: summary,
-      });
+      // encodeURIComponent, not URLSearchParams: Calendly's widget re-encodes the
+      // query, so URLSearchParams' '+' for spaces showed up as literal '+' (WI 9e7ee656).
+      const params = Object.entries({ hide_gdpr_banner: '1', name, email, a1: summary })
+        .map(([k, v]) => `${k}=${encodeURIComponent(v)}`)
+        .join('&');
 
       if (identityEl) identityEl.textContent = `${name} (${email})`;
       qualifyStep?.classList.add('hidden');
       bookingStep?.classList.remove('hidden');
-      initCalendly(`${CALENDLY_BASE}?${params.toString()}`);
+      initCalendly(`${CALENDLY_BASE}?${params}`);
       bookingStep?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 

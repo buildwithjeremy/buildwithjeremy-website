@@ -137,9 +137,16 @@ const CLICK_EVENTS = TRACKING.events
       }
 
       // Embed events: Calendly postMessage (container tagged data-track-embed="calendly").
+      // Calendly posts some events twice, ~3 ms apart (event_type_viewed did on
+      // 2026-11-20, WI fa449a01), so a repeat of the same event within 1s is dropped.
+      const calendlyLast = {};
       window.addEventListener('message', (e) => {
         if (e.origin !== 'https://calendly.com') return;
         const evt = e.data?.event;
+        if (typeof evt !== 'string' || !evt.startsWith('calendly.')) return;
+        const now = Date.now();
+        if (now - (calendlyLast[evt] || 0) < 1000) return;
+        calendlyLast[evt] = now;
         if (evt === 'calendly.event_type_viewed') {
           gtag('event', 'calendly_viewed', { event_category: 'booking' });
         }
