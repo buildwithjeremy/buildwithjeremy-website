@@ -6,6 +6,12 @@ updates:
       interval: weekly
       day: monday
     open-pull-requests-limit: 5
+    ignore:
+      # @astrojs/check (our CI typecheck) refuses TypeScript 7: no peer range for it,
+      # and `astro check` exits with an error (closed the TS 7 bump). Remove when
+      # @astrojs/check, or its @astrojs/ts-content-mapper replacement, supports it.
+      - dependency-name: typescript
+        versions: [">=7"]
     groups:
       # Astro and its integrations share peer ranges, so a major of one alone fails
       # the peer check. Their majors arrive together as one PR.

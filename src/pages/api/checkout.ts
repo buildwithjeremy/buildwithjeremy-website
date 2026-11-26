@@ -10,7 +10,7 @@ const getStripe = () => {
   if (!key) {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
-  return new Stripe(key, { apiVersion: '2026-10-28.endive' });
+  return new Stripe(key, { apiVersion: '2026-11-18.endive' });
 };
 
 // Price IDs - live prices for production, test prices for development
