@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
+import { STRIPE_API_VERSION } from '../../config/stripe';
 import { hosting, unlimitedEdits, addons } from '../../config/pricing';
 
 export const prerender = false;
@@ -9,7 +10,7 @@ const getStripe = () => {
   if (!key) {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
-  return new Stripe(key, { apiVersion: '2026-11-18.endive' });
+  return new Stripe(key, { apiVersion: STRIPE_API_VERSION });
 };
 
 interface AddonSelection {
