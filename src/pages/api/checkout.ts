@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
+import { STRIPE_API_VERSION } from '../../config/stripe';
 
 // Disable prerendering for this API route (server-side only)
 export const prerender = false;
@@ -10,7 +11,7 @@ const getStripe = () => {
   if (!key) {
     throw new Error('STRIPE_SECRET_KEY is not set');
   }
-  return new Stripe(key, { apiVersion: '2026-11-18.endive' });
+  return new Stripe(key, { apiVersion: STRIPE_API_VERSION });
 };
 
 // Price IDs - live prices for production, test prices for development

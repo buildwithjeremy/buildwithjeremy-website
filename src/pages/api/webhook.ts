@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
+import { STRIPE_API_VERSION } from '../../config/stripe';
 import { Resend } from 'resend';
 
 export const prerender = false;
@@ -227,7 +228,7 @@ async function handleOneTimeCheckout(
 }
 
 export const POST: APIRoute = async ({ request }) => {
-  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: '2026-11-18.endive' });
+  const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', { apiVersion: STRIPE_API_VERSION });
   const resend = new Resend(process.env.RESEND_API_KEY || '');
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || '';
 
